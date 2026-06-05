@@ -184,6 +184,114 @@
     .badge-paused    { background: rgba(255,200,80,.15);  color: #ffc850; }
     .badge-completed { background: rgba(108,99,255,.15);  color: var(--accent); }
 
+    /* Chat */
+    .chat-card {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .chat-copy {
+      color: var(--muted);
+      font-size: .875rem;
+      line-height: 1.5;
+    }
+
+    .chat-status {
+      padding: .75rem 1rem;
+      border-radius: calc(var(--radius) - 4px);
+      background: rgba(72,199,167,.10);
+      border: 1px solid rgba(72,199,167,.25);
+      color: var(--text);
+      font-size: .85rem;
+    }
+
+    .chat-status.warning {
+      background: rgba(255,200,80,.10);
+      border-color: rgba(255,200,80,.25);
+      color: #ffe4a1;
+    }
+
+    .chat-log {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      min-height: 280px;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: .25rem;
+    }
+
+    .chat-message {
+      max-width: 85%;
+      padding: .85rem 1rem;
+      border-radius: 16px;
+      font-size: .92rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .chat-message.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--accent), #5b8cff);
+      color: white;
+    }
+
+    .chat-message.assistant {
+      align-self: flex-start;
+      background: #141823;
+      border: 1px solid var(--border);
+    }
+
+    .chat-form {
+      display: grid;
+      gap: .75rem;
+    }
+
+    .chat-form textarea {
+      width: 100%;
+      min-height: 96px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) - 4px);
+      background: #11141d;
+      color: var(--text);
+      padding: .9rem 1rem;
+      font: inherit;
+    }
+
+    .chat-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(108,99,255,.18);
+    }
+
+    .chat-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .chat-help {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    .chat-button {
+      border: none;
+      border-radius: 999px;
+      padding: .75rem 1.1rem;
+      background: linear-gradient(135deg, var(--accent2), #37a2d6);
+      color: #081018;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .chat-button:disabled {
+      cursor: wait;
+      opacity: .7;
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -266,11 +374,124 @@
 
     </div>
 
+    <section class="card chat-card" id="chatbot" data-chat-enabled="{{ 'true' if llm_configured else 'false' }}">
+      <div>
+        <h2>Ask The Assistant</h2>
+        <p class="chat-copy">Ask a question, brainstorm an idea, or get a quick summary right from the dashboard. The backend forwards requests to the shared LLM service so your token stays server-side.</p>
+      </div>
+
+      <div class="chat-status{% if not llm_configured %} warning{% endif %}" id="chat-status">
+        {% if llm_configured %}
+        Ready. Keep prompts concise because the shared model has a small context window.
+        {% else %}
+        Chat is not configured yet. Set `SERVER_URL` and `SERVER_TOKEN` before using the assistant.
+        {% endif %}
+      </div>
+
+      <div class="chat-log" id="chat-log" aria-live="polite">
+        <div class="chat-message assistant">Hi! Ask me anything and I will respond here.</div>
+      </div>
+
+      <form class="chat-form" id="chat-form">
+        <textarea
+          id="chat-input"
+          name="message"
+          placeholder="Ask a question..."
+          {% if not llm_configured %}disabled{% endif %}
+        ></textarea>
+        <div class="chat-actions">
+          <span class="chat-help">Press Enter to send. Use Shift+Enter for a new line.</span>
+          <button class="chat-button" id="chat-submit" type="submit" {% if not llm_configured %}disabled{% endif %}>
+            Send
+          </button>
+        </div>
+      </form>
+    </section>
+
   </main>
 
   <footer>
     MD-Hackathon &copy; 2026 &mdash; powered by FastAPI &amp; Jinja2; Created by Team WaffWaff.
   </footer>
+
+  <script>
+    const chatRoot = document.getElementById("chatbot");
+    const chatEnabled = chatRoot?.dataset.chatEnabled === "true";
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatLog = document.getElementById("chat-log");
+    const chatStatus = document.getElementById("chat-status");
+    const chatSubmit = document.getElementById("chat-submit");
+    const conversation = [
+      {
+        role: "system",
+        content: "You are a concise, helpful assistant embedded in a hackathon dashboard."
+      }
+    ];
+
+    function addMessage(role, content) {
+      const message = document.createElement("div");
+      message.className = `chat-message ${role}`;
+      message.textContent = content;
+      chatLog.appendChild(message);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return message;
+    }
+
+    function setBusy(isBusy) {
+      chatSubmit.disabled = isBusy || !chatEnabled;
+      chatInput.disabled = isBusy || !chatEnabled;
+      chatSubmit.textContent = isBusy ? "Thinking..." : "Send";
+    }
+
+    async function sendMessage() {
+      const prompt = chatInput.value.trim();
+      if (!prompt || !chatEnabled) {
+        return;
+      }
+
+      conversation.push({ role: "user", content: prompt });
+      addMessage("user", prompt);
+      chatInput.value = "";
+      setBusy(true);
+      chatStatus.textContent = "Waiting for response...";
+
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages: conversation })
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.detail || "Request failed");
+        }
+
+        conversation.push({ role: "assistant", content: data.response });
+        addMessage("assistant", data.response);
+        chatStatus.textContent = "Ready for the next question.";
+      } catch (error) {
+        conversation.pop();
+        chatStatus.textContent = error.message || "Something went wrong.";
+      } finally {
+        setBusy(false);
+        chatInput.focus();
+      }
+    }
+
+    chatForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await sendMessage();
+    });
+
+    chatInput?.addEventListener("keydown", async (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        await sendMessage();
+      }
+    });
+  </script>
 
 </body>
 </html>

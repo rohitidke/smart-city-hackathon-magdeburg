@@ -1,6 +1,12 @@
-from fastapi import FastAPI, Request
-from fastapi.templating import Jinja2Templates
+import asyncio
+import json
+import os
 from pathlib import Path
+from urllib import error, request as urllib_request
+
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel, Field
 
 app = FastAPI(title="MD-Hackathon Dashboard")
 
@@ -11,6 +17,7 @@ templates = Jinja2Templates(directory=Path(__file__).parent / "templates")
 # ---------------------------------------------------------------------------
 DUMMY_DATA = {
     "title": "MD-Hackathon Dashboard",
+    "llm_configured": False,
     "stats": [
         {"label": "Total Projects", "value": 42, "icon": "📁"},
         {"label": "Active Users", "value": 128, "icon": "👥"},
@@ -33,10 +40,90 @@ DUMMY_DATA = {
 }
 
 
+class ChatMessage(BaseModel):
+    role: str = Field(pattern="^(system|user|assistant)$")
+    content: str = Field(min_length=1, max_length=4000)
+
+
+class ChatRequest(BaseModel):
+    messages: list[ChatMessage]
+
+
+class ChatResponse(BaseModel):
+    response: str
+
+
+def llm_is_configured() -> bool:
+    return bool(os.getenv("SERVER_URL") and os.getenv("SERVER_TOKEN"))
+
+
+def post_llm_chat(messages: list[dict[str, str]]) -> dict:
+    server_url = os.getenv("SERVER_URL")
+    server_token = os.getenv("SERVER_TOKEN")
+
+    if not server_url or not server_token:
+        raise HTTPException(
+            status_code=503,
+            detail="LLM backend is not configured. Set SERVER_URL and SERVER_TOKEN.",
+        )
+
+    endpoint = f"{server_url.rstrip('/')}/api/llm/chat"
+    payload = json.dumps({"messages": messages}).encode("utf-8")
+    req = urllib_request.Request(
+        endpoint,
+        data=payload,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {server_token}",
+        },
+        method="POST",
+    )
+
+    try:
+        with urllib_request.urlopen(req, timeout=30) as response:
+            body = response.read().decode("utf-8")
+    except error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", errors="replace")
+        raise HTTPException(
+            status_code=exc.code,
+            detail=f"LLM backend request failed: {detail}",
+        ) from exc
+    except error.URLError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"LLM backend is unreachable: {exc.reason}",
+        ) from exc
+
+    try:
+        parsed = json.loads(body)
+    except json.JSONDecodeError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail="LLM backend returned invalid JSON.",
+        ) from exc
+
+    if "response" not in parsed or not isinstance(parsed["response"], str):
+        raise HTTPException(
+            status_code=502,
+            detail="LLM backend returned an unexpected response format.",
+        )
+
+    return parsed
+
+
 @app.get("/")
 async def dashboard(request: Request):
+    context = {**DUMMY_DATA, "llm_configured": llm_is_configured()}
     return templates.TemplateResponse(
         request=request,
         name="dashboard.html",
-        context=DUMMY_DATA,
+        context=context,
     )
+
+
+@app.post("/api/chat", response_model=ChatResponse)
+async def chat(payload: ChatRequest):
+    # Keep the context short to match the platform's limited token window.
+    messages = [message.model_dump() for message in payload.messages[-8:]]
+    response = await asyncio.to_thread(post_llm_chat, messages)
+    return ChatResponse(response=response["response"])
