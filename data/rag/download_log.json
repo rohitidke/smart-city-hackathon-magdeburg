@@ -1,0 +1,511 @@
+[
+  {
+    "key": "strategie/isek_2030_plus",
+    "status": "error",
+    "url": "https://www.magdeburg-tourist.de/media/custom/37_43607_1.PDF",
+    "title": "Integriertes Stadtentwicklungskonzept ISEK 2030+ (Magdeburg)",
+    "error": "HTTPError: 404 Client Error: Not Found for url: https://www.magdeburg-tourist.de/media/custom/37_43607_1.PDF"
+  },
+  {
+    "key": "strategie/kulturstrategie_2030",
+    "status": "cached",
+    "url": "https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=44383&ObjLa=1&Ext=PDF",
+    "path": "downloads/strategie/kulturstrategie_2030.pdf",
+    "title": "Kulturstrategie 2030 — Kultur mit allen (einfache Sprache, Webversion)",
+    "bytes": 1882140,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "strategie/tourismuskonzept_2030_landing",
+    "status": "cached",
+    "url": "https://www.magdeburg.de/index.php?ModID=7&FID=115.3694.1&object=tx%7C115.3694.1",
+    "path": "downloads/strategie/tourismuskonzept_2030_landing.txt",
+    "title": "Tourismuskonzept Magdeburg 2030 (Landingpage, 198 Maßnahmen)",
+    "bytes_html": 152257,
+    "bytes_txt": 1159
+  },
+  {
+    "key": "strategie/smart_city_landingpage",
+    "status": "ok",
+    "url": "https://www.magdeburg.de/Start/B%C3%BCrger-Stadt/Verwaltung-Service/Smart-City/",
+    "path": "downloads/strategie/smart_city_landingpage.txt",
+    "title": "Smart City Magdeburg — städtische Übersicht",
+    "bytes_html": 150580,
+    "bytes_txt": 601
+  },
+  {
+    "key": "strategie/lsa_digital_2030_md",
+    "status": "ok",
+    "url": "https://mid.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MID/Digitales/Digitalstrategie/Gef%C3%B6rderte_Projekte/Raum_Magdeburg_barrierefrei.pdf",
+    "path": "downloads/strategie/lsa_digital_2030_md.pdf",
+    "title": "Sachsen-Anhalt Digital 2030 — Geförderte Projekte Raum Magdeburg",
+    "bytes": 658773,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "strategie/smart_cities_modellprojekte_merkblatt",
+    "status": "ok",
+    "url": "https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000004472_M_436_Smart_Cities.pdf",
+    "path": "downloads/strategie/smart_cities_modellprojekte_merkblatt.pdf",
+    "title": "KfW Merkblatt — Modellprojekte Smart Cities (Bundesförderung)",
+    "bytes": 228774,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "tourismus/visit_md_48h_fruehjahr",
+    "status": "ok",
+    "url": "https://visit-magdeburg.de/images/48h_fruehjahr2026_148x280mm_v07.pdf",
+    "path": "downloads/tourismus/visit_md_48h_fruehjahr.pdf",
+    "title": "48-Stunden-Broschüre Magdeburg — Frühjahr 2026",
+    "bytes": 6317944,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "tourismus/md_barrierefrei_2011",
+    "status": "ok",
+    "url": "https://sachsen-anhalt-tourismus.de/fileadmin/dokumente/pdf/MD_barrierefrei_2011__1_.pdf",
+    "path": "downloads/tourismus/md_barrierefrei_2011.pdf",
+    "title": "Barrierefreier Tourismus in Magdeburg",
+    "bytes": 160116,
+    "content_type": "text/html; charset=utf-8"
+  },
+  {
+    "key": "tourismus/touristcard_flyer",
+    "status": "ok",
+    "url": "https://magdeburg-touristcard.de/images/TouristCard_Flyer2025.pdf",
+    "path": "downloads/tourismus/touristcard_flyer.pdf",
+    "title": "Magdeburg TouristCard Flyer",
+    "bytes": 445083,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "tourismus/visit_md_landing",
+    "status": "ok",
+    "url": "https://visit-magdeburg.de/",
+    "path": "downloads/tourismus/visit_md_landing.txt",
+    "title": "visit-magdeburg.de — neuer offizieller Tourismusauftritt",
+    "bytes_html": 36493,
+    "bytes_txt": 434
+  },
+  {
+    "key": "tourismus/magdeburg_tourist_de",
+    "status": "ok",
+    "url": "https://www.magdeburg-tourist.de/Tourismus-Freizeit/Sehenswertes/",
+    "path": "downloads/tourismus/magdeburg_tourist_de.txt",
+    "title": "magdeburg-tourist.de — alte aber inhaltsreiche Tourismus-Seite",
+    "bytes_html": 140942,
+    "bytes_txt": 527
+  },
+  {
+    "key": "kultur/kulturstrategie_2030_dup",
+    "status": "cached",
+    "url": "https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=44383&ObjLa=1&Ext=PDF",
+    "path": "downloads/kultur/kulturstrategie_2030_dup.pdf",
+    "title": "Kulturstrategie 2030 — siehe Strategie",
+    "bytes": 1882140,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "kultur/dom_magdeburg_wiki",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Magdeburger_Dom",
+    "path": "downloads/kultur/dom_magdeburg_wiki.txt",
+    "title": "Magdeburger Dom",
+    "bytes": 83176
+  },
+  {
+    "key": "kultur/theater_magdeburg",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Theater_Magdeburg",
+    "path": "downloads/kultur/theater_magdeburg.txt",
+    "title": "Theater Magdeburg",
+    "bytes": 8094
+  },
+  {
+    "key": "kultur/gruene_zitadelle",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Gr%C3%BCne_Zitadelle_von_Magdeburg",
+    "path": "downloads/kultur/gruene_zitadelle.txt",
+    "title": "Grüne Zitadelle von Magdeburg",
+    "bytes": 3983
+  },
+  {
+    "key": "kultur/kloster_unser_lieben_frauen",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Kloster_Unser_Lieben_Frauen",
+    "path": "downloads/kultur/kloster_unser_lieben_frauen.txt",
+    "title": "Kloster Unser Lieben Frauen",
+    "bytes": 15506
+  },
+  {
+    "key": "kultur/kulturhistorisches_museum",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Kulturhistorisches_Museum_Magdeburg",
+    "path": "downloads/kultur/kulturhistorisches_museum.txt",
+    "title": "Kulturhistorisches Museum Magdeburg",
+    "bytes": 11866
+  },
+  {
+    "key": "kultur/magdeburger_moderne",
+    "status": "error",
+    "url": "https://de.wikipedia.org/wiki/Magdeburger_Moderne",
+    "title": "Magdeburger Moderne (Bruno Taut, neues Bauen)",
+    "error": "HTTPError: 404 Client Error: Not Found for url: https://de.wikipedia.org/wiki/Magdeburger_Moderne"
+  },
+  {
+    "key": "wikipedia/magdeburg_de",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Magdeburg",
+    "path": "downloads/wikipedia/magdeburg_de.txt",
+    "title": "Magdeburg",
+    "bytes": 169254
+  },
+  {
+    "key": "wikipedia/magdeburg_en",
+    "status": "ok",
+    "url": "https://en.wikipedia.org/wiki/Magdeburg",
+    "path": "downloads/wikipedia/magdeburg_en.txt",
+    "title": "Magdeburg",
+    "bytes": 25169
+  },
+  {
+    "key": "wikipedia/magdeburg_geschichte",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Geschichte_der_Stadt_Magdeburg",
+    "path": "downloads/wikipedia/magdeburg_geschichte.txt",
+    "title": "Geschichte der Stadt Magdeburg",
+    "bytes": 32275
+  },
+  {
+    "key": "wikipedia/ovgu",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Otto-von-Guericke-Universit%C3%A4t_Magdeburg",
+    "path": "downloads/wikipedia/ovgu.txt",
+    "title": "Otto-von-Guericke-Universität Magdeburg",
+    "bytes": 29001
+  },
+  {
+    "key": "wikipedia/1_fc_magdeburg",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/1._FC_Magdeburg",
+    "path": "downloads/wikipedia/1_fc_magdeburg.txt",
+    "title": "1. FC Magdeburg",
+    "bytes": 98949
+  },
+  {
+    "key": "wikipedia/sc_magdeburg",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/SC_Magdeburg",
+    "path": "downloads/wikipedia/sc_magdeburg.txt",
+    "title": "SC Magdeburg",
+    "bytes": 7547
+  },
+  {
+    "key": "wikipedia/stadtteile_magdeburg",
+    "status": "error",
+    "url": "https://de.wikipedia.org/wiki/Liste_der_Stadtteile_von_Magdeburg",
+    "title": "Liste der Stadtteile von Magdeburg",
+    "error": "HTTPError: 404 Client Error: Not Found for url: https://de.wikipedia.org/wiki/Liste_der_Stadtteile_von_Magdeburg"
+  },
+  {
+    "key": "wikipedia/elbe_wikipedia",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Elbe",
+    "path": "downloads/wikipedia/elbe_wikipedia.txt",
+    "title": "Elbe",
+    "bytes": 120472
+  },
+  {
+    "key": "wikipedia/wasserstrassenkreuz",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Wasserstra%C3%9Fenkreuz_Magdeburg",
+    "path": "downloads/wikipedia/wasserstrassenkreuz.txt",
+    "title": "Wasserstraßenkreuz Magdeburg",
+    "bytes": 6004
+  },
+  {
+    "key": "wikipedia/mvb",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Magdeburger_Verkehrsbetriebe",
+    "path": "downloads/wikipedia/mvb.txt",
+    "title": "Magdeburger Verkehrsbetriebe",
+    "bytes": 13791
+  },
+  {
+    "key": "wikipedia/marego",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Marego",
+    "path": "downloads/wikipedia/marego.txt",
+    "title": "Magdeburger Regionalverkehrsverbund",
+    "bytes": 4035
+  },
+  {
+    "key": "historisch/stadtarchiv_landing",
+    "status": "ok",
+    "url": "https://www.magdeburg.de/Wissenschaft-Bildung/Bibliotheken-Archive/Stadtarchiv/",
+    "path": "downloads/historisch/stadtarchiv_landing.txt",
+    "title": "Stadtarchiv Magdeburg — Übersicht",
+    "bytes_html": 192530,
+    "bytes_txt": 10911
+  },
+  {
+    "key": "historisch/stadtarchiv_digitaler_lesesaal",
+    "status": "ok",
+    "url": "https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=46020&ObjLa=1&Ext=PDF",
+    "path": "downloads/historisch/stadtarchiv_digitaler_lesesaal.pdf",
+    "title": "Stadtarchiv Magdeburg — Digitaler Lesesaal (PDF-Broschüre)",
+    "bytes": 1168233,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "historisch/urkundenbuch_md_archive",
+    "status": "ok",
+    "url": "https://archive.org/details/urkundenbuchder00hertgoog",
+    "path": "downloads/historisch/urkundenbuch_md_archive.txt",
+    "title": "Urkundenbuch der Stadt Magdeburg (Bd. 1, bis 1403)",
+    "bytes_html": 293917,
+    "bytes_txt": 1737
+  },
+  {
+    "key": "historisch/magdeburger_recht_wiki",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Magdeburger_Recht",
+    "path": "downloads/historisch/magdeburger_recht_wiki.txt",
+    "title": "Magdeburger Recht",
+    "bytes": 12764
+  },
+  {
+    "key": "historisch/zerstoerung_md_1631",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Magdeburger_Hochzeit",
+    "path": "downloads/historisch/zerstoerung_md_1631.txt",
+    "title": "Magdeburger Hochzeit",
+    "bytes": 20828
+  },
+  {
+    "key": "historisch/festung_magdeburg",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Festung_Magdeburg",
+    "path": "downloads/historisch/festung_magdeburg.txt",
+    "title": "Festung Magdeburg",
+    "bytes": 7530
+  },
+  {
+    "key": "historisch/graphsearch_md",
+    "status": "error",
+    "url": "https://graphsearch.epfl.ch/concept/20804",
+    "title": "Magdeburg — Concept Summary (EPFL Graphsearch)",
+    "error": "HTTPError: 403 Client Error: Forbidden for url: https://graphsearch.epfl.ch/concept/20804"
+  },
+  {
+    "key": "mmkt/mmkt_homepage",
+    "status": "ok",
+    "url": "https://www.magdeburg-marketing.de/",
+    "path": "downloads/mmkt/mmkt_homepage.txt",
+    "title": "Magdeburg Marketing Kongress und Tourismus GmbH — Homepage",
+    "bytes_html": 149839,
+    "bytes_txt": 2198
+  },
+  {
+    "key": "mmkt/mmkt_mediadaten_landing",
+    "status": "ok",
+    "url": "https://www.magdeburg-marketing.de/angebote-fuer-partner/beteiligungsmoeglichkeiten/anzeigenschaltung",
+    "path": "downloads/mmkt/mmkt_mediadaten_landing.txt",
+    "title": "MMKT Mediadaten / Beteiligungsmöglichkeiten",
+    "bytes_html": 149839,
+    "bytes_txt": 2198
+  },
+  {
+    "key": "mmkt/mmkt_strategische_marketingplanung_docplayer",
+    "status": "error",
+    "url": "https://docplayer.org/10191496-Strategische-marketingplanung-magdeburg-marketing-kongress-und-tourismus-gmbh-mmkt-verantwortlich-olaf-ahrens-geschaeftsfuehrer.html",
+    "title": "Strategische Marketingplanung MMKT (Volltext)",
+    "error": "ConnectionError: HTTPSConnectionPool(host='docplayer.org', port=443): Max retries exceeded with url: /10191496-Strategische-marketingplanung-magdeburg-marketing-kongress-und-tourismus-gmbh-mmkt-verantwortlich-olaf-ahrens-geschaeftsfuehrer.html (Caused by NameResolutionError(\"HTTPSConnection(host='docplayer.org', port=443): Failed to resolve 'docplayer.org' ([Errno -2] Name or service not known)\"))"
+  },
+  {
+    "key": "dates/dates_epaper_landing",
+    "status": "ok",
+    "url": "https://www.dates-md.de/service/e-paper",
+    "path": "downloads/dates/dates_epaper_landing.txt",
+    "title": "DATEs Stadtmagazin — E-Paper-Archiv (seit 2015)",
+    "bytes_html": 38197,
+    "bytes_txt": 901
+  },
+  {
+    "key": "dates/dates_issuu_archive",
+    "status": "error",
+    "url": "https://issuu.com/dates_magdeburg",
+    "title": "DATEs auf issuu — komplettes öffentliches Archiv",
+    "error": "HTTPError: 500 Server Error: Internal Server Error for url: https://issuu.com/dates_magdeburg"
+  },
+  {
+    "key": "dates/dates_essen_trinken",
+    "status": "ok",
+    "url": "https://www.dates-md.de/essen-trinken",
+    "path": "downloads/dates/dates_essen_trinken.txt",
+    "title": "DATEs — Essen & Trinken (Restaurant-Rubrik)",
+    "bytes_html": 43580,
+    "bytes_txt": 172
+  },
+  {
+    "key": "otto/otto_guericke_biografie_unifl",
+    "status": "ok",
+    "url": "https://www.uni-flensburg.de/fileadmin/content/projekte/storytelling/biografien/biografien-deu/guericke-biografie-de.pdf",
+    "path": "downloads/otto/otto_guericke_biografie_unifl.pdf",
+    "title": "Biographie Otto von Guericke (1602–1686) — Uni Flensburg",
+    "bytes": 206181,
+    "content_type": "application/pdf"
+  },
+  {
+    "key": "otto/otto_guericke_wiki_de",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Otto_von_Guericke",
+    "path": "downloads/otto/otto_guericke_wiki_de.txt",
+    "title": "Otto von Guericke",
+    "bytes": 12875
+  },
+  {
+    "key": "otto/otto_guericke_wiki_en",
+    "status": "cached",
+    "url": "https://en.wikipedia.org/wiki/Otto_von_Guericke",
+    "path": "downloads/otto/otto_guericke_wiki_en.txt",
+    "title": "Otto von Guericke",
+    "bytes": 28015
+  },
+  {
+    "key": "otto/otto_i_hre",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Otto_I._(HRR)",
+    "path": "downloads/otto/otto_i_hre.txt",
+    "title": "Otto I. (HRR)",
+    "bytes": 101689
+  },
+  {
+    "key": "otto/editha",
+    "status": "error",
+    "url": "https://de.wikipedia.org/wiki/Editha_(K%C3%B6nigin)",
+    "title": "Editha (Königin)",
+    "error": "HTTPError: 404 Client Error: Not Found for url: https://de.wikipedia.org/wiki/Editha_%28K%C3%B6nigin%29"
+  },
+  {
+    "key": "otto/ottostadt_marke",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Ottostadt",
+    "path": "downloads/otto/ottostadt_marke.txt",
+    "title": "Magdeburg",
+    "bytes": 169254
+  },
+  {
+    "key": "otto/ovg_zentrum_landing",
+    "status": "ok",
+    "url": "https://www.magdeburg.de/index.php?ModID=7&FID=557.3738.1&object=tx%7C557.3738.1",
+    "path": "downloads/otto/ovg_zentrum_landing.txt",
+    "title": "Otto-von-Guericke-Zentrum / Lukasklause",
+    "bytes_html": 121530,
+    "bytes_txt": 1966
+  },
+  {
+    "key": "restaurants/visit_md_kulinarik",
+    "status": "ok",
+    "url": "https://visit-magdeburg.de/kulinarik",
+    "path": "downloads/restaurants/visit_md_kulinarik.txt",
+    "title": "visit-magdeburg.de — Kulinarik (Magdeburger Restaurants)",
+    "bytes_html": 47245,
+    "bytes_txt": 2683
+  },
+  {
+    "key": "restaurants/dates_restaurants",
+    "status": "ok",
+    "url": "https://www.dates-md.de/search/location/restaurants-in-magdeburg/",
+    "path": "downloads/restaurants/dates_restaurants.txt",
+    "title": "DATEs — Restaurants in Magdeburg",
+    "bytes_html": 62040,
+    "bytes_txt": 1537
+  },
+  {
+    "key": "restaurants/dates_bars",
+    "status": "ok",
+    "url": "https://www.dates-md.de/search/location/bars-pubs-kneipen/",
+    "path": "downloads/restaurants/dates_bars.txt",
+    "title": "DATEs — Bars, Pubs, Kneipen",
+    "bytes_html": 57104,
+    "bytes_txt": 2604
+  },
+  {
+    "key": "restaurants/dates_sonntagsbaecker",
+    "status": "ok",
+    "url": "https://www.dates-md.de/essen-trinken/esskultur/sonntags-baecker-magdeburg/",
+    "path": "downloads/restaurants/dates_sonntagsbaecker.txt",
+    "title": "DATEs — Sonntagsbäcker Magdeburg",
+    "bytes_html": 60402,
+    "bytes_txt": 1105
+  },
+  {
+    "key": "restaurants/visit_md_top10",
+    "status": "ok",
+    "url": "https://visit-magdeburg.de/erlebnisse/top-10-sehenswuerdigkeiten",
+    "path": "downloads/restaurants/visit_md_top10.txt",
+    "title": "Top 10 Sehenswürdigkeiten (visit-magdeburg.de)",
+    "bytes_html": 29262,
+    "bytes_txt": 1894
+  },
+  {
+    "key": "strategie/isek_2030_plus_landing",
+    "status": "cached",
+    "url": "https://www.magdeburg.de/index.php?ModID=7&FID=37.19821.1&object=tx%7C37.19821.1",
+    "path": "downloads/strategie/isek_2030_plus_landing.txt",
+    "title": "Integriertes Stadtentwicklungskonzept ISEK 2030+ — Landingpage",
+    "bytes_html": 225273,
+    "bytes_txt": 3093
+  },
+  {
+    "key": "historisch/stadtbibliothek_md",
+    "status": "cached",
+    "url": "https://de.wikipedia.org/wiki/Stadtbibliothek_Magdeburg",
+    "path": "downloads/historisch/stadtbibliothek_md.txt",
+    "title": "Stadtbibliothek Magdeburg",
+    "bytes": 14394
+  },
+  {
+    "key": "mmkt/mmkt_ottostadt_marke",
+    "status": "cached",
+    "url": "https://www.magdeburg-marketing.de/marke-ottostadt",
+    "path": "downloads/mmkt/mmkt_ottostadt_marke.txt",
+    "title": "Marke Ottostadt — MMKT Markenseite",
+    "bytes_html": 149839,
+    "bytes_txt": 2198
+  },
+  {
+    "key": "dates/dates_veranstaltungen",
+    "status": "cached",
+    "url": "https://www.dates-md.de/search/event/veranstaltungen-magdeburg/",
+    "path": "downloads/dates/dates_veranstaltungen.txt",
+    "title": "DATEs — Veranstaltungskalender Magdeburg",
+    "bytes_html": 124268,
+    "bytes_txt": 4660
+  },
+  {
+    "key": "kultur/bruno_taut_magdeburg",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Bruno_Taut",
+    "path": "downloads/kultur/bruno_taut_magdeburg.txt",
+    "title": "Bruno Taut",
+    "bytes": 27602
+  },
+  {
+    "key": "wikipedia/einwohnerentwicklung_magdeburg",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Einwohnerentwicklung_von_Magdeburg",
+    "path": "downloads/wikipedia/einwohnerentwicklung_magdeburg.txt",
+    "title": "Einwohnerentwicklung von Magdeburg",
+    "bytes": 6513
+  },
+  {
+    "key": "otto/edgitha",
+    "status": "ok",
+    "url": "https://de.wikipedia.org/wiki/Edgitha",
+    "path": "downloads/otto/edgitha.txt",
+    "title": "Edgitha",
+    "bytes": 8396
+  }
+]

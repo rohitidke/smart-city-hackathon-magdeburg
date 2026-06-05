@@ -1,0 +1,3387 @@
+<!DOCTYPE html>
+<html lang="de-DE">
+<head>
+    <meta charset="utf-8">
+
+<!-- 
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2026 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at https://typo3.org/
+-->
+
+<link rel="icon" href="/_assets/a631123047cb7ac65a3e735956304e47/Icons/favicon.ico" type="image/vnd.microsoft.icon">
+<title>Barrierefreier Urlaub in Sachsen-Anhalt: Sachsen Anhalt Tourismus</title>
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta name="generator" content="TYPO3 CMS">
+<meta name="description" content="Barrierefreie Reiseziele in Sachsen-Anhalt entdecken: geprüfte Städte, Regionen und Betriebe mit Infos zu Gästeführungen, Unterkünften und geprüften Angeboten.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow">
+<meta property="og:description" content="Barrierefreie Reiseziele in Sachsen-Anhalt entdecken: geprüfte Städte, Regionen und Betriebe mit Infos zu Gästeführungen, Unterkünften und geprüften Angeboten.">
+<meta property="og:title" content="Reisen für Alle">
+<meta property="og:site_name" content="Sachsen Anhalt Tourismus">
+<meta name="twitter:card" content="summary">
+<meta name="apple-mobile-web-app-capable" content="no">
+
+
+<link rel="stylesheet" href="/_assets/9f4aaa080db3d227abb090b84276d49c/Dist/main.css?1778686356" media="all">
+<link rel="stylesheet" href="/_assets/9f4aaa080db3d227abb090b84276d49c/Frontend/glide/glide.core.min.css?1778683765" media="all">
+<link rel="stylesheet" href="/_assets/a631123047cb7ac65a3e735956304e47/Leaflet/leaflet.css?1778683765" media="all">
+<link rel="stylesheet" href="/_assets/a631123047cb7ac65a3e735956304e47/Dist/main.css?1778686355" media="all">
+<link rel="stylesheet" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Dist/main.css?1778686351" media="all">
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/text/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/download-box/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/text-image/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/heading/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/image/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/accordion/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/contactpersons/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/contact-box/Dist/main.css?1778686354" rel="stylesheet" >
+<link href="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/cta/Dist/main.css?1778686354" rel="stylesheet" >
+<style>
+        :root {
+        
+            --color-white: #ffffff;
+        
+            --font-color-on-white: var(--color-black);
+        
+            --link-color-on-white: var(--color-black);
+        
+            --primary-element-background-on-white: var(--color-primary);
+        
+            --primary-element-color-on-white: var(--color-black);
+        
+            --color-black: #282828;
+        
+            --font-color-on-black: var(--color-white);
+        
+            --link-color-on-black: var(--color-white);
+        
+            --primary-element-background-on-black: var(--color-white);
+        
+            --primary-element-color-on-black: var(--color-black);
+        
+            --color-error: #ff0000;
+        
+            --font-color-on-error: var(--color-white);
+        
+            --link-color-on-error: var(--color-white);
+        
+            --primary-element-background-on-error: var(--color-white);
+        
+            --primary-element-color-on-error: var(--color-black);
+        
+            --color-error-200: #ffb3b3;
+        
+            --font-color-on-error-200: var(--color-black);
+        
+            --link-color-on-error-200: var(--color-black);
+        
+            --primary-element-background-on-error-200: var(--color-black);
+        
+            --primary-element-color-on-error-200: var(--color-white);
+        
+            --color-primary: #ffd900;
+        
+            --font-color-on-primary: var(--color-black);
+        
+            --link-color-on-primary: var(--color-black);
+        
+            --primary-element-background-on-primary: var(--color-black);
+        
+            --primary-element-color-on-primary: var(--color-white);
+        
+            --color-primary-100: #fffbe6;
+        
+            --font-color-on-primary-100: var(--color-black);
+        
+            --link-color-on-primary-100: var(--color-black);
+        
+            --primary-element-background-on-primary-100: var(--color-black);
+        
+            --primary-element-color-on-primary-100: var(--color-white);
+        
+            --color-primary-200: #fff4b3;
+        
+            --font-color-on-primary-200: var(--color-black);
+        
+            --link-color-on-primary-200: var(--color-black);
+        
+            --primary-element-background-on-primary-200: var(--color-black);
+        
+            --primary-element-color-on-primary-200: var(--color-white);
+        
+            --color-primary-300: #ffec80;
+        
+            --font-color-on-primary-300: var(--color-black);
+        
+            --link-color-on-primary-300: var(--color-black);
+        
+            --primary-element-background-on-primary-300: var(--color-black);
+        
+            --primary-element-color-on-primary-300: var(--color-white);
+        
+            --color-primary-400: #ffe44d;
+        
+            --font-color-on-primary-400: var(--color-black);
+        
+            --link-color-on-primary-400: var(--color-black);
+        
+            --primary-element-background-on-primary-400: var(--color-black);
+        
+            --primary-element-color-on-primary-400: var(--color-white);
+        
+            --color-primary-500: #ffdd1a;
+        
+            --font-color-on-primary-500: var(--color-black);
+        
+            --link-color-on-primary-500: var(--color-black);
+        
+            --primary-element-background-on-primary-500: var(--color-black);
+        
+            --primary-element-color-on-primary-500: var(--color-white);
+        
+            --color-primary-600: #e6c300;
+        
+            --font-color-on-primary-600: var(--color-black);
+        
+            --link-color-on-primary-600: var(--color-black);
+        
+            --primary-element-background-on-primary-600: var(--color-black);
+        
+            --primary-element-color-on-primary-600: var(--color-white);
+        
+            --color-primary-700: #b39800;
+        
+            --font-color-on-primary-700: var(--color-black);
+        
+            --link-color-on-primary-700: var(--color-black);
+        
+            --primary-element-background-on-primary-700: var(--color-black);
+        
+            --primary-element-color-on-primary-700: var(--color-white);
+        
+            --color-primary-800: #806d00;
+        
+            --font-color-on-primary-800: var(--color-white);
+        
+            --link-color-on-primary-800: var(--color-white);
+        
+            --primary-element-background-on-primary-800: var(--color-white);
+        
+            --primary-element-color-on-primary-800: var(--color-black);
+        
+            --color-primary-900: #4d4100;
+        
+            --font-color-on-primary-900: var(--color-white);
+        
+            --link-color-on-primary-900: var(--color-white);
+        
+            --primary-element-background-on-primary-900: var(--color-white);
+        
+            --primary-element-color-on-primary-900: var(--color-black);
+        
+            --color-primary-1000: #1a1600;
+        
+            --font-color-on-primary-1000: var(--color-white);
+        
+            --link-color-on-primary-1000: var(--color-white);
+        
+            --primary-element-background-on-primary-1000: var(--color-white);
+        
+            --primary-element-color-on-primary-1000: var(--color-black);
+        
+            --color-secondary: #ffffff;
+        
+            --font-color-on-secondary: var(--color-black);
+        
+            --link-color-on-secondary: var(--color-black);
+        
+            --primary-element-background-on-secondary: var(--color-black);
+        
+            --primary-element-color-on-secondary: var(--color-white);
+        
+            --color-secondary-100: #f2f2f2;
+        
+            --font-color-on-secondary-100: var(--color-black);
+        
+            --link-color-on-secondary-100: var(--color-black);
+        
+            --primary-element-background-on-secondary-100: var(--color-black);
+        
+            --primary-element-color-on-secondary-100: var(--color-white);
+        
+            --color-secondary-200: #d8d8d8;
+        
+            --font-color-on-secondary-200: var(--color-black);
+        
+            --link-color-on-secondary-200: var(--color-black);
+        
+            --primary-element-background-on-secondary-200: var(--color-black);
+        
+            --primary-element-color-on-secondary-200: var(--color-white);
+        
+            --color-secondary-300: #bfbfbf;
+        
+            --font-color-on-secondary-300: var(--color-black);
+        
+            --link-color-on-secondary-300: var(--color-black);
+        
+            --primary-element-background-on-secondary-300: var(--color-black);
+        
+            --primary-element-color-on-secondary-300: var(--color-white);
+        
+            --color-secondary-400: #a5a5a5;
+        
+            --font-color-on-secondary-400: var(--color-black);
+        
+            --link-color-on-secondary-400: var(--color-black);
+        
+            --primary-element-background-on-secondary-400: var(--color-black);
+        
+            --primary-element-color-on-secondary-400: var(--color-white);
+        
+            --color-secondary-500: #8c8c8c;
+        
+            --font-color-on-secondary-500: var(--color-black);
+        
+            --link-color-on-secondary-500: var(--color-black);
+        
+            --primary-element-background-on-secondary-500: var(--color-black);
+        
+            --primary-element-color-on-secondary-500: var(--color-white);
+        
+            --color-secondary-600: #727272;
+        
+            --font-color-on-secondary-600: var(--color-white);
+        
+            --link-color-on-secondary-600: var(--color-white);
+        
+            --primary-element-background-on-secondary-600: var(--color-white);
+        
+            --primary-element-color-on-secondary-600: var(--color-black);
+        
+            --color-secondary-700: #595959;
+        
+            --font-color-on-secondary-700: var(--color-white);
+        
+            --link-color-on-secondary-700: var(--color-white);
+        
+            --primary-element-background-on-secondary-700: var(--color-white);
+        
+            --primary-element-color-on-secondary-700: var(--color-black);
+        
+            --color-secondary-800: #3f3f3f;
+        
+            --font-color-on-secondary-800: var(--color-white);
+        
+            --link-color-on-secondary-800: var(--color-white);
+        
+            --primary-element-background-on-secondary-800: var(--color-white);
+        
+            --primary-element-color-on-secondary-800: var(--color-black);
+        
+            --color-secondary-900: #262626;
+        
+            --font-color-on-secondary-900: var(--color-white);
+        
+            --link-color-on-secondary-900: var(--color-white);
+        
+            --primary-element-background-on-secondary-900: var(--color-white);
+        
+            --primary-element-color-on-secondary-900: var(--color-black);
+        
+            --color-secondary-1000: #0c0c0c;
+        
+            --font-color-on-secondary-1000: var(--color-white);
+        
+            --link-color-on-secondary-1000: var(--color-white);
+        
+            --primary-element-background-on-secondary-1000: var(--color-white);
+        
+            --primary-element-color-on-secondary-1000: var(--color-black);
+        
+            --link-color: var(--link-color-on-white);
+        
+            --font-color: var(--font-color-on-white);
+        
+            --primary-element-background: var(--primary-element-background-on-white);
+        
+            --primary-element-color: var(--primary-element-color-on-white);
+        
+            --background-color: var(--color-primary);
+        
+        }
+    </style>
+
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/Frontend/glide/glide.min.js?1778683765"></script>
+
+
+
+<link rel="preload" href="/_assets/9f4aaa080db3d227abb090b84276d49c/Dist/fontAwesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">    <script id="usercentrics-cmp" async data-eu-mode="true" data-settings-id="yrt6sj35o_QNnb" src="https://app.eu.usercentrics.eu/browser-ui/latest/loader.js"></script>        <script type="text/javascript">
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+        var u="https://matomo.img.webvariants.de/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '14']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+        </script>            <link rel="apple-touch-icon" sizes="57x57" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-57x57.png">
+            <link rel="apple-touch-icon" sizes="60x60" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-60x60.png">
+            <link rel="apple-touch-icon" sizes="72x72" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-72x72.png">
+            <link rel="apple-touch-icon" sizes="76x76" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-76x76.png">
+            <link rel="apple-touch-icon" sizes="114x114" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-114x114.png">
+            <link rel="apple-touch-icon" sizes="120x120" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-120x120.png">
+            <link rel="apple-touch-icon" sizes="144x144" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-144x144.png">
+            <link rel="apple-touch-icon" sizes="152x152" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-152x152.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/apple-icon-180x180.png">
+            <link rel="icon" type="image/png" sizes="192x192"  href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/android-icon-192x192.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="96x96" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/favicon-96x96.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/favicon-16x16.png">
+            <link rel="manifest" href="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/manifest.json">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="msapplication-TileImage" content="/_assets/564e3ba56b8952a412b23cf292e0f6bd/Icons/ms-icon-144x144.png">
+            <meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://sachsen-anhalt-tourismus.de/service-planung/reisen-fuer-alle">
+</head>
+<body>
+
+
+    
+            
+<header role="banner" class="header-default bg-primary">
+    
+            <div class="navigation__logo-wrapper--mobile">
+                <a class="navigation__logo-link" title="Zurück zur Startseite" aria-label="Zurück zur Startseite" href="/">
+                    
+        
+    
+<img class="navigation__logo svg-fix" src="/fileadmin/user_upload/sachsen-anhalt-tourismus.de/Logos_und_Icons/ES25-label-pra___ef-auf-gelb.svg" width="100" height="100" alt="" />
+
+                </a>
+            </div>
+        
+    <nav aria-label="" class="navigation">
+        
+                <div class="navigation__logo-wrapper">
+                    <a class="navigation__logo-link" title="Zurück zur Startseite" aria-label="Zurück zur Startseite" href="/">
+                        
+        
+    
+<img class="navigation__logo svg-fix" src="/fileadmin/user_upload/sachsen-anhalt-tourismus.de/Logos_und_Icons/ES25-label-pra___ef-auf-gelb.svg" width="100" height="100" alt="" />
+
+                    </a>
+                </div>
+            
+        <div class="navigation-search">
+    <button class="navigation-search__button" aria-label="Suchmenü öffnen">
+        <i class="fa-regular fa-magnifying-glass navigation-search__button-icon"></i>
+    </button>
+    <div class="navigation-search__wrapper">
+        <form method="get" id="form_kesearch_searchfield_language-nav" name="form_kesearch_searchfield_language-nav" action="/search/" class="navigation-search__form">
+            <label for="ke_search_searchfield_sword" class="navigation-search__form-label">
+                Suche
+            </label>
+            <div class="navigation-search__form-wrapper">
+                <input type="text" id="ke_search_searchfield_sword" name="tx_kesearch_pi1[sword]" placeholder="Suche" class="navigation-search__form-input"/>
+                <button type="submit" class="navigation-search__button" aria-label="">
+                    <i class="fa-regular fa-search navigation-search__button-icon"></i>
+                </button>
+            </div>
+        </form>
+        <button class="navigation-search__close" aria-label="Suche starten">
+            <i class="fa-regular fa-xmark"></i>
+        </button>
+    </div>
+</div>
+
+        <ul class="navigation__menubar" role="menubar" aria-label="">
+    
+        <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-1 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Unser Reiseland" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Unser Reiseland
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Land &amp; Leute" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/land-leute"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Land &amp; Leute
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Wissenswertes" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/land-leute/wissenswertes"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Wissenswertes
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Tradition &amp; Brauchtum" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/land-leute/tradition-brauchtum"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Tradition &amp; Brauchtum
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Podcast &quot;Reiseland Sachsen-Anhalt&quot;" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/land-leute/podcast-reiseland-sachsen-anhalt"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Podcast &quot;Reiseland Sachsen-Anhalt&quot;
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Starker Tourismus" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/land-leute/starker-tourismus"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Starker Tourismus
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Regionen" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Regionen
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Altmark" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen/altmark"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Altmark
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Harz" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen/harz"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Harz
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Saale-Unstrut" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen/saale-unstrut"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Saale-Unstrut
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Urlaubsregion Mittelelbe" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen/urlaubsregion-mittelelbe"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Urlaubsregion Mittelelbe
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Welterberegion Anhalt-Dessau-Wittenberg" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/regionen/welterberegion-anhalt-dessau-wittenberg"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Welterberegion Anhalt-Dessau-Wittenberg
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Städte" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/staedte"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Städte
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Magdeburg" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/staedte/magdeburg"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Magdeburg
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Halle (Saale)" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/staedte/halle-saale"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Halle (Saale)
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Dessau-Roßlau" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/staedte/dessau-rosslau"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Dessau-Roßlau
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Stadtperlen" >
+        
+        <a class="navigation__menubar-item-title" href="/unser-reiseland/staedte/stadtperlen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Stadtperlen
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+    
+        <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-1 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Dein Urlaub" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Dein Urlaub
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Kultur" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Kultur
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="UNESCO-Welterbe" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/unesco-welterbe"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                UNESCO-Welterbe
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Gärten &amp; Parks" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/gaerten-parks"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Gärten &amp; Parks
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Burgen, Schlösser &amp; Romanik" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/burgen-schloesser-romanik"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Burgen, Schlösser &amp; Romanik
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Kunst &amp; Musik" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/kunst-musik"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Kunst &amp; Musik
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Museen" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/museen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Museen
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Industriekultur" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/industriekultur"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Industriekultur
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Himmelswege" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/kultur/himmelswege"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Himmelswege
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Natur &amp; Aktiv" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Natur &amp; Aktiv
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Wandern" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv/wandern"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Wandern
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Radfahren" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv/radfahren"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Radfahren
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Auf &amp; im Wasser" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv/auf-im-wasser"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Auf &amp; im Wasser
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Im Grünen" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv/im-gruenen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Im Grünen
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Aktiv mal anders" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/natur-aktiv/aktiv-mal-anders"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Aktiv mal anders
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Genuss &amp; Entspannung" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/genuss-entspannung"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Genuss &amp; Entspannung
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Essen &amp; Trinken" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/genuss-entspannung/essen-trinken"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Essen &amp; Trinken
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Wellness" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/genuss-entspannung/wellness"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Wellness
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Familien &amp; Kinder" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/familien-kinder"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Familien &amp; Kinder
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Ausflugziele" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/familien-kinder/ausflugziele"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Ausflugziele
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Übernachten" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/familien-kinder/uebernachten"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Übernachten
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Jahreszeiten" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/jahreszeiten"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Jahreszeiten
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Frühling" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/jahreszeiten/fruehling"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Frühling
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Sommer" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/jahreszeiten/sommer"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Sommer
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Herbst" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/jahreszeiten/herbst"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Herbst
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Winter" >
+        
+        <a class="navigation__menubar-item-title" href="/dein-urlaub/jahreszeiten/winter"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Winter
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+    
+        <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-1 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Service &amp; Planung" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Service &amp; Planung
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Tourentipps" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/tourentipps"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Tourentipps
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Unsere Besten" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/tourentipps/unsere-besten"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Unsere Besten
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Reiseland Kompass" >
+        
+        <a class="navigation__menubar-item-title" href="/starte-deine-reise"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Reiseland Kompass
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Übernachten &amp; Anreise" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Übernachten &amp; Anreise
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Gästelieblinge" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise/gaestelieblinge"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Gästelieblinge
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Camping" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise/camping"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Camping
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Gruppenreisen" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise/gruppenreisen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Gruppenreisen
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Besondere Unterkünfte" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise/besondere-unterkuenfte"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Besondere Unterkünfte
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Anreise" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/uebernachten-anreise/anreise"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Anreise
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Veranstaltungen" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/veranstaltungen"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Veranstaltungen
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Broschüren &amp; Newsletter" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/broschueren-newsletter"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Broschüren &amp; Newsletter
+            </span>
+        </a>
+        
+            <button class="navigation__menubar-item-arrow-wrapper" aria-label="Untermenü öffnen">
+                <i class="fa-regular fa-chevron-down navigation__menubar-item-arrow"></i>
+            </button>
+        
+    </div>
+
+    
+        
+        <ul role="menu" class="navigation__submenu">
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Echtzeit Magazin" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/broschueren-newsletter/echtzeit-magazin"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Echtzeit Magazin
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Broschürenbestellung" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/broschueren-newsletter/broschuerenbestellung"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Broschürenbestellung
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-3 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Newsletter" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/broschueren-newsletter/newsletter"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Newsletter
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 navigation__menubar-item-wrapper--current">
+    <div class="navigation__menubar-item" role="menuitem" title="Reisen für Alle" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/reisen-fuer-alle"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Reisen für Alle
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+                <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-2 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Tagungen &amp; Kongresse" >
+        
+        <a class="navigation__menubar-item-title" href="/service-planung/tagungen-kongresse"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Tagungen &amp; Kongresse
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+            
+        </ul>
+    
+</li>
+
+    
+        <li role="none" class="navigation__menubar-item-wrapper navigation__menubar-item-wrapper--level-1 ">
+    <div class="navigation__menubar-item" role="menuitem" title="Starte deine Reise" >
+        
+                <div class="navigation__menubar-item-logo-wrapper">
+                    <img class="navigation__menubar-item-logo" src="/fileadmin/_processed_/2/1/csm_KOMP24-icon-padded-transparent_1167112a18.png" width="34" height="34" alt="" />
+                </div>
+            
+        <a class="navigation__menubar-item-title" href="/starte-deine-reise"
+            target="_self">
+            <span class="navigation__menubar-item-title-content">
+                Starte deine Reise
+            </span>
+        </a>
+        
+    </div>
+
+    
+</li>
+
+    
+</ul>
+
+    </nav>
+    
+    <nav aria-label="Sprachen" class="language-navigation">
+        <ul role="menubar" aria-label="Sprachen" class="language-navigation__menubar">
+    
+        
+            <li role="none" class="language-navigation__menubar-item-wrapper">
+                <button aria-haspopup="true" aria-expanded="false" title="Untermenü öffnen" aria-label="Untermenü öffnen" role="menuitem" class="language-navigation__menubar-item language-navigation__menubar-item-button">
+                    <span>de</span>
+                    
+                </button>
+            </li>
+        
+    
+        
+    
+</ul>
+<ul role="menubar" aria-label="Sprachen" class="language-navigation__menubar language-navigation__menubar--inactive">
+    
+        
+    
+        
+    
+</ul>
+
+    </nav>
+
+
+    <div class="navigation-search">
+    <button class="navigation-search__button" aria-label="Suchmenü öffnen">
+        <i class="fa-regular fa-magnifying-glass navigation-search__button-icon"></i>
+    </button>
+    <div class="navigation-search__wrapper">
+        <form method="get" id="form_kesearch_searchfield_language-nav" name="form_kesearch_searchfield_language-nav" action="/search/" class="navigation-search__form">
+            <label for="ke_search_searchfield_sword" class="navigation-search__form-label">
+                Suche
+            </label>
+            <div class="navigation-search__form-wrapper">
+                <input type="text" id="ke_search_searchfield_sword" name="tx_kesearch_pi1[sword]" placeholder="Suche" class="navigation-search__form-input"/>
+                <button type="submit" class="navigation-search__button" aria-label="">
+                    <i class="fa-regular fa-search navigation-search__button-icon"></i>
+                </button>
+            </div>
+        </form>
+        <button class="navigation-search__close" aria-label="Suche starten">
+            <i class="fa-regular fa-xmark"></i>
+        </button>
+    </div>
+</div>
+
+    <button class="header-burger__toggle" aria-label="Navigation ein-/ausklappen">
+        <i class="fa-regular fa-bars header-burger__toggle-icon"></i>
+    </button>
+</header>
+
+        
+
+    
+    
+    
+
+
+    
+    
+    
+    
+    
+
+<div class="page-intro page-intro--creative">
+    <section class="page-intro__hero-image ">
+        
+
+
+        <div class="page-intro__image-wrapper">
+            
+                <picture><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_16e04f8cb8.webp 1200w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_9f3b49d018.webp 1920w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_697b92b758.webp 2400w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_9c907992c9.webp 3000w" sizes="100vw" media="(min-width: 1200px)" type="image/webp" width="3000" height="1172" /><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_4888e971d1.jpg 1200w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_1342dc9f44.jpg 1920w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_b3d0321bd9.jpg 2400w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_4ffe194431.jpg 3000w" sizes="100vw" media="(min-width: 1200px)" width="3000" height="1172" /><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_57826458a5.webp 768w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_6502298504.webp 1000w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_59870946f3.webp 1500w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_ca5faa8b12.webp 2000w" sizes="100vw" media="(min-width: 768px)" type="image/webp" width="2000" height="1710" /><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_d51fe3677f.jpg 768w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_82c82112e7.jpg 1000w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_865212d981.jpg 1500w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_c4cde3336f.jpg 2000w" sizes="100vw" media="(min-width: 768px)" width="2000" height="1710" /><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_06943b7f67.webp 300w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_b405f8768d.webp 450w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_ef3da0d9bd.webp 600w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_370dab17c9.webp 800w" sizes="100vw" type="image/webp" width="800" height="1540" /><source srcset="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_57b9f24332.jpg 300w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_21efae929f.jpg 450w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_c4a5726729.jpg 600w, /fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_dca3bfd4a2.jpg 800w" sizes="100vw" width="800" height="1540" /><img src="/fileadmin/_processed_/d/2/csm_Barrierefrei_im_Woerlitzer_Park_dca3bfd4a2.jpg" width="800" height="1540" alt="Zwei Personen Barrierefrei unterwegs im Wörlitzer Park" title="Barrierefrei im Wörlitzer Park" class="page-intro__image" /></picture>
+                
+
+
+    <div class="copyright" id="copyright-5509">
+        <button
+            class="copyright__info"
+            aria-controls="copyright-5509-flyout"
+            aria-label="Urheberrechts-Informationen ein-/ausblenden">
+            <img src="/_assets/9f4aaa080db3d227abb090b84276d49c/Icons/info-button.svg" width="36" height="36" alt="" />
+        </button>
+        <div class="copyright__flyout" id="copyright-5509-flyout" aria-hidden="true">
+            <div class="copyright__flyout-content">
+                
+                    <p class="copyright__description">
+                        Barrierefrei unterwegs im Wörlitzer Park
+                    </p>
+                
+                <p class="copyright__copyright">
+                    ©
+                    
+                            WelterbeRegion Anhalt-Dessau-Wittenberg/Alimov/alfa-foto.GbR
+                        
+                    
+                    
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+            
+        </div>
+    
+
+        <div class="page-intro__hero-outer">
+            <div class="page-intro__hero-inner">
+                    <div class="page-intro__overlay-wrapper">
+
+                        <svg  class="page-intro__image-overlay-1" id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3044.68942 1254.49798">
+                            <g id="Ebene_2-2">
+                                <polygon class="sa-overlay-1-fill" points="2584.42004 1249.99792 0 1249.99792 0 5.85803 2399.28992 5.85803 2292.66003 99.09802 2172.69006 67.04797 2048.28992 125.31799 2157.14001 321.25793 2174.19006 527.19793 2177.14001 562.87792 1980.16003 619.18792 2021.63 843.53796 2092.71997 843.53796 2144.55994 971.73791 2316.59998 998.07794 2326.31995 1048.53796 2347.45996 1158.21795 2584.42004 1249.99792"/>
+                                <polygon class="sa-overlay-1-outline" points="2292.65996 99.09798 2399.28996 5.85798 2654.02995 118.02798 2621.43999 324.90798 2680.67998 324.90798 2652.54997 561.63799 3022.79997 694.93798 3039.09001 811.48797 2647.35997 893.06799 2637.38994 1049.56793 2686.60997 1249.99798 2584.41997 1249.99798 2347.45998 1158.21795 2316.59996 998.078 2144.55997 971.73797 2092.71997 843.53796 2021.62997 843.53796 1980.15997 619.18798 2177.13997 562.87798 2157.13997 321.25799 2048.28997 125.31798 2172.68997 67.04798 2292.65996 99.09798"/>
+                            </g>
+                        </svg>
+
+                        <svg class="page-intro__image-overlay-2" id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3044.68942 1254.49798">
+                            <g id="Ebene_2-2">
+                                <polygon class="sa-overlay-2-fill-top" points="2680.68005 324.90795 2656.64001 527.19793 2174.19006 527.19793 2157.14001 321.25793 2048.28992 125.31799 2172.69006 67.04797 2292.66003 99.09802 2399.28992 5.85803 2654.02991 118.02795 2621.44006 324.90795 2680.68005 324.90795"/>
+                                <polygon class="sa-overlay-2-outline" points="2292.65996 99.09798 2399.28996 5.85798 2654.02995 118.02798 2621.43999 324.90798 2680.67998 324.90798 2652.54997 561.63799 3022.79997 694.93798 3039.09001 811.48797 2647.35997 893.06799 2637.38994 1049.56793 2686.60997 1249.99798 2584.41997 1249.99798 2347.45998 1158.21795 2316.59996 998.078 2144.55997 971.73797 2092.71997 843.53796 2021.62997 843.53796 1980.15997 619.18798 2177.13997 562.87798 2157.13997 321.25799 2048.28997 125.31798 2172.68997 67.04798 2292.65996 99.09798"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="page-intro__title">
+                        
+
+
+        <h1 class="page-intro__hero-heading">Reisen für Alle in Sachsen-Anhalt</h1>
+    
+
+                        
+
+
+        <h2 class="page-intro__hero-teaser">Barrierefrei unterwegs in Sachsen-Anhalt – geprüfte Qualität für unbeschwerte Erlebnisse</h2>
+    
+
+
+                    </div>
+
+                
+            </div>
+        </div>
+    </section>
+    
+</div>
+
+
+
+
+
+    <div class="page-header">
+        
+    </div>
+    <main>
+        
+        
+                <section class="section bg-white section--page-breadcrumb">
+                    <div class="section__inner">
+                        
+
+
+    <div class="breadcrumb">
+        <nav aria-label="">
+            <ul class="breadcrumb__items">
+                
+                    
+                        <li class="breadcrumb__item">
+                            
+                                    <a class="breadcrumb__link" href="/" title="Zurück zur Startseite"
+                                       aria-label="Zurück zur Startseite"><i class="fa-regular fa-house breadcrumb__home"></i></a>
+                                
+                        </li>
+                    
+                
+                    
+                        <li class="breadcrumb__item">
+                            
+                                    <a class="breadcrumb__link" href="/service-planung">Service &amp; Planung</a>
+                                
+                        </li>
+                    
+                
+                    
+                        <li class="breadcrumb__item">
+                            
+                                    <a class="breadcrumb__link" href="/service-planung/reisen-fuer-alle">Reisen für Alle</a>
+                                
+                        </li>
+                    
+                
+            </ul>
+        </nav>
+    </div>
+
+
+                    </div>
+                </section>
+            
+        
+            
+
+<section class="section bg-white section--two-thirds-one-third" id="c6583">
+    
+    <div class="section__inner">
+
+        
+
+        <div class="section__columns">
+            <div class="section__column section__column--two-thirds">
+                
+                    
+
+
+
+<div class="text" id="c6354">
+    
+
+    <div class="text__body rte">
+        <p><span class="subtitle">Sachsen-Anhalt hat ein breites Angebot für barrierefreies Reisen. Mehr als 290 Einrichtungen wurden nach dem bundesweiten Kennzeichnungssystem „Reisen für Alle“ geprüft.</span></p>
+<p><span class="subtitle">Mit Magdeburg, Halle (Saale), Quedlinburg, Dessau-Roßlau, Lutherstadt Wittenberg, Oranienbaum-Wörlitz und Arendsee (Altmark) sind sieben Städte sowie mit der WelterbeRegion Anhalt-Dessau-Wittenberg eine ganze Region als barrierefrei geprüfte Tourismusziele ausgezeichnet. Das schafft Transparenz und Verlässlichkeit für Gäste und macht Barrierefreiheit zu einem Qualitätsmerkmal.</span></p>
+    </div>
+</div>
+
+                
+            </div>
+            <div class="section__column section__column--one-third">
+                
+                    
+
+
+
+<div class="text" id="c6580">
+    
+
+    <div class="text__body rte">
+        <p><span class="subtitle"><strong>Das Faltblatt “Reisen für Alle in Sachsen-Anhalt” bündelt die geprüften Angebote.&nbsp;</strong></span></p>
+<p><a href="/service-planung/broschueren-newsletter/broschuerenbestellung" class="button-primary">Jetzt bestellen</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+
+<div class="download-box download-box--colored bg-#ffd900" id="c6585">
+    
+        
+
+<div class="heading">
+    
+            <h5 class="heading__h5">Zum Download</h5>
+        
+</div>
+
+
+
+    
+    
+        <div class="download-box__file">
+            
+            <a class="download-box__link" download="" href="/fileadmin/user_upload/sachsen-anhalt-tourismus.de/Dokumente/Faltblatt_Reisen_fuer_Alle_in_Sachsen-Anhalt.pdf">
+                Faltblatt Reisen für Alle
+            </a>
+        </div>
+    
+    <i class="fa-solid fa-file-arrow-down download-box__icon"></i>
+</div>
+
+
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--content-width" id="c6353">
+    
+    <div class="section__inner">
+
+        
+
+        
+            
+
+
+
+<div class="text" id="c6620">
+    
+
+    <div class="text__body rte">
+        <p class="row--inline-button"><a href="#c6590" class="button-primary button-secondary">AUSGEZEICHNETE ORTE</a> <a href="#c6650" class="button-secondary">ZERTIFIZIERTE ANGEBOTE FINDEN</a> <a href="#c6613" class="button-secondary">INKLUSIVE ANGEBOTE UND GÄSTEFÜHRUNGEN</a> <a href="#c6595" class="button-secondary">MEDIZINISCHE HILFSMITTEL UND PFLEGEBETTEN</a> <a href="#c6618" class="button-secondary">WCS</a> <a href="#c6596" class="button-secondary">ANSPRECHPARTNER</a></p>
+    </div>
+</div>
+
+        
+    </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-primary section--content-width" id="c6592">
+    
+    <div class="section__inner">
+
+        
+
+        
+            
+
+
+
+<div class="text-image" id="c6590">
+    
+        
+
+<div class="heading">
+    
+            <h2 class="heading__h2">Reisen für Alle: ausgezeichnete Städte und Tourismusregionen</h2>
+        
+</div>
+
+
+
+    
+    <div class="text-image__body">
+        
+        
+        
+                <div class="text-image__column text-image__column--{f:if(condition: data.imageWidth == &#039;half&#039;, then: &#039;half&#039;, else: &#039;two-thirds&#039;)}">
+                    
+
+<div class="text-image__text rte">
+    <ul><li data-list-item-id="eefc71d789ffd484fecfb4e984c903aad"><a href="https://reisen-fuer-alle.de/angebot-detail/?uuid=eab52858-2b2b-4ab6-a465-a27c9b723d55" target="_blank" rel="noreferrer">Arendsee</a></li><li data-list-item-id="e53bf859d900bc60287bcae6b8a823b5e"><a href="https://www.reisen-fuer-alle.de/tourismusort_dessau-rosslau_249.html?action=detail&amp;item_id=3323" target="_blank" rel="noreferrer">Dessau-Roßlau</a></li><li data-list-item-id="e5c381fdada8d4c68c78243084be2f529"><a href="https://www.reisen-fuer-alle.de/tourismusort_halle_saale_249.html?action=detail&amp;item_id=4109" target="_blank" rel="noreferrer">Halle (Saale)</a></li><li data-list-item-id="edac34edd51024f9c7e7ec7b8af90bfa2"><a href="https://www.reisen-fuer-alle.de/tourismusort_lutherstadt_wittenberg_249.html?action=detail&amp;item_id=3295" target="_blank" rel="noreferrer">Lutherstadt Wittenberg</a></li><li data-list-item-id="e9ccd6a3354b0fc378bad3814bada1f77"><a href="https://www.reisen-fuer-alle.de/tourismusort_magdeburg_249.html?action=detail&amp;item_id=3174" target="_blank" rel="noreferrer">Magdeburg</a></li><li data-list-item-id="e6f83c32befdb3df9c7b0bfdd4bb14a4b"><a href="https://www.reisen-fuer-alle.de/tourismusort_oranienbaum-woerlitz_249.html?action=detail&amp;item_id=4079" target="_blank" rel="noreferrer">Oranienbaum-Wörlitz</a></li><li data-list-item-id="e39e559b232e10c1feac86d22a8733a09"><a href="https://www.reisen-fuer-alle.de/tourismusort_quedlinburg_249.html?action=detail&amp;item_id=4150" target="_blank" rel="noreferrer">Quedlinburg</a></li><li data-list-item-id="e75bfc8cf07ed21893374cdd55fa9f1ac"><a href="https://www.reisen-fuer-alle.de/tourismusregion_anhalt-dessau-wittenberg_249.html?action=detail&amp;item_id=4233" target="_blank" rel="noreferrer">WelterbeRegion Anhalt-Dessau-Wittenberg</a></li></ul>
+</div>
+
+
+
+                </div>
+                <div class="text-image__column text-image__column--{f:if(condition: data.imageWidth == &#039;half&#039;, then: &#039;half&#039;, else: &#039;third&#039;)} text-image__lightbox">
+                    
+
+
+
+<button class="image-gallery__open-lightbox open-lightbox-btn"
+        title="Lightbox öffnen"
+        aria-label="Lightbox öffnen">
+    <i class="fa-regular fa-arrow-up-right-and-arrow-down-left-from-center"></i>
+</button>
+
+        <picture><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_9fb833eaf2.webp 700w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_89d858c1bc.webp 1000w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_71a1582a2b.webp 1200w" sizes="(max-width: 1120px) 100vw, 1120px" media="(min-width: 768px)" type="image/webp" width="1200" height="865" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_c6aab5f2a9.jpg 700w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_f57ad2e080.jpg 1000w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78dd9a3a70.jpg 1200w" sizes="(max-width: 1120px) 100vw, 1120px" media="(min-width: 768px)" width="1200" height="865" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_91c09577ad.webp 300w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_e473e38621.webp 400w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_d74a0851f7.webp 450w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_86f91eaac0.webp 600w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_db549ff6a7.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="577" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_a8e607f65b.jpg 300w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_0ddb2ae182.jpg 400w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_4d03c4c35b.jpg 450w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_d93f19d260.jpg 600w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78bbe2bcce.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="577" /><img src="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78bbe2bcce.jpg" width="800" height="577" alt="Rollstuhlfahrerin beim Ausstieg aus der Bauhaus Buslinie in Dessau" title="Barrierefreie Anreise mit dem Bus zum Bauhaus Museum Dessau" class="text-image__image" /></picture>
+    
+
+
+
+    <div class="copyright" id="copyright-6590">
+        <button
+            class="copyright__info"
+            aria-controls="copyright-6590-flyout"
+            aria-label="Urheberrechts-Informationen ein-/ausblenden">
+            <img src="/_assets/9f4aaa080db3d227abb090b84276d49c/Icons/info-button.svg" width="36" height="36" alt="" />
+        </button>
+        <div class="copyright__flyout" id="copyright-6590-flyout" aria-hidden="true">
+            <div class="copyright__flyout-content">
+                
+                    <p class="copyright__description">
+                        Barrierefreie Anreise mit dem Bus zum Bauhaus Museum Dessau
+                    </p>
+                
+                <p class="copyright__copyright">
+                    ©
+                    
+                            WelterbeRegion Anhalt-Dessau-Wittenberg e.V.
+                        
+                    
+                    
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="lightbox lightbox--closed" data-image-id="5693">
+        <div class="lightbox__close">
+            <i class="fa-solid fa-xmark lightbox__close-icon"></i>
+        </div>
+        
+                <picture><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_db549ff6a7.webp 800w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_71a1582a2b.webp 1200w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_75f63ac248.webp 1920w" sizes="100vw" media="(min-width: 768px)" type="image/webp" width="1920" height="1384" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78bbe2bcce.jpg 800w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78dd9a3a70.jpg 1200w, /fileadmin/user_upload/sachsen-anhalt-tourismus.de/Bilder/WelterbeRegion/5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau.jpg 1920w" sizes="100vw" media="(min-width: 768px)" width="1920" height="1384" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_91c09577ad.webp 300w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_e473e38621.webp 400w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_d74a0851f7.webp 450w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_86f91eaac0.webp 600w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_db549ff6a7.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="577" /><source srcset="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_a8e607f65b.jpg 300w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_0ddb2ae182.jpg 400w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_4d03c4c35b.jpg 450w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_d93f19d260.jpg 600w, /fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78bbe2bcce.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="577" /><img src="/fileadmin/_processed_/5/8/csm_5006_-_barrierefreie_Anreise_mit_dem_Bus_zum_Bauhaus_Museum_Dessau_accessible_journey_by_bus_to_the_Bauhaus_Museum_Dessau_78bbe2bcce.jpg" width="800" height="577" alt="Rollstuhlfahrerin beim Ausstieg aus der Bauhaus Buslinie in Dessau" title="Barrierefreie Anreise mit dem Bus zum Bauhaus Museum Dessau" class="lightbox__image" /></picture>
+            
+        
+    </div>
+
+
+
+
+
+
+                </div>
+            
+    </div>
+</div>
+
+        
+    </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--content-width" id="c6649">
+    
+    <div class="section__inner">
+
+        
+
+        
+            
+
+<div class="heading__wrapper heading__wrapper--left" id="c6650">
+    
+    
+
+<div class="heading">
+    
+            <h2 class="heading__h2">Zertifizierte Angebote finden</h2>
+        
+</div>
+
+
+
+</div>
+
+
+        
+            
+    
+
+            <div id="c6648" class="frame frame-default frame-type-html frame-layout-0">
+                
+                
+                    
+
+
+
+                
+                
+                
+
+    <iframe src="https://www.reisen-fuer-alle.de/widget_457.html?&showState=0&states_to_show=ST&state_codes[]=ST&regions_to_show=o114,o75,o24,o91,o154,o136&regions_id[]=o114&regions_id[]=o75&regions_id[]=o24&regions_id[]=o91&regions_id[]=o154&regions_id[]=o136&template=3&labelColor=0b515b&btnBg=ffd900&_qf__searchform=" width="120%" height="800" style="border: none;" ></iframe>
+
+
+                
+                    
+
+
+
+                
+                
+                    
+
+
+
+                
+            </div>
+
+        
+
+
+        
+    </div>
+    
+        <div class="container-divider bg-white">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3844.47463 160" preserveAspectRatio="none" width="100%" height="160" class="container-divider-wave container-divider-wave--bottom">
+    <defs>
+        <style>
+            .container-divider-wave__bottom-line {
+                fill: #00ff67;
+            }
+
+            .container-divider-wave__top-line {
+                fill: #ff8500;
+            }
+
+            .container-divider-wave__middle-line {
+                fill: none;
+                stroke: #d82a4f;
+                stroke-miterlimit: 10;
+                stroke-width: 12px;
+            }
+        </style>
+    </defs>
+    <g id="Ebene_1-2" data-name="Ebene 1">
+        <polygon class="container-divider-wave__top-line" points="3842.52854 0 3842.52854 37.02997 3530.55857 144 3114.52854 14 2666.32859 144 2227.32853 52.5 1809.49851 114.5 1521.42856 52.5 1108.31858 132.5 770.22855 13.5 506.15854 128.5 175.06858 36.5 0 116.67999 0 0 3842.52854 0"/>
+        <polygon class="container-divider-wave__bottom-line" points="3842.52854 160 2.52854 160 2.52854 116.67999 175.06858 36.5 506.15854 128.5 770.22855 13.5 1108.31858 132.5 1521.42856 52.5 1809.49851 114.5 2227.32853 52.5 2666.32859 144 3114.52854 14 3530.55857 144 3842.52854 37.02997 3842.52854 160"/>
+        <polyline class="container-divider-wave__middle-line" points="1 116.67999 175.06858 36.5 506.15854 128.5 770.22855 13.5 1108.31858 132.5 1521.42856 52.5 1809.49851 114.5 2227.32853 52.5 2666.32859 144 3114.52854 14 3530.55857 144 3842.52854 37.02997"/>
+    </g>
+</svg>
+
+        </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--two-cols" id="c6613">
+    
+    <div class="section__inner">
+
+        
+            
+
+<div class="heading">
+    
+            <h2 class="heading__h2">Inklusive Angebote und Gästeführungen</h2>
+        
+</div>
+
+
+
+        
+
+        <div class="section__columns">
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+<div class="ce-image" id="c6591">
+    <button class="image-gallery__open-lightbox open-lightbox-btn"
+            title="Lightbox öffnen"
+            aria-label="Lightbox öffnen">
+        <i class="fa-regular fa-arrow-up-right-and-arrow-down-left-from-center"></i>
+    </button>
+    
+            <picture><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_977754bca6.webp 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_f2858e8629.webp 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_fdd256fae8.webp 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_a78f0df8af.webp 700w" sizes="(max-width: 1120px) 50vw, 560px" media="(min-width: 768px)" type="image/webp" width="700" height="394" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_f72a74287f.jpg 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_39d9908348.jpg 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_9df2136d4c.jpg 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_136f687843.jpg 700w" sizes="(max-width: 1120px) 50vw, 560px" media="(min-width: 768px)" width="700" height="394" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_7445e0a805.webp 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_25846d5d0a.webp 400w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_4819365d3a.webp 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_cb72384132.webp 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_3e9c4a04e4.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="601" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_860b8fb4b6.jpg 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_6c1a72e6e5.jpg 400w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_c44bff8de7.jpg 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_80b2d4fdf8.jpg 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_576fe239ae.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="601" /><img src="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_576fe239ae.jpg" width="800" height="601" alt="Kinder-Stadtführung am Tastmodell auf dem Marktplatz in Halle (Saale)" title="Tastmodell auf dem Marktplatz in Halle (Saale)" class="ce-image__image" /></picture>
+        
+
+    
+
+
+    <div class="copyright" id="copyright-6591">
+        <button
+            class="copyright__info"
+            aria-controls="copyright-6591-flyout"
+            aria-label="Urheberrechts-Informationen ein-/ausblenden">
+            <img src="/_assets/9f4aaa080db3d227abb090b84276d49c/Icons/info-button.svg" width="36" height="36" alt="" />
+        </button>
+        <div class="copyright__flyout" id="copyright-6591-flyout" aria-hidden="true">
+            <div class="copyright__flyout-content">
+                
+                    <p class="copyright__description">
+                        Tastmodell auf dem Marktplatz in Halle (Saale)
+                    </p>
+                
+                <p class="copyright__copyright">
+                    ©
+                    
+                            IMG Sachsen-Anhalt/Alf Maron
+                        
+                    
+                        |
+                    
+                    
+                        <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noreferrer" class="copyright__link">
+                            CC BY-SA
+                        </a>
+                    
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="lightbox lightbox--closed" data-image-id="5688">
+        <div class="lightbox__close">
+            <i class="fa-solid fa-xmark lightbox__close-icon"></i>
+        </div>
+        
+                <picture><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_6f59ca8a3b.webp 800w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_7644677d7a.webp 1200w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_1d5596645d.webp 1920w" sizes="100vw" media="(min-width: 768px)" type="image/webp" width="1920" height="1080" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_929813e7b9.jpg 800w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_d96029a586.jpg 1200w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_ab743ae1f2.jpg 1920w" sizes="100vw" media="(min-width: 768px)" width="1920" height="1080" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_7445e0a805.webp 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_25846d5d0a.webp 400w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_4819365d3a.webp 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_cb72384132.webp 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_3e9c4a04e4.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="601" /><source srcset="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_860b8fb4b6.jpg 300w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_6c1a72e6e5.jpg 400w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_c44bff8de7.jpg 450w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_80b2d4fdf8.jpg 600w, /fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_576fe239ae.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="601" /><img src="/fileadmin/_processed_/4/1/csm_Kinder-Stadtfuehrung_in_Halle__Saale__-_Marktplatz__Tastmodell_576fe239ae.jpg" width="800" height="601" alt="Kinder-Stadtführung am Tastmodell auf dem Marktplatz in Halle (Saale)" title="Tastmodell auf dem Marktplatz in Halle (Saale)" class="lightbox__image" /></picture>
+            
+        
+    </div>
+
+
+
+</div>
+
+
+                
+                    
+
+
+
+
+
+<div class="accordion" id="c6594">
+    
+        <div class="accordion__head">
+            
+
+<div class="heading">
+    
+            <h4 class="heading__h4">Städte und Museen, die Führungen für verschiedene Gästegruppen mit Beeinträchtigungen anbieten</h4>
+        
+</div>
+
+
+
+        </div>
+    
+
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-0"
+                aria-controls="c6594-content-0"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Altmark</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-0"
+                id="c6594-content-0"
+            >
+                <ul><li>Stadt Arneburg</li><li>Hansestadt Havelberg</li><li>Haus der Flüsse (Havelberg)</li><li>Hansestadt Salzwedel</li><li>Winckelmann Museum (Stendal)</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-1"
+                aria-controls="c6594-content-1"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Urlaubsregion Mittelelbe</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-1"
+                id="c6594-content-1"
+            >
+                <ul><li>Stadt Burg</li><li>Stadt Haldensleben</li><li>Ringheiligtum Pömmelte</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-2"
+                aria-controls="c6594-content-2"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Harz</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-2"
+                id="c6594-content-2"
+            >
+                <ul><li>Stadt Aschersleben</li><li>Stadt Blankenburg</li><li>Kloster Michaelstein (Blankenburg)</li><li>Stadt Halberstadt</li><li>Stadt Quedlinburg</li><li>Stadt Thale</li><li>Stadt Wernigerode</li><li>Glasmanufaktur Harzkristall (Wernigerode OT Derenburg)</li><li>Miniaturenpark im Bürgerpark Wernigerode</li><li>ErlebnisZentrum und Museum Bergbau Röhrigschacht (Sangerhausen OT Wettelrode)</li><li>Europa Rosarium (Sangerhausen)</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-3"
+                aria-controls="c6594-content-3"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Halle (Saale)</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-3"
+                id="c6594-content-3"
+            >
+                <ul><li>Stadt Halle</li><li>Stadtmuseum Halle</li><li>Bergzoo Halle</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-4"
+                aria-controls="c6594-content-4"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Magdeburg</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-4"
+                id="c6594-content-4"
+            >
+                <ul><li>Stadt Magdeburg</li><li>Otto-von-Guericke-Museum (Magdeburg)</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-5"
+                aria-controls="c6594-content-5"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">Saale-Unstrut</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-5"
+                id="c6594-content-5"
+            >
+                <ul><li>Stadt Weißenfels</li><li>Museum Weißenfels im Schloss Neu-Augustusburg</li><li>Schlossensemble und Torhaus der Stadt Zeitz</li><li>Arche Nebra (Nebra)</li><li>UNESCO Welterbe Naumburger Dom</li><li>Kaiserdom Merseburg</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6594-toggle-6"
+                aria-controls="c6594-content-6"
+                aria-expanded="false"
+            >
+                
+                    <h5 class="accordion__title">WelterbeRegion Anhalt-Dessau-Wittenberg</h5>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6594-toggle-6"
+                id="c6594-content-6"
+            >
+                <ul><li>Stadt Bernburg (Saale)</li><li>Lutherstadt Wittenberg (Wiedereröffnung April 2025)</li><li>Lutherhaus (Wittenberg)</li><li>Melanchthonhaus (Wittenberg)</li><li>Stadt Zerbst (Anhalt)</li><li>Bauhaus Museum Dessau</li><li>Auenhaus Informationszentrum (Oranienbaum)</li><li>Ferropolis, Stadt aus Eisen (Gräfenhainichen)</li><li>Das Waldhaus am Bergwitzsee (Kemberg)</li></ul>
+
+                
+                
+                
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+                
+                    
+
+
+
+<div class="text" id="c6639">
+    
+
+    <div class="text__body rte">
+        <p><a href="/service-planung/reisen-fuer-alle/inklusive-gaestefuehrungen-und-angebote" class="button-secondary">Die Angebote im Detail</a></p>
+    </div>
+</div>
+
+                
+            </div>
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+<div class="text" id="c6614">
+    
+
+    <div class="text__body rte">
+        <p>Barrierefreiheit in Sachsen-Anhalt bedeutet mehr als nur die Zugänglichkeit einzelner Gebäude.&nbsp;</p>
+<p>Viele Städte bieten spezielle Gästeführungen an – ob in Quedlinburg, Magdeburg oder in der Lutherstadt Wittenberg. Dabei werden Wege, Sprache und Inhalte an die Bedürfnisse der Teilnehmenden angepasst. Geprüfte Unterkünfte und Restaurants stellen sicher, dass Reisen komfortabel bleibt – von barrierefrei konzipierten Zimmern und Bädern bis zu Speisekarten in Großschrift und Leichter Sprache. Auch kulturelle Einrichtungen und Museen sind darauf eingestellt, mit „Führungen für Alle“, Tastmodellen, Audioguides oder Angeboten in Gebärdensprache Teilhabe zu ermöglichen.</p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="ce-image" id="c6617">
+    <button class="image-gallery__open-lightbox open-lightbox-btn"
+            title="Lightbox öffnen"
+            aria-label="Lightbox öffnen">
+        <i class="fa-regular fa-arrow-up-right-and-arrow-down-left-from-center"></i>
+    </button>
+    
+            <picture><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_df024162dc.webp 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_bddb441187.webp 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_5d8d38af5d.webp 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_d616780149.webp 700w" sizes="(max-width: 1120px) 50vw, 560px" media="(min-width: 768px)" type="image/webp" width="700" height="394" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_5b2881439f.jpg 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_3487750387.jpg 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_77fa284661.jpg 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_1700bd931c.jpg 700w" sizes="(max-width: 1120px) 50vw, 560px" media="(min-width: 768px)" width="700" height="394" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_38df07bdf5.webp 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_7ab3e81c13.webp 400w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_7476a35f92.webp 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_06c057273c.webp 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_b4d1145426.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="601" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_b9fa2bd92b.jpg 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_d82acd90e3.jpg 400w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_488ce7e240.jpg 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_8fc216acf3.jpg 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_407409b3b2.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="601" /><img src="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_407409b3b2.jpg" width="800" height="601" alt="Rollstuhlfahrer im Ausstellungseingang zum Augusteum des Museums Lutherhaus in der Lutherstadt Wittenberg " title="Ausstellungseingang zum Augusteum des Museums Lutherhaus in der Lutherstadt Wittenberg " class="ce-image__image" /></picture>
+        
+
+    
+
+
+    <div class="copyright" id="copyright-6617">
+        <button
+            class="copyright__info"
+            aria-controls="copyright-6617-flyout"
+            aria-label="Urheberrechts-Informationen ein-/ausblenden">
+            <img src="/_assets/9f4aaa080db3d227abb090b84276d49c/Icons/info-button.svg" width="36" height="36" alt="" />
+        </button>
+        <div class="copyright__flyout" id="copyright-6617-flyout" aria-hidden="true">
+            <div class="copyright__flyout-content">
+                
+                    <p class="copyright__description">
+                        Ausstellungseingang zum Augusteum des Museums Lutherhaus in der Lutherstadt Wittenberg 
+                    </p>
+                
+                <p class="copyright__copyright">
+                    ©
+                    
+                            WelterbeRegion Anhalt-Dessau-Wittenberg e.V.
+                        
+                    
+                    
+                    
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="lightbox lightbox--closed" data-image-id="5692">
+        <div class="lightbox__close">
+            <i class="fa-solid fa-xmark lightbox__close-icon"></i>
+        </div>
+        
+                <picture><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_cc018852cc.webp 800w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_0da6514f81.webp 1200w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_35e8b45494.webp 1920w" sizes="100vw" media="(min-width: 768px)" type="image/webp" width="1920" height="1080" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_b8cf681d07.jpg 800w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_7645329e62.jpg 1200w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_4a2807affc.jpg 1920w" sizes="100vw" media="(min-width: 768px)" width="1920" height="1080" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_38df07bdf5.webp 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_7ab3e81c13.webp 400w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_7476a35f92.webp 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_06c057273c.webp 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_b4d1145426.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="601" /><source srcset="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_b9fa2bd92b.jpg 300w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_d82acd90e3.jpg 400w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_488ce7e240.jpg 450w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_8fc216acf3.jpg 600w, /fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_407409b3b2.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="601" /><img src="/fileadmin/_processed_/f/b/csm_5011_-_Ausstellungseingang_zum_Augusteum_des_Museums_Lutherhaus_in_der_Lutherstadt_Wittenberg_Exhibition_entrance_to_the__Augusteum__of_the_Museum_Lutherhaus_in_Wittenberg_407409b3b2.jpg" width="800" height="601" alt="Rollstuhlfahrer im Ausstellungseingang zum Augusteum des Museums Lutherhaus in der Lutherstadt Wittenberg " title="Ausstellungseingang zum Augusteum des Museums Lutherhaus in der Lutherstadt Wittenberg " class="lightbox__image" /></picture>
+            
+        
+    </div>
+
+
+
+</div>
+
+
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--two-cols" id="c6616">
+    
+    <div class="section__inner">
+
+        
+
+        <div class="section__columns">
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+
+
+<div class="accordion" id="c6595">
+    
+        <div class="accordion__head">
+            
+
+<div class="heading">
+    
+            <h2 class="heading__h2">Medizinische Hilfsmittel und Pflegebetten</h2>
+        
+</div>
+
+
+
+        </div>
+    
+
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-0"
+                aria-controls="c6595-content-0"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">IDA Integrationsdorf Arendsee</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-0"
+                id="c6595-content-0"
+            >
+                <p>Das Integrationsdorf Arendsee ist eine Familienerholungs- und Bildungsstätte im schönen Luftkurort Arendsee in der Altmark.</p>
+<p>Unsere Einrichtung verfolgt einen konsequent integrativen Ansatz, der die Begegnung und das gemeinsame Erleben von behinderten und nicht behinderten Menschen fördert. Als Ort der Regeneration, der Entfaltung und der Entspannung bieten wir allen Gästen eine familiäre Atmosphäre und altersübergreifende Angebote.</p>
+<p>Die komplette Anlage sowie ein Teil der Ferienwohnungen sind barrierefrei angelegt. Alle Bereiche sind stufenlos oder über Rampen erreichbar.</p>
+<p>Inmitten eines Kiefernwaldes und unweit vom Arendsee entfernt, finden Sie Entspannung und Erholung. Ein neu angelegter barrierefreier Weg führt direkt zum Arendsee. Die Umgebung lädt zu Radtouren und Wanderungen ein.</p>
+<p>Auf dem Gelände befinden sich ein Volleyball- und Basketballplatz, ein Großschachfeld, ein Spielplatz und das Kinderhaus, welches mit verschiedenen Kreativangeboten viel Spannung verspricht. Wir bieten ausreichend Platz für Veranstaltungen unterschiedlicher Art.</p>
+<p><strong>Das IDA selbst</strong> hält keine Pflegebetten oder Hilfsmittel vor.</p>
+<p>Kooperationspartner ist das <a href="https://www.sanitaetshaus-berg.de/" target="_blank">Sanitätshaus Baldur Berg</a> in Salzwedel. Dort können Gäste auf eigene Rechnung alles ausleihen, was sie für einen bequemen Aufenthalt im IDA benötigen. Das Sanitätshaus liefert und baut auch direkt auf.</p>
+<p>Es gibt ein öffentliches WC für Menschen mit Behinderung.&nbsp;</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur im IDA finden Sie <a href="https://www.reisen-fuer-alle.de/ida_-_integrationsdorf_arendsee_249.html?action=detail&amp;item_id=1825" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Harper Weg 3<br />39619 Arendsee<br />Tel. <a href="tel:+4939384984880">+49 39384 98488-0</a><br />E-Mail: <a href="mailto:buchung@ida-arendsee.de">buchung@ida-arendsee.de</a><br />Website: <a href="http://www.ida-arendsee.de/" target="_blank">www.ida-arendsee.de/</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-1"
+                aria-controls="c6595-content-1"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">IntercityHotel Magdeburg</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-1"
+                id="c6595-content-1"
+            >
+                <p>Das IntercityHotel Magdeburg ist mit seinen 175 Hotelzimmern und seinen 5 Tagungsräumen der perfekte Ort für Geschäftstermine und der ideale Startpunkt für Kulturtrips und Stadterkundungen in und rund um Magdeburg. Direkt am Hauptbahnhof gelegen, garantiert das Hotel u. a. kurze Wege in die City inklusive all ihrer Shopping-, Sport- und Unterhaltungseinrichtungen. In verkehrsgünstiger Lage und mit allen wichtigen Verkehrsanbindungen vor der Tür sind Sie im Hotel in Magdeburg mitten im Geschehen untergebracht.&nbsp;</p>
+<p><strong>Das Hotel selbst</strong> hält keine Pflegebetten oder Hilfsmittel vor.</p>
+<p>Es besteht zwischen dem Hotel und dem in Magdeburg ansässigen <a href="https://www.my-zamara.de/filialen/sanitaetshaus-magdeburg/" target="_blank">Sanitätshaus Oesterreich "My Zamara"</a> eine Kooperation. Es können sämtliche medizinische Hilfsmittel auf Anfrage und auf eigene Rechnung ausgeliehen und ins Hotel geliefert werden.</p>
+<p>Es gibt ein öffentliches WC für Menschen mit Behinderung. Alle Bereiche sind ebenerdig, per Aufzug oder Rampe zugänglich.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur im IntercityHotel finden Sie <a href="https://www.reisen-fuer-alle.de/intercity_hotel_magdeburg_249.html?action=detail&amp;item_id=3039&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Bahnhofstraße 69<br />39104 Magdeburg<br />Tel: <a href="tel:+4939159620">+49 391 5962-0</a><br />E-Mail: <a href="mailto:magdeburg@intercityhotel.com">magdeburg@intercityhotel.com</a><br />Website: <a href="https://www.intercityhotel.com/hotels/alle-hotels/deutschland/magdeburg/intercityhotel-magdeburg" target="_blank">https://www.intercityhotel.com/hotels/alle-hotels/deutschland/magdeburg/intercityhotel-magdeburg</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-2"
+                aria-controls="c6595-content-2"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Jugendherberge Dessau</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-2"
+                id="c6595-content-2"
+            >
+                <p>Die moderne Jugendherberge im Bauhausstil liegt gleich neben den Meisterhäusern – am Waldrand und trotzdem citynah. Entspannen Sie auf dem großen Gelände mit Sonnenterrasse und Spielplatz oder in der hauseigenen Cafeteria. Alle Zimmer – vier davon rollstuhlgerecht – sind mit Dusche/WC ausgestattet. Ein separates Gebäude ist für Gruppen bis 30 Personen buchbar.<br />&nbsp;</p>
+<p><strong>Die Jugendherberge selbst</strong> hält keine Pflegebetten oder Hilfsmittel vor.</p>
+<p>Kooperationspartner ist das <a href="http://www.sanitaetshaus-beeg.de/kontakt.html" target="_blank">Sanitätshaus Beeg in Dessau</a>. Dort können Gäste auf eigene Rechnung alles ausleihen oder beauftragen, was sie für einen bequemen Aufenthalt in der Herberge benötigen, wie z.B. Pflegebetten, Rollstühle, Rollatoren, Gehhilfen, Unterstützung bei der Krankenpflege z.B. Diabeteshilfe bei Kindern (z.B. im Rahmen von Gruppenfreizeiten), Fahrdienst etc. Fragen Sie bitte persönlich nach, welche Leistungen noch angeboten werden. Das Sanitätshaus liefert das Bestellte direkt ins Haus.</p>
+<p>Es gibt ein öffentliches WC für Menschen mit Behinderung. Alle Bereiche sind ebenerdig, per Aufzug oder Rampe zugänglich.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur in der Jugendherberge finden Sie <a href="https://www.reisen-fuer-alle.de/jugendherberge_dessau_249.html?action=detail&amp;item_id=1027" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Ebertallee 151<br />06846 Dessau-Roßlau<br />Tel: <a href="tel:+49340619803">+49 340 619803</a><br />E-Mail: <a href="mailto:dessau@jugendherberge.de">dessau@jugendherberge.de</a><br />Website: <a href="http://www.jugendherberge-dessau.de/" target="_blank">http://www.jugendherberge-dessau.de</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-3"
+                aria-controls="c6595-content-3"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Euroville Jugend- und Sporthotel Naumburg</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-3"
+                id="c6595-content-3"
+            >
+                <p>Das&nbsp;<strong> </strong>Jugendgästehaus und Sporthotel Euroville befindet sich im Herzen Mitteldeutschlands, eingebettet in die herrliche Weinlandschaft der Saale-Unstrut-Region, vor den Toren der altehrwürdigen Domstadt Naumburg.</p>
+<p>Für Gruppen auf Reisen wie Klassenfahrten, Trainingslager, Tagungen, Vereinsfahrten aber auch für Incentives bietet Ihnen unser trendiges Hotel in Naumburg die idealen Bedingungen. Mit unserer <strong>Sporthalle </strong>und den Außenanlagen bieten wir den Sportvereinen ideale Möglichkeiten zur Durchführung von Trainingslagern und Wettkämpfen. Aber auch unsere sportinteressierten Gäste können sich Sportgeräte ausleihen und die zahlreichen Sporteinrichtungen nutzen.</p>
+<p><strong>Im Hotel ist ein Pflegebett vorhanden.</strong></p>
+<p>Es gibt ein barrierefrei konzipiertes Zimmer mit Bad für Menschen mit Behinderung. Alle Bereiche sind ebenerdig, per Aufzug oder Rampe zugänglich.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur im Hotel finden Sie <a href="https://www.reisen-fuer-alle.de/euroville_jugend-_und_sporthotel_naumburg_249.html?action=detail&amp;item_id=2344&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Am Michaelisholz 115<br />06618 Naumburg (Saale)<br />Tel: <a href="tel:+493445781750">+49 3445 781750</a><br />E-Mail: <a href="mailto:info@euroville.de">info@euroville.de</a><br />Website: <a href="http://www.euroville.de/" target="_blank">www.euroville.de</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-4"
+                aria-controls="c6595-content-4"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Schwimmbäder mit Einstiegshilfe für Menschen mit Behinderung</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-4"
+                id="c6595-content-4"
+            >
+                <p><strong>Ballhaus Aschersleben</strong></p>
+<p>Zum Einstieg in das Schwimmbecken gibt es einen Personenlift und eine Leiter mit Handlauf. Das Becken ist zum Teil mit einem verstellbaren Hubboden ausgestattet mit Tiefen zwischen 25 cm und 180 cm.</p>
+<p>Umkleidekabinen, Duschen und ein WC für Menschen mit Behinderung sind vorhanden.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/ballhaus_aschersleben_249.html?action=detail&amp;item_id=2382&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Seegraben 7-8<br />06449 Aschersleben<br />Tel. <a href="tel:+493473226100">+49 3473 226100</a><br />E-Mail: <a href="mailto:info@aschersleben-ballhaus.de">info@aschersleben-ballhaus.de</a><br />Website: <a href="http://www.aschersleben-ballhaus.de/" target="_blank">www.aschersleben-ballhaus.de</a></p>
+
+<p><strong>Erlebnisbad "Saaleperle" Bernburg (Saale)</strong></p>
+<p>Schwimmhalle: Zum Einstieg in das Schwimmbecken steht ein Personenlift im Außenbereich zur Verfügung.</p>
+<p>Umkleidekabinen, Duschen und ein WC für Menschen mit Behinderung sind vorhanden.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/erlebnisbad_saaleperle_bernburg_saale_249.html?action=detail&amp;item_id=3403" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Am Stadtbad 65<br />06406 Bernburg (Saale)<br />Tel: <a href="tel:+4934716422351">+49 3471 6422351</a><br />E-Mail: <a href="mailto:info@bernburger-freizeit.de">info@bernburger-freizeit.de</a><br />Website: <a href="https://www.bernburger-freizeit.de/freizeit-kultur/erlebnisbad/" target="_blank">https://www.bernburger-freizeit.de/freizeit-kultur/erlebnisbad/</a></p>
+
+<p><strong>Bodetal Therme Thale</strong></p>
+<p>Ein Personenlift und flache Treppenstufen mit Handlauf stehen für den Einstieg ins Schwimmbecken zur Verfügung.</p>
+<p>Umkleidekabinen, Duschen und ein WC für Menschen mit Behinderung sind vorhanden.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/bodetal_therme_thale_249.html?action=detail&amp;item_id=75&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Parkstr. 4<br />06502 Thale<br />Tel: <a href="tel:+493947778450">+49 3947 778450</a><br />E-Mail: <a href="mailto:info@therme-bodetal.de">info@therme-bodetal.de</a><br />Website: <a href="http://www.therme-bodetal.de/" target="_blank">http://www.therme-bodetal.de</a></p>
+
+<p><strong>SeaLand im Freizeit- und Sportzentrum Halberstadt / Harz</strong></p>
+<p>Zum Einstieg in das Schwimmbecken gibt es einen Personenlift und flache Treppenstufen mit Handlauf.<br />Das Gesundheitsbecken ist mit einem verstellbaren Hubboden ausgestattet.</p>
+<p>Umkleidekabinen, Duschen und zwei WCs für Menschen mit Behinderung sind vorhanden.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie hier &gt;&gt;</p>
+<p><strong>Kontakt:</strong><br />Gebrüder-Rehse-Str. 12<br />38820 Halberstadt<br />Tel.: <a href="tel:+493941687850">+49 3941 687850</a><br />E-Mail: <a href="mailto:bernd-kischel@fsz-halberstadt.de">bernd-kischel@fsz-halberstadt.de</a><br />Webseite: <a href="http://www.fsz-halberstadt.de/" target="_blank">www.fsz-halberstadt.de</a></p>
+
+<p><strong>Landhotel Bad Dürrenberg</strong></p>
+<p>Nebengebäude: Zum Einstieg in das Schwimmbecken gibt es einen Personenlift und flache Treppenstufen mit Handlauf.<br />Umkleidekabinen, Duschen und ein WC für Menschen mit Behinderung sind vorhanden.</p>
+<p>Das Hotel bietet zwei barrierefrei eingerichtete Zimmer mit Badezimmern.</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/landhotel_bad_duerrenberg_249.html?action=detail&amp;item_id=458&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Weinberg 6<br />06231 Bad Dürrenberg<br />Tel: <a href="tel:+493462542590">+49 3462 542590</a><br />E-Mail: <a href="mailto:info@landhotel-bad-duerrenberg.com">info@landhotel-bad-duerrenberg.com</a><br />Website: <a href="http://www.landhotel-bad-duerrenberg.com/" target="_blank">http://www.landhotel-bad-duerrenberg.com</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6595-toggle-5"
+                aria-controls="c6595-content-5"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Induktive Höranlagen für Menschen mit Hörbehinderung</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6595-toggle-5"
+                id="c6595-content-5"
+            >
+                <p><strong>Stadtmuseum Halle (Saale)</strong></p>
+<p>Es gibt eine induktive Höranlage am Counter.</p>
+<p>Auf Nachfrage werden Führungen für Menschen mit Hörbehinderung und gehörlose Menschen (in Deutscher Gebärdensprache) angeboten. Es ist eine Voranmeldung notwendig.</p>
+<p>Es werden für Menschen mit Hörbehinderung Führungen mit FM-Anlagen ermöglicht (z.B. Kopfhörer, Halsringschleifen).</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/stadtmuseum_halle_saale_249.html?action=detail&amp;item_id=2721&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Große Märkerstraße 10<br />06108 Halle (Saale)<br />Tel: <a href="tel:+493452213030">+49 345 221-3030</a><br />E-Mail: <a href="mailto:stadtmuseum@halle.de">stadtmuseum@halle.de</a><br />Website: <a href="http://www.stadtmuseumhalle.de/" target="_blank">www.stadtmuseumhalle.de</a></p>
+
+<p><strong>Lutherhaus Wittenberg</strong></p>
+<p>Im Museum werden Führungen für Menschen mit Hörbehinderung und gehörlose Menschen (in deutscher Gebärdensprache) angeboten. Es ist eine Voranmeldung notwendig.</p>
+<p>Es werden für Menschen mit Hörbehinderung Führungen mit FM-Anlagen ermöglicht (z.B. Kopfhörer, Halsringschleifen).</p>
+<p>Weitere Informationen zur barrierefreien Infrastruktur finden Sie <a href="https://www.reisen-fuer-alle.de/lutherhaus_wittenberg_249.html?action=detail&amp;item_id=2472&amp;seltab=1" target="_blank">hier &gt;&gt;</a></p>
+<p><strong>Kontakt:</strong><br />Collegienstraße 54<br />06886 Lutherstadt Wittenberg<br />Tel: <a href="tel:+49349142030">+49 3491 42030</a><br />E-Mail: <a href="mailto:info@martinluther.de">info@martinluther.de</a><br />Website: <a href="http://www.martinluther.de/" target="_blank">www.martinluther.de</a></p>
+                
+                
+                
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+                
+            </div>
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+
+
+<div class="accordion" id="c6618">
+    
+        <div class="accordion__head">
+            
+
+<div class="heading">
+    
+            <h2 class="heading__h2">WCs für Menschen mit Behinderung</h2>
+        
+</div>
+
+
+
+        </div>
+    
+
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6618-toggle-0"
+                aria-controls="c6618-content-0"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Altmark</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6618-toggle-0"
+                id="c6618-content-0"
+            >
+                <ul><li>Stadt Arneburg</li><li>Stadt Genthin</li><li>Hansestadt Havelberg</li><li>Hansestadt Salzwedel</li><li>Stadt Kalbe (Milde)</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6618-toggle-1"
+                aria-controls="c6618-content-1"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Urlaubsregion Mittelelbe</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6618-toggle-1"
+                id="c6618-content-1"
+            >
+                <ul><li>Landeshauptstadt Magdeburg</li><li>Stadt Haldensleben</li><li>Stadt Barby</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6618-toggle-2"
+                aria-controls="c6618-content-2"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Harz</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6618-toggle-2"
+                id="c6618-content-2"
+            >
+                <ul><li>Stadt Aschersleben</li><li>Stadt Blankenburg</li><li>Stadt Halberstadt</li><li>Stadt Quedlinburg</li><li>Stadt Thale</li><li>Stadt Ilsenburg</li><li>Stadt Wernigerode</li><li>Miniaturenpark „Kleiner Harz“ &amp; Bürgerpark Wernigerode</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6618-toggle-3"
+                aria-controls="c6618-content-3"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">Saale-Unstrut</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6618-toggle-3"
+                id="c6618-content-3"
+            >
+                <ul><li>Stadt Weißenfels</li><li>Stadt Zeitz</li></ul>
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="accordion__section">
+            <button
+                class="accordion__toggle"
+                id="c6618-toggle-4"
+                aria-controls="c6618-content-4"
+                aria-expanded="false"
+            >
+                
+                    <h3 class="accordion__title">WelterbeRegion Anhalt-Dessau-Wittenberg</h3>
+                
+                <span class="accordion__icon">
+          <i class="fa-regular fa-chevron-down"></i>
+        </span>
+            </button>
+            <div
+                class="accordion__content rte"
+                role="region"
+                aria-labelledby="c6618-toggle-4"
+                id="c6618-content-4"
+            >
+                <ul><li>Stadt Bernburg (Saale)</li><li>Stadt Coswig (Anhalt)</li><li>Stadt Dessau</li><li>Lutherstadt Wittenberg</li><li>Gartenreich Information im Wörlitzer Park</li><li>Auenhaus Informationszentrum (Oranienbaum)</li><li>Ferropolis, Stadt aus Eisen (Gräfenhainichen)</li></ul>
+
+                
+                
+                
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+                
+                    
+
+
+
+<div class="text" id="c6636">
+    
+
+    <div class="text__body rte">
+        <p><a href="/service-planung/reisen-fuer-alle/barrierefreie-wcs" class="button-secondary">Die WCs im Detail</a></p>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+    
+        <div class="container-divider bg-white">
+            <?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3844.47463 160" preserveAspectRatio="none" width="100%" height="160" class="container-divider-wave container-divider-wave--bottom">
+    <defs>
+        <style>
+            .container-divider-wave__bottom-line {
+                fill: #00ff67;
+            }
+
+            .container-divider-wave__top-line {
+                fill: #ff8500;
+            }
+
+            .container-divider-wave__middle-line {
+                fill: none;
+                stroke: #d82a4f;
+                stroke-miterlimit: 10;
+                stroke-width: 12px;
+            }
+        </style>
+    </defs>
+    <g id="Ebene_1-2" data-name="Ebene 1">
+        <polygon class="container-divider-wave__top-line" points="3842.52854 0 3842.52854 37.02997 3530.55857 144 3114.52854 14 2666.32859 144 2227.32853 52.5 1809.49851 114.5 1521.42856 52.5 1108.31858 132.5 770.22855 13.5 506.15854 128.5 175.06858 36.5 0 116.67999 0 0 3842.52854 0"/>
+        <polygon class="container-divider-wave__bottom-line" points="3842.52854 160 2.52854 160 2.52854 116.67999 175.06858 36.5 506.15854 128.5 770.22855 13.5 1108.31858 132.5 1521.42856 52.5 1809.49851 114.5 2227.32853 52.5 2666.32859 144 3114.52854 14 3530.55857 144 3842.52854 37.02997 3842.52854 160"/>
+        <polyline class="container-divider-wave__middle-line" points="1 116.67999 175.06858 36.5 506.15854 128.5 770.22855 13.5 1108.31858 132.5 1521.42856 52.5 1809.49851 114.5 2227.32853 52.5 2666.32859 144 3114.52854 14 3530.55857 144 3842.52854 37.02997"/>
+    </g>
+</svg>
+
+        </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--two-cols" id="c6596">
+    
+    <div class="section__inner">
+
+        
+            
+
+<div class="heading">
+    
+            <h2 class="heading__h2">Kontakt und Ansprechpartner</h2>
+        
+</div>
+
+
+
+        
+
+        <div class="section__columns">
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+<div class="contact-persons" id="c7353">
+    
+    <div class="contact-persons__list">
+        
+            
+
+
+
+
+
+<div class="contact-persons__item">
+
+    <div class="contact-persons__image-wrap">
+        
+                <picture><source srcset="/fileadmin/_processed_/3/e/csm_beulecke_06a39f96b7.webp 360w, /fileadmin/_processed_/3/e/csm_beulecke_3a425aca5d.webp 480w, /fileadmin/_processed_/3/e/csm_beulecke_27e9c866b6.webp 720w, /fileadmin/_processed_/3/e/csm_beulecke_2432f15b4d.webp 900w, /fileadmin/_processed_/3/e/csm_beulecke_e9bfdcc68c.webp 1200w, /fileadmin/_processed_/3/e/csm_beulecke_9dd22293e1.webp 1440w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px" type="image/webp" width="1440" height="1080" /><source srcset="/fileadmin/_processed_/3/e/csm_beulecke_e97c9238bc.jpg 360w, /fileadmin/_processed_/3/e/csm_beulecke_f86594352c.jpg 480w, /fileadmin/_processed_/3/e/csm_beulecke_43939e475d.jpg 720w, /fileadmin/_processed_/3/e/csm_beulecke_6602fd08b1.jpg 900w, /fileadmin/_processed_/3/e/csm_beulecke_7ae46e7533.jpg 1200w, /fileadmin/_processed_/3/e/csm_beulecke_d1ee7f7780.jpg 1440w" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px" width="1440" height="1080" /><img src="/fileadmin/_processed_/3/e/csm_beulecke_d1ee7f7780.jpg" width="1440" height="1080" alt="" class="contact-persons__image" /></picture>
+                
+
+
+
+            
+    </div>
+
+    <address class="contact-persons__body">
+        <div class="contact-persons__name">Angelika  Beulecke</div>
+
+        
+            <div class="contact-persons__info">
+                
+                    <div class="contact-persons__position">Projektmanagerin Reisen für Alle, Reiseveranstalterbetreuung, Broschürenservice</div>
+                
+
+                
+            </div>
+        
+
+        <div class="contact-persons__reachability">
+            
+                <div class="contact-persons__telephone">
+                    <div class="contact-persons__icon"><i class="fa-regular fa-phone"></i></div><div><a href="tel:+49 391 568 99 88"
+                            class="contact-persons__link"
+                            title="">+49 391 568 99 88</a></div>
+                </div>
+            
+
+            
+                <div class="contact-persons__mobile">
+                    <div class="contact-persons__icon"><i class="fa-regular fa-mobile-notch"></i></div><div><a href="tel:+49 173 651 475 1"
+                            class="contact-persons__link"
+                            title="">+49 173 651 475 1</a></div>
+                </div>
+            
+
+            
+
+            
+                <div class="contact-persons__email">
+                    <div class="contact-persons__icon"><i class="fa-regular fa-envelope"></i></div><div><a href="tel:angelika.beulecke@img-sachsen-anhalt.de"
+                            class="contact-persons__link"
+                            title="">angelika.beulecke@img-sachsen-anhalt.de</a></div>
+                </div>
+            
+
+            
+        </div>
+
+    </address>
+</div>
+
+
+
+        
+    </div>
+</div>
+
+                
+            </div>
+            <div class="section__column section__column--half">
+                
+                    
+
+
+
+
+<div class="contact-box" style="background-color: #ffd900" id="c6602">
+    
+        
+
+<div class="heading">
+    
+            <h4 class="heading__h4">Projektmanagement Zertifizierung &quot;Reisen für Alle&quot; in Sachsen-Anhalt</h4>
+        
+</div>
+
+
+
+    
+    <p class="contact-box__name">Manuela Fischer</p>
+    
+        <p class="contact-box__position">Koordinierungsstelle &quot;Straße der Romanik&quot; &amp; „Reisen für Alle“, Tourismusverband Sachsen-Anhalt e.V.</p>
+    
+    
+        <p class="contact-box__phone">
+            <a href="tel:+49 391 7384315">+49 391 7384315</a>
+        </p>
+    
+    
+        <p class="contact-box__email">
+            <a href="mailto:romanik@ltvlsa.de">romanik@ltvlsa.de</a>
+        </p>
+    
+</div>
+
+
+                
+                    
+
+<div class="heading__wrapper heading__wrapper--left" id="c7354">
+    
+    
+
+<div class="heading">
+    
+            <h3 class="heading__h3">Weitere Informationsmöglichkeiten</h3>
+        
+</div>
+
+
+
+</div>
+
+
+                
+                    
+
+
+
+<div class="text" id="c6598">
+    
+
+    <div class="text__body rte">
+        <p><strong>Barrierefreier Tourismus Info</strong> - das Infoportal für Reisende mit Servicebedarf<br><a href="http://www.barrierefreier-tourismus.info/" target="_blank" class="external-link-new-window" title="Opens internal link in current window" rel="noreferrer">www.barrierefreier-tourismus.info</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="text" id="c6599">
+    
+
+    <div class="text__body rte">
+        <p><strong>Allgemeiner Behindertenverband Sachsen-Anhalt e.V. (ABISA)</strong><br><a href="http://www.abisa.de/" target="_blank" class="external-link-new-window" title="Öffnet externen Link in neuem Fenster" rel="noreferrer">www.abisa.de</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="text" id="c6600">
+    
+
+    <div class="text__body rte">
+        <p><strong>Blinden- und Sehbehinderten-Verband Sachsen-Anhalt e.V. (BSVSA)</strong><br><a href="http://www.bsv-sachsen-anhalt.de/" target="_blank" class="external-link-new-window" title="Öffnet externen Link in neuem Fenster" rel="noreferrer">www.bsv-sachsen-anhalt.de</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="text" id="c6607">
+    
+
+    <div class="text__body rte">
+        <p><strong>Gesellschaft für Prävention im Alter (PIA) e.V., Institut an der Hochschule Magdeburg-Stendal</strong><br><a href="http://www.pia-magdeburg.de/" target="_blank" class="external-link-new-window" title="Öffnet externen Link in neuem Fenster" rel="noreferrer">www.pia-magdeburg.de</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="text" id="c6608">
+    
+
+    <div class="text__body rte">
+        <p><strong>Lebenshilfe für Menschen mit geistiger Behinderung, Landesverband Sachsen-Anhalt e.V.</strong><br><a href="http://lebenshilfe-lsa.de/" target="_blank" class="external-link-new-window" title="Öffnet externen Link in neuem Fenster" rel="noreferrer">http://lebenshilfe-lsa.de</a></p>
+    </div>
+</div>
+
+                
+                    
+
+
+
+<div class="text" id="c6609">
+    
+
+    <div class="text__body rte">
+        <p><strong>Der PARITÄTISCHE Wohlfahrtsverband Landesverband Sachsen-Anhalt e.V.</strong><br><a href="http://www.paritaet-lsa.de/" target="_blank" class="external-link-new-window" title="Öffnet externen Link in neuem Fenster" rel="noreferrer">www.paritaet-lsa.de</a></p>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+        
+            
+
+<section class="section bg-white section--full-width" id="c8368">
+    
+    <div class="section__inner section__full-width-fix">
+        
+
+        
+            
+
+
+
+
+
+<div class="cta" id="c6355">
+    <div class="cta__inner cta__inner--with-image">
+        <div class="cta__background">
+            
+                <div class="cta__image-wrapper">
+                    <picture><source srcset="/fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_92ec039b35.webp 600w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_bc0afdd82a.webp 800w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_9cb9d92138.webp 1200w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_4a5ec575ff.webp 1920w" sizes="100vw" media="(min-width: 768px)" type="image/webp" width="1920" height="1280" /><source srcset="/fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_5b1f5c058d.jpg 600w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_85b0d63049.jpg 800w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_262e1dc6fa.jpg 1200w, /fileadmin/user_upload/sachsen-anhalt-tourismus.de/Bilder/WelterbeRegion/5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum.jpg 1920w" sizes="100vw" media="(min-width: 768px)" width="1920" height="1280" /><source srcset="/fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_f926c3b7a9.webp 300w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_20723bcb30.webp 400w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_6a1807e5f6.webp 450w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_92ec039b35.webp 600w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_bc0afdd82a.webp 800w" sizes="100vw" media="(max-width: 767px)" type="image/webp" width="800" height="534" /><source srcset="/fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_96e240e90a.jpg 300w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_3a7b4ab123.jpg 400w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_ecd1c42197.jpg 450w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_5b1f5c058d.jpg 600w, /fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_85b0d63049.jpg 800w" sizes="100vw" media="(max-width: 767px)" width="800" height="534" /><img src="/fileadmin/_processed_/f/5/csm_5020_-_Im_Lutherhof_des_Museums_Lutherhaus_Wittenberg_In_the_Luther_courtyard_of_the_Lutherhaus_Wittenberg_Museum_85b0d63049.jpg" width="800" height="534" alt="Besucher barrierefrei unterwegs im Lutherhof des Museums Lutherhaus Wittenberg" title="Barrierefrei unterwegs im Lutherhof des Museums Lutherhaus Wittenberg" class="cta__image" /></picture>
+                </div>
+            
+        </div>
+        <div class="cta__content">
+            <div class="cta__content-inner">
+                
+                    <h2 class="cta__header">Reisen für Alle</h2>
+                
+                
+                    <div class="cta__text rte">
+                        <p>Das Kennzeichnungssystem „Reisen für Alle“ ist das bundesweit einheitliche Informations- und Bewertungssystem für Barrierefreiheit. Geschulte Erheber prüfen die Angebote vor Ort. <a href="https://www.reisen-fuer-alle.de/die_kennzeichnung_311.html" target="_blank" title="Piktogramme Reisen für Alle" rel="noreferrer">Piktogramme</a> zeigen, für welche Bedürfnisse eine Einrichtung geeignet ist – ob für Rollstuhlfahrer, Menschen mit Geh-, Hör- oder Sehbehinderung oder Menschen mit kognitiven Beeinträchtigungen.</p>
+                    </div>
+                
+                
+                
+                    <a href="http://reisen-fuer-alle.de" target="_blank" rel="noreferrer" title="Mehr Informationen" class="cta__button">
+                        
+                    Mehr Informationen
+                
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    
+</section>
+
+        
+    </main>
+
+
+    <footer class="site-footer">
+        
+<div class="site-footer__main  bg-primary">
+    <div class="site-footer__logo-outer">
+        
+    </div>
+    <div class="site-footer__content">
+        
+            <div class="site-footer__contact">
+                <h2 class="site-footer__heading">
+                    Kontakt
+                </h2>
+                
+                    <p  class="site-footer__contact-description">Investitions- und Marketinggesellschaft Sachsen-Anhalt mbH</p>
+                
+
+                
+                    <p class="site-footer__contact-paragraph site-footer__contact-address">
+                        <i class="fa-regular fa-house site-footer__icon site-footer__address-icon"></i>
+                        <span class="site-footer__address-text">
+                            Am Alten Theater 6<br>
+                            39104 Magdeburg
+                        </span>
+                    </p>
+                
+
+                
+                    <p class="site-footer__contact-paragraph"><a href="tel:+49 391 568 99 88" class="site-footer__link" title="Rufen Sie uns an"><i class="fa-regular fa-phone site-footer__icon"></i>+49 391 568 99 88</a></p>
+                
+
+                
+
+                
+                    <p class="site-footer__contact-paragraph"><a href="mailto:tourismus@img-sachsen-anhalt.de" class="site-footer__link" title="Schicken Sie uns eine E-Mail"><i class="fa-regular fa-envelope site-footer__icon"></i>tourismus@img-sachsen-anhalt.de</a></p>
+                
+
+                
+            </div>
+        
+
+        
+            <div class="site-footer__navigation">
+                
+                    <div class="site-footer__service">
+                        <h2 class="site-footer__heading">
+                            Service
+                        </h2>
+                        <nav aria-label="Service-Navigation">
+                            <ul class="site-footer__service-links">
+                                
+                                    <li class="site-footer__service-link">
+                                        <a href="https://www.investieren-in-sachsen-anhalt.de/" class="site-footer__page-link">Investieren in Sachsen-Anhalt.</a>
+                                    </li>
+                                
+                                    <li class="site-footer__service-link">
+                                        <a href="https://tourismus-hub.de/" class="site-footer__page-link">Tourismus Hub</a>
+                                    </li>
+                                
+                                    <li class="site-footer__service-link">
+                                        <a href="https://presse.investieren-in-sachsen-anhalt.de/" target="_blank" rel="noreferrer" class="site-footer__page-link">Presse</a>
+                                    </li>
+                                
+                                    <li class="site-footer__service-link">
+                                        <a href="/service-planung/tagungen-kongresse" class="site-footer__page-link">Tagungen &amp; Kongresse</a>
+                                    </li>
+                                
+                                    <li class="site-footer__service-link">
+                                        <a href="/service-planung/broschueren-newsletter/newsletter" class="site-footer__page-link">Newsletter</a>
+                                    </li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                
+
+                
+                    <div class="site-footer__social-media">
+                        <h2 class="site-footer__heading">
+                            Social Media
+                        </h2>
+                        <nav aria-label="Social-Media-Navigation">
+                            <ul class="site-footer__social-media-links">
+                                
+                                    <li class="site-footer__social-media-link">
+                                        <a href="https://www.facebook.com/SachsenAnhaltTourismus/" target="_blank" rel="noreferrer" title="Besuchen Sie uns auf Facebook">
+                                            <svg class="site-footer__social-media-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M29.1429 1.71429H2.85721C2.22507 1.71429 1.71436 2.22501 1.71436 2.85715V29.1429C1.71436 29.775 2.22507 30.2857 2.85721 30.2857H29.1429C29.7751 30.2857 30.2858 29.775 30.2858 29.1429V2.85715C30.2858 2.22501 29.7751 1.71429 29.1429 1.71429ZM28.0001 28H21.4251V19.2214H25.1394L25.6965 14.9107H21.4251V12.1572C21.4251 10.9072 21.7715 10.0572 23.5608 10.0572H25.8429V6.20001C25.4465 6.14644 24.0929 6.02858 22.5144 6.02858C19.2215 6.02858 16.9679 8.03929 16.9679 11.7286V14.9072H13.2465V19.2179H16.9715V28H4.00007V4.00001H28.0001V28Z" fill="black"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                
+                                
+                                
+                                
+                                    <li class="site-footer__social-media-link">
+                                        <a href="https://www.instagram.com/reiseland_sachsen_anhalt/" target="_blank" rel="noreferrer" title="Besuchen Sie uns auf Instagram">
+                                            <svg class="site-footer__social-media-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16 8.675C11.9465 8.675 8.67503 11.9464 8.67503 16C8.67503 20.0536 11.9465 23.325 16 23.325C20.0536 23.325 23.325 20.0536 23.325 16C23.325 11.9464 20.0536 8.675 16 8.675ZM16 20.7607C13.3786 20.7607 11.2393 18.6214 11.2393 16C11.2393 13.3786 13.3786 11.2393 16 11.2393C18.6215 11.2393 20.7607 13.3786 20.7607 16C20.7607 18.6214 18.6215 20.7607 16 20.7607ZM23.625 6.66786C22.6786 6.66786 21.9143 7.43214 21.9143 8.37857C21.9143 9.325 22.6786 10.0893 23.625 10.0893C24.5715 10.0893 25.3357 9.32857 25.3357 8.37857C25.336 8.15384 25.292 7.93126 25.2061 7.72358C25.1202 7.5159 24.9942 7.3272 24.8353 7.16828C24.6764 7.00937 24.4877 6.88338 24.28 6.7975C24.0723 6.71163 23.8498 6.66758 23.625 6.66786ZM30.2786 16C30.2786 14.0286 30.2965 12.075 30.1857 10.1071C30.075 7.82143 29.5536 5.79286 27.8822 4.12143C26.2072 2.44643 24.1822 1.92857 21.8965 1.81786C19.925 1.70714 17.9715 1.725 16.0036 1.725C14.0322 1.725 12.0786 1.70714 10.1107 1.81786C7.82503 1.92857 5.79646 2.45 4.12503 4.12143C2.45003 5.79643 1.93217 7.82143 1.82146 10.1071C1.71074 12.0786 1.7286 14.0321 1.7286 16C1.7286 17.9679 1.71074 19.925 1.82146 21.8929C1.93217 24.1786 2.4536 26.2071 4.12503 27.8786C5.80003 29.5536 7.82503 30.0714 10.1107 30.1821C12.0822 30.2929 14.0357 30.275 16.0036 30.275C17.975 30.275 19.9286 30.2929 21.8965 30.1821C24.1822 30.0714 26.2107 29.55 27.8822 27.8786C29.5572 26.2036 30.075 24.1786 30.1857 21.8929C30.3 19.925 30.2786 17.9714 30.2786 16ZM27.1357 24.4214C26.875 25.0714 26.5607 25.5571 26.0572 26.0571C25.5536 26.5607 25.0715 26.875 24.4215 27.1357C22.5429 27.8821 18.0822 27.7143 16 27.7143C13.9179 27.7143 9.4536 27.8821 7.57503 27.1393C6.92503 26.8786 6.43932 26.5643 5.93932 26.0607C5.43574 25.5571 5.12146 25.075 4.86074 24.425C4.11789 22.5429 4.28574 18.0821 4.28574 16C4.28574 13.9179 4.11789 9.45357 4.86074 7.575C5.12146 6.925 5.43574 6.43929 5.93932 5.93929C6.44289 5.43929 6.92503 5.12143 7.57503 4.86071C9.4536 4.11786 13.9179 4.28571 16 4.28571C18.0822 4.28571 22.5465 4.11786 24.425 4.86071C25.075 5.12143 25.5607 5.43571 26.0607 5.93929C26.5643 6.44286 26.8786 6.925 27.1393 7.575C27.8822 9.45357 27.7143 13.9179 27.7143 16C27.7143 18.0821 27.8822 22.5429 27.1357 24.4214Z" fill="black"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                
+                                
+                                    <li class="site-footer__social-media-link">
+                                        <a href="https://www.youtube.com/channel/UCY3OHx77MKV2kGE7tU7ZRFQ" target="_blank" rel="noreferrer" title="Besuchen Sie uns auf YouTube">
+                                            <svg class="site-footer__social-media-icon site-footer__youtube-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M13 11L22 16L13 21V11Z" fill="black"/>
+                                                <path d="M16 6C29 6 29 6 29 16C29 26 29 26 16 26C3 26 3 26 3 16C3 6 3 6 16 6Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                
+            </div>
+        
+    </div>
+    <div class="site-footer__logo-moderndenken">
+        <a href="https://www.sachsen-anhalt.de/startseite" class="site-footer__logo-link" title="Zur Webseite des Landes Sachsen-Anhalt" target="_blank">
+            <img alt="#moderndenken" src="/typo3temp/assets/_processed_/8/d/csm_lsa_moderndenken_alternativ_abbe8c6633.webp" width="175" height="149" />
+        </a>
+    </div>
+</div>
+
+
+        
+<div class="site-footer__bottom-bar">
+    <nav class="site-footer__bottom-bar-inner" aria-label="Rechtliches">
+        <ul class="site-footer__bottom-bar-items">
+            <li class="site-footer__bottom-bar-item">
+                <a href="/datenschutz" title="Datenschutz" class="site-footer__bottom-bar-link">Datenschutz</a>
+            </li>
+            <li class="site-footer__bottom-bar-item">
+                <a href="/impressum" title="Impressum" class="site-footer__bottom-bar-link">Impressum</a>
+            </li>
+            
+                <li class="site-footer__bottom-bar-item">
+                    <a href="/barrierefreiheitserklaerung" title="BarriereFreiheitserklärung" class="site-footer__bottom-bar-link">Barrierefreiheitserklärung</a>
+                </li>
+            
+            
+        </ul>
+    </nav>
+</div>
+
+
+    </footer>
+
+<script src="/_assets/948410ace0dfa9ad00627133d9ca8a23/JavaScript/Powermail/Form.min.js?1760518764" defer="defer"></script>
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/Dist/main.js?1778686356"></script>
+<script src="/_assets/a631123047cb7ac65a3e735956304e47/Leaflet/leaflet.js?1778683765"></script>
+<script src="/_assets/a631123047cb7ac65a3e735956304e47/Dist/main.js?1778686355"></script>
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/download-box/Dist/main.js?1778686354"></script>
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/accordion/Dist/main.js?1778686354"></script>
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/contact-box/Dist/main.js?1778686354"></script>
+<script src="/_assets/9f4aaa080db3d227abb090b84276d49c/ContentBlocks/pegasus/cta/Dist/main.js?1778686354"></script>
+
+
+</body>
+</html>

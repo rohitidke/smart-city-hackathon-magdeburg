@@ -1,0 +1,363 @@
+# Magdeburg Smart City Hackathon — RAG source PDFs
+# Each entry: id, title, url, format ("pdf" | "html" | "wikipedia"), note
+# Categories follow Simon's brief:
+#   strategie, tourismus, kultur, wikipedia, historisch, mmkt, dates, otto, restaurants
+
+strategie:
+  - id: isek_2030_plus_full
+    title: Integriertes Stadtentwicklungskonzept ISEK 2030+ — Volldokument
+    url: https://www.magdeburg.de/Start/B%C3%BCrger-Stadt/Stadtentwicklung-Planen-Bauen/Stadtentwicklung/Integriertes-Stadtentwicklungskonzept-ISEK-2030/
+    format: pdf
+    note: |
+      Strategischer Hauptkompass der Stadt bis 2030 — Wohnungsmarkt, Mobilität,
+      Demografie, Klimaschutz, soziale Gerechtigkeit. 108 Seiten, A4.
+      Manuell aus dem Browser geladen (Server liefert PDF nur mit Session-Cookie).
+  - id: isek_2030_plus_stadtteile
+    title: ISEK 2025 — Stadtteile (Broschüre)
+    url: https://www.magdeburg.de/Start/B%C3%BCrger-Stadt/Stadtentwicklung-Planen-Bauen/Stadtentwicklung/Integriertes-Stadtentwicklungskonzept-ISEK-2030/
+    format: pdf
+    note: |
+      Begleit-Broschüre zur Stadtteil-Ebene: Leitbilder und Strategien pro
+      Stadtteil. 140 Seiten, A4. Ergänzt das ISEK-2030+-Volldokument.
+  - id: isek_2030_plus_landing
+    title: Integriertes Stadtentwicklungskonzept ISEK 2030+ — Landingpage
+    url: https://www.magdeburg.de/index.php?ModID=7&FID=37.19821.1&object=tx%7C37.19821.1
+    format: html
+    note: |
+      Offizielle ISEK-2030+-Seite mit Beschreibung, Geltungsbereich, Kontext.
+      Hält die kurze Zusammenfassung; volle Inhalte siehe isek_2030_plus_full.
+  - id: kulturstrategie_2030
+    title: Kulturstrategie 2030 — Kultur mit allen (einfache Sprache, Webversion)
+    url: https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=44383&ObjLa=1&Ext=PDF
+    format: pdf
+    note: |
+      "Plan B" der Kulturhauptstadt-Bewerbung, beschlossene Langzeitstrategie
+      der Stadt. Falls die loadDocument.phtml-URL auch 404 wirft, ist die
+      Landingpage https://www.magdeburg.de/Start/Kultur-Sport/Kulturb%C3%BCro/
+      der Einstieg.
+  - id: tourismuskonzept_2030_landing
+    title: Tourismuskonzept Magdeburg 2030 (Landingpage, 198 Maßnahmen)
+    url: https://www.magdeburg.de/index.php?ModID=7&FID=115.3694.1&object=tx%7C115.3694.1
+    format: html
+    note: |
+      Beschlossen 2025. Vier Leitlinien (Grüne Freizeitmetropole am Fluss /
+      Urbaner Lifestyle / Stadtkunst & Baukultur / Inspirierende Tagungsorte).
+      Der Kurzlink /Tourismuskonzept ist tot — diese index.php-URL ist die
+      kanonische Adresse.
+  - id: smart_city_landingpage
+    title: Smart City Magdeburg — städtische Übersicht
+    url: https://www.magdeburg.de/Start/B%C3%BCrger-Stadt/Verwaltung-Service/Smart-City/
+    format: html
+    note: |
+      Übersicht aller Smart-City-Aktivitäten der Stadt (Digitalisierungsamt,
+      laufende Projekte). HTML-Fallback wenn kein PDF.
+  - id: lsa_digital_2030_md
+    title: Sachsen-Anhalt Digital 2030 — Geförderte Projekte Raum Magdeburg
+    url: https://mid.sachsen-anhalt.de/fileadmin/Bibliothek/Politik_und_Verwaltung/MLV/MID/Digitales/Digitalstrategie/Gef%C3%B6rderte_Projekte/Raum_Magdeburg_barrierefrei.pdf
+    format: pdf
+    note: |
+      Land-Förderprojekte im Raum Magdeburg (Smart-City-Pilotprojekte,
+      Verkehrssensorik, Kulturförderung-Digitalisierung). Nützlich für
+      "Was passiert smart-mäßig konkret in Magdeburg?"
+  - id: smart_cities_modellprojekte_merkblatt
+    title: KfW Merkblatt — Modellprojekte Smart Cities (Bundesförderung)
+    url: https://www.kfw.de/PDF/Download-Center/F%C3%B6rderprogramme-(Inlandsf%C3%B6rderung)/PDF-Dokumente/6000004472_M_436_Smart_Cities.pdf
+    format: pdf
+    note: |
+      Bundesweiter Förderkontext, hilfreich um zu verstehen, was unter Smart-
+      City-Strategie auf Bundesebene gefördert wird.
+
+tourismus:
+  - id: visit_md_48h_fruehjahr
+    title: 48-Stunden-Broschüre Magdeburg — Frühjahr 2026
+    url: https://visit-magdeburg.de/images/48h_fruehjahr2026_148x280mm_v07.pdf
+    format: pdf
+    note: |
+      Sehr aktueller Kurzreiseführer mit Tipps von Sehenswürdigkeiten,
+      Restaurants, Events. Perfekter Snippet-Lieferant für Q&A.
+  - id: md_barrierefrei_2011
+    title: Barrierefreier Tourismus in Magdeburg
+    url: https://sachsen-anhalt-tourismus.de/fileadmin/dokumente/pdf/MD_barrierefrei_2011__1_.pdf
+    format: pdf
+    note: Barrierefreie Tourismusangebote. Etwas älter (2011) aber inhaltlich solide.
+  - id: touristcard_flyer
+    title: Magdeburg TouristCard Flyer
+    url: https://magdeburg-touristcard.de/images/TouristCard_Flyer2025.pdf
+    format: pdf
+    note: TouristCard-Vergünstigungen, freie Fahrt mit Bus/Bahn etc.
+  - id: visit_md_landing
+    title: visit-magdeburg.de — neuer offizieller Tourismusauftritt
+    url: https://visit-magdeburg.de/
+    format: html
+    note: |
+      Hauptseite Tourismus. Subseiten /48-stunden-broschuere,
+      /erlebnisse, /kulinarik, /entdecken liefern strukturierte Inhalte.
+  - id: magdeburg_tourist_de
+    title: magdeburg-tourist.de — alte aber inhaltsreiche Tourismus-Seite
+    url: https://www.magdeburg-tourist.de/Tourismus-Freizeit/Sehenswertes/
+    format: html
+    note: |
+      Sehenswürdigkeiten, Geschichte, Persönlichkeiten, Industriekultur,
+      Gastronomie — sehr breite Texte, gut für RAG-Ingest via web-scrape.
+
+kultur:
+  - id: kulturstrategie_2030_dup
+    title: Kulturstrategie 2030 — siehe Strategie
+    url: https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=44383&ObjLa=1&Ext=PDF
+    format: pdf
+    note: Auch hier relevant. Im Downloader nur einmal speichern.
+  - id: dom_magdeburg_wiki
+    title: Magdeburger Dom (Wikipedia DE)
+    url: https://de.wikipedia.org/wiki/Magdeburger_Dom
+    format: wikipedia
+    note: Wahrzeichen, viel historische Substanz.
+  - id: theater_magdeburg
+    title: Theater Magdeburg
+    url: https://de.wikipedia.org/wiki/Theater_Magdeburg
+    format: wikipedia
+    note: Magdeburger Philharmonie, Opernhaus, Schauspielhaus, DomplatzOpenAir.
+  - id: gruene_zitadelle
+    title: Grüne Zitadelle (Hundertwasserhaus)
+    url: https://de.wikipedia.org/wiki/Gr%C3%BCne_Zitadelle_von_Magdeburg
+    format: wikipedia
+    note: Letztes vollendetes Werk Hundertwassers.
+  - id: kloster_unser_lieben_frauen
+    title: Kloster Unser Lieben Frauen (Kunstmuseum)
+    url: https://de.wikipedia.org/wiki/Kloster_Unser_Lieben_Frauen
+    format: wikipedia
+    note: Kunstmuseum, romanische Klosteranlage.
+  - id: kulturhistorisches_museum
+    title: Kulturhistorisches Museum Magdeburg
+    url: https://de.wikipedia.org/wiki/Kulturhistorisches_Museum_Magdeburg
+    format: wikipedia
+    note: Magdeburger Reiter, Otto-der-Große-Ausstellung.
+  - id: bruno_taut_magdeburg
+    title: Bruno Taut (Stadtbaurat in Magdeburg, "Magdeburger Moderne")
+    url: https://de.wikipedia.org/wiki/Bruno_Taut
+    format: wikipedia
+    note: |
+      Es gibt KEINEN Wikipedia-Artikel "Magdeburger Moderne" — die Inhalte
+      stecken alle im Bruno-Taut-Artikel (Stadtbaurat 1921–1923,
+      "Stadt des neuen Bauwillens", Gartenstadt Reform, Hermann-Beims-
+      Siedlung, "buntes Magdeburg"). Für RAG genauso brauchbar. Optional
+      ergänzbar: /wiki/Taut-Kiosk und /wiki/Hermann_Beims_estate (EN).
+
+wikipedia:
+  - id: magdeburg_de
+    title: Magdeburg (Wikipedia DE — Hauptartikel)
+    url: https://de.wikipedia.org/wiki/Magdeburg
+    format: wikipedia
+    note: Der breite Allrounder-Artikel.
+  - id: magdeburg_en
+    title: Magdeburg (Wikipedia EN)
+    url: https://en.wikipedia.org/wiki/Magdeburg
+    format: wikipedia
+    note: Englische Variante für internationale Hackathon-Teams.
+  - id: magdeburg_geschichte
+    title: Geschichte der Stadt Magdeburg
+    url: https://de.wikipedia.org/wiki/Geschichte_der_Stadt_Magdeburg
+    format: wikipedia
+    note: Ausführlich von 805 bis heute.
+  - id: ovgu
+    title: Otto-von-Guericke-Universität Magdeburg
+    url: https://de.wikipedia.org/wiki/Otto-von-Guericke-Universit%C3%A4t_Magdeburg
+    format: wikipedia
+    note: Universitätsgeschichte und -profil.
+  - id: 1_fc_magdeburg
+    title: 1. FC Magdeburg
+    url: https://de.wikipedia.org/wiki/1._FC_Magdeburg
+    format: wikipedia
+    note: Fußball, identitätsstiftend für die Stadt.
+  - id: sc_magdeburg
+    title: SC Magdeburg (Handball)
+    url: https://de.wikipedia.org/wiki/SC_Magdeburg
+    format: wikipedia
+    note: Erfolgreichster deutscher Handballverein.
+  - id: einwohnerentwicklung_magdeburg
+    title: Einwohnerentwicklung von Magdeburg
+    url: https://de.wikipedia.org/wiki/Einwohnerentwicklung_von_Magdeburg
+    format: wikipedia
+    note: |
+      Eine reine "Liste der Stadtteile" gibt es auf Wikipedia nicht
+      (nur die Kategorie /wiki/Kategorie:Stadtteil_(Magdeburg)). Stattdessen
+      dieser Artikel: Bevölkerungsdaten 805→heute, Stadtteil-Aufschlüsselung,
+      Pestepidemien, Magdeburger Hochzeit, RBP-Prognosen. Inhaltlich wertvoller
+      für RAG als eine reine Liste wäre.
+  - id: elbe_wikipedia
+    title: Elbe
+    url: https://de.wikipedia.org/wiki/Elbe
+    format: wikipedia
+    note: Fluss prägt Magdeburg, relevant für Wasser-/Pegel-/Tourismus-Dashboards.
+  - id: wasserstrassenkreuz
+    title: Wasserstraßenkreuz Magdeburg
+    url: https://de.wikipedia.org/wiki/Wasserstra%C3%9Fenkreuz_Magdeburg
+    format: wikipedia
+    note: Bedeutendstes Wasserstraßenkreuz Europas.
+  - id: mvb
+    title: Magdeburger Verkehrsbetriebe (MVB)
+    url: https://de.wikipedia.org/wiki/Magdeburger_Verkehrsbetriebe
+    format: wikipedia
+    note: ÖPNV-Daten, ergänzt GTFS-Datensätze.
+  - id: marego
+    title: Magdeburger Regionalverkehrsverbund (marego)
+    url: https://de.wikipedia.org/wiki/Marego
+    format: wikipedia
+    note: Tarifzonen, Region.
+
+historisch:
+  - id: stadtarchiv_landing
+    title: Stadtarchiv Magdeburg — Übersicht
+    url: https://www.magdeburg.de/Wissenschaft-Bildung/Bibliotheken-Archive/Stadtarchiv/
+    format: html
+    note: |
+      Einstieg ins Archiv; verlinkt Findbücher, Digitalisate, Veröffentlichungen.
+  - id: stadtarchiv_digitaler_lesesaal
+    title: Stadtarchiv Magdeburg — Digitaler Lesesaal (PDF-Broschüre)
+    url: https://www.magdeburg.de/loadDocument.phtml?ObjSvrID=37&ObjID=46020&ObjLa=1&Ext=PDF
+    format: pdf
+    note: Erklärt, was online verfügbar ist (Findbücher, Archivportal-D, Ancestry).
+  - id: urkundenbuch_md_archive
+    title: Urkundenbuch der Stadt Magdeburg (Bd. 1, bis 1403)
+    url: https://archive.org/details/urkundenbuchder00hertgoog
+    format: html
+    note: |
+      Volldigitalisierte Quellensammlung mittelalterlicher Urkunden bei
+      Internet Archive. Download als PDF möglich auf der Detailseite.
+  - id: magdeburger_recht_wiki
+    title: Magdeburger Recht (Wikipedia DE)
+    url: https://de.wikipedia.org/wiki/Magdeburger_Recht
+    format: wikipedia
+    note: Mittelalterliches Stadtrecht, das nach Osteuropa exportiert wurde.
+  - id: zerstoerung_md_1631
+    title: Zerstörung Magdeburgs 1631 (30-jähriger Krieg)
+    url: https://de.wikipedia.org/wiki/Magdeburger_Hochzeit
+    format: wikipedia
+    note: Schlüsselereignis der Stadtgeschichte.
+  - id: festung_magdeburg
+    title: Festung Magdeburg
+    url: https://de.wikipedia.org/wiki/Festung_Magdeburg
+    format: wikipedia
+    note: Festungsstadt-Geschichte, prägt das Stadtbild bis heute.
+  - id: stadtbibliothek_md
+    title: Stadtbibliothek Magdeburg (Wikipedia DE)
+    url: https://de.wikipedia.org/wiki/Stadtbibliothek_Magdeburg
+    format: wikipedia
+    note: Ergänzt das Archiv-Cluster mit der Bibliotheksperspektive.
+
+mmkt:
+  - id: mmkt_homepage
+    title: Magdeburg Marketing Kongress und Tourismus GmbH — Homepage
+    url: https://www.magdeburg-marketing.de/
+    format: html
+    note: |
+      MMKT-Auftritt mit Tourismusmarketing, Kongressbüro, Strategieplan,
+      Marke Ottostadt, Kampagnen-Übersicht.
+  - id: mmkt_mediadaten_landing
+    title: MMKT Mediadaten / Beteiligungsmöglichkeiten
+    url: https://www.magdeburg-marketing.de/angebote-fuer-partner/beteiligungsmoeglichkeiten/anzeigenschaltung
+    format: html
+    note: Auflagen und Reichweiten aller MMKT-Publikationen (auch sich selbst beschreibend).
+  - id: mmkt_ottostadt_marke
+    title: Marke Ottostadt — MMKT Markenseite
+    url: https://www.magdeburg-marketing.de/marke-ottostadt
+    format: html
+    note: |
+      Die Dachmarke-Seite der MMKT. Erklärt das "Otto"-Markenuniversum,
+      das im Hackathon-Kontext für jeden Magdeburg-Pitch nützlich ist.
+
+dates:
+  - id: dates_epaper_landing
+    title: DATEs Stadtmagazin — E-Paper-Archiv (seit 2015)
+    url: https://www.dates-md.de/service/e-paper
+    format: html
+    note: |
+      Hier sind die letzten Ausgaben verlinkt. Tipp für Ingest: per Skript
+      die Detailseite /service/e-paper/dates-<monat>-<jahr>/ scrapen und
+      das verlinkte issuu-Dokument oder den PDF-Mirror einsammeln.
+  - id: dates_veranstaltungen
+    title: DATEs — Veranstaltungskalender Magdeburg
+    url: https://www.dates-md.de/search/event/veranstaltungen-magdeburg/
+    format: html
+    note: |
+      Aktueller Eventkalender — wertvoller als das gedruckte Heft, weil
+      strukturierte Daten mit Datum, Ort, Kategorie. Ideal für einen
+      Event-Bot.
+  - id: dates_essen_trinken
+    title: DATEs — Essen & Trinken (Restaurant-Rubrik)
+    url: https://www.dates-md.de/essen-trinken
+    format: html
+    note: |
+      Sehr nützlich für Restaurant-/Café-Fragen. Strukturierte Liste mit
+      Beschreibungen — eigentlich besser als jedes PDF dafür.
+
+otto:
+  - id: otto_guericke_biografie_unifl
+    title: Biographie Otto von Guericke (1602–1686) — Uni Flensburg
+    url: https://www.uni-flensburg.de/fileadmin/content/projekte/storytelling/biografien/biografien-deu/guericke-biografie-de.pdf
+    format: pdf
+    note: Schöner kompakter Lebenslauf als PDF.
+  - id: otto_guericke_wiki_de
+    title: Otto von Guericke (Wikipedia DE)
+    url: https://de.wikipedia.org/wiki/Otto_von_Guericke
+    format: wikipedia
+    note: Halbkugel-Experiment, Bürgermeister, Vakuumforschung.
+  - id: otto_guericke_wiki_en
+    title: Otto von Guericke (Wikipedia EN)
+    url: https://en.wikipedia.org/wiki/Otto_von_Guericke
+    format: wikipedia
+    note: Englische Fassung.
+  - id: otto_i_hre
+    title: Otto I. (HRR) — Wikipedia DE
+    url: https://de.wikipedia.org/wiki/Otto_I._(HRR)
+    format: wikipedia
+    note: |
+      "Otto der Große", erster römisch-deutscher Kaiser, im Dom bestattet —
+      der Patron der "Ottostadt".
+  - id: edgitha
+    title: Edgitha / Editha (Königin) — Magdeburg als Witwengabe
+    url: https://de.wikipedia.org/wiki/Edgitha
+    format: wikipedia
+    note: |
+      Auf Wikipedia unter "Edgitha" (kanonischer Name); "Editha" ist eine
+      BKL-Seite. Erste Frau Ottos I., 910–946, im Dom bestattet,
+      Magdeburg war ihre Morgengabe.
+  - id: ottostadt_marke
+    title: Marke "Ottostadt Magdeburg" — Wikipedia
+    url: https://de.wikipedia.org/wiki/Ottostadt
+    format: wikipedia
+    note: Dachmarke der Stadt, verbindet Otto I., Otto von Guericke und Otto Schlein.
+  - id: ovg_zentrum_landing
+    title: Otto-von-Guericke-Zentrum / Lukasklause
+    url: https://www.magdeburg.de/index.php?ModID=7&FID=557.3738.1&object=tx%7C557.3738.1
+    format: html
+    note: Museumsseite zum Otto-von-Guericke-Zentrum.
+
+restaurants:
+  - id: visit_md_kulinarik
+    title: visit-magdeburg.de — Kulinarik (Magdeburger Restaurants)
+    url: https://visit-magdeburg.de/kulinarik
+    format: html
+    note: |
+      Offizielle Liste empfohlener Restaurants & Cafés. Strukturierte
+      Einträge mit Beschreibungen und Tags.
+  - id: dates_restaurants
+    title: DATEs — Restaurants in Magdeburg
+    url: https://www.dates-md.de/search/location/restaurants-in-magdeburg/
+    format: html
+    note: |
+      Magazin-Verzeichnis mit ausführlichen redaktionellen Beschreibungen.
+  - id: dates_bars
+    title: DATEs — Bars, Pubs, Kneipen
+    url: https://www.dates-md.de/search/location/bars-pubs-kneipen/
+    format: html
+    note: Komplementär zur Restaurantliste.
+  - id: dates_sonntagsbaecker
+    title: DATEs — Sonntagsbäcker Magdeburg
+    url: https://www.dates-md.de/essen-trinken/esskultur/sonntags-baecker-magdeburg/
+    format: html
+    note: Kuriose aber nützliche Q&A-Quelle.
+  - id: visit_md_top10
+    title: Top 10 Sehenswürdigkeiten (visit-magdeburg.de)
+    url: https://visit-magdeburg.de/erlebnisse/top-10-sehenswuerdigkeiten
+    format: html
+    note: Hilfreich um Restaurant-Tipps in Nähe zu Sights zu verlinken.

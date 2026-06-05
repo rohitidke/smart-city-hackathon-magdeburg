@@ -1,0 +1,5 @@
+docling>=2.7,<3
+qdrant-client>=1.12,<2
+requests>=2.31
+pyyaml>=6
+transformers>=4.40

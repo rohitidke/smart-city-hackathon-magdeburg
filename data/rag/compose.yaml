@@ -1,0 +1,120 @@
+name: magdeburg-rag
+
+# Two always-on services (qdrant, ollama) + a one-shot embedder worker that
+# runs only with `--profile build`. Teams run the default `docker compose up`
+# (no profile) to get Qdrant restoring the snapshot + Ollama hosting bge-m3
+# and whichever chat LLM they pull.
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    container_name: magdeburg-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"   # REST + dashboard at /dashboard
+      - "6334:6334"   # gRPC
+    volumes:
+      - qdrant_storage:/qdrant/storage
+      - ./snapshots:/qdrant/snapshots
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c '</dev/tcp/127.0.0.1/6333' 2>/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 10s
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: magdeburg-ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 15s
+
+  # ---------- ONE-SHOT INIT (runs on every `up`, idempotent, then exits) ----------
+  # Restores the prebuilt snapshot into Qdrant so the RAG is queryable immediately
+  # — no manual curl, no re-embedding. Skips itself if the collection already exists.
+  qdrant-init:
+    image: curlimages/curl:8.10.1
+    container_name: magdeburg-qdrant-init
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    volumes:
+      - ./snapshots:/snapshots:ro
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        set -e
+        if curl -sf http://qdrant:6333/collections/magdeburg >/dev/null 2>&1; then
+          echo "Collection 'magdeburg' already present — skipping restore."
+        else
+          echo "Restoring snapshot into 'magdeburg'…"
+          curl -sf -X POST "http://qdrant:6333/collections/magdeburg/snapshots/upload?priority=snapshot" \
+            -H "Content-Type:multipart/form-data" \
+            -F "snapshot=@/snapshots/magdeburg_rag_v1.snapshot"
+          echo
+          echo "Snapshot restored."
+        fi
+    restart: "no"
+
+  # Pulls the bge-m3 embedding model into Ollama so query-time embedding works out
+  # of the box (one-time ~1.2 GB download). Idempotent.
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: magdeburg-ollama-init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        if ollama list | grep -q "bge-m3"; then
+          echo "bge-m3 already pulled — skipping."
+        else
+          echo "Pulling bge-m3 (one-time ~1.2 GB)…"
+          ollama pull bge-m3
+        fi
+    restart: "no"
+
+  # ---------- BUILD-ONLY ----------
+  # Runs once to ingest sources.yaml + downloads/ into Qdrant and emit
+  # a snapshot under ./snapshots/. After it exits, teams ship the snapshot
+  # as the artifact.
+  embedder:
+    profiles: ["build"]
+    build:
+      context: ./embedder
+    container_name: magdeburg-embedder
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ./downloads:/data/downloads:ro
+      - ./sources.yaml:/data/sources.yaml:ro
+      - ./snapshots:/snapshots
+      - hf_cache:/root/.cache/huggingface
+    environment:
+      QDRANT_URL: http://qdrant:6333
+      OLLAMA_URL: http://ollama:11434
+      EMBED_MODEL: bge-m3
+      COLLECTION_NAME: magdeburg
+      PIPELINE_VERSION: v1.0.0
+      DATA_ROOT: /data
+      SNAPSHOT_OUT: /snapshots
+
+volumes:
+  qdrant_storage:
+  ollama_models:
+  hf_cache:

@@ -1,0 +1,1918 @@
+{
+  "id": "wirtschaft/umsatzsteuerpflichtige-lieferungen-und-leistungen-in-der-stadt-magdeburg-nach-ausgewaehlten-wirtschaftsabschnitten-der-klassifikation-der-wirtschaftszweige-2008-wz-2008",
+  "title": "Umsatzsteuerpflichtige, Lieferungen und Leistungen in der Stadt Magdeburg nach ausgewählten Wirtschaftsabschnitten der Klassifikation der Wirtschaftszweige 2008 (WZ 2008)",
+  "category": "Wirtschaft",
+  "subcategory": "Umsatzsteuerpflichtige",
+  "tableId": "K7_T100",
+  "labelSource": "human-reviewed",
+  "labelNotice": "Spalten-Labels und Einheiten wurden manuell aus den Rohdaten verifiziert.",
+  "source": {
+    "system": "KISS-MD",
+    "url": "https://statistik.magdeburg.de/KISS-MD/",
+    "originalFile": "data/kiss-md/xlsx/wirtschaft/umsatzsteuerpflichtige-lieferungen-und-leistungen-in-der-stadt-magdeburg-nach-ausgewaehlten-wirtschaftsabschnitten-der-klassifikation-der-wirtschaftszweige-2008-wz-2008.xlsx",
+    "retrievedFromCity": "2026",
+    "originalName": "Umsatzsteuerpflichtige, Lieferungen und Leistungen in der Stadt Magdeburg nach ausgewählten Wirtschaftsabschnitten der Klassifikation der Wirtschaftszweige 2008 (WZ 2008).xlsx"
+  },
+  "description": "Umsatzsteuerpflichtige, Lieferungen und Leistungen in Magdeburg nach Wirtschaftsabschnitten (WZ 2008). var3..var8 enthalten Anzahl, Umsätze und Anteile, Zuordnung nicht eindeutig.",
+  "columns": [
+    {
+      "key": "var1",
+      "label": "Jahr",
+      "unit": null,
+      "type": "integer",
+      "role": "year",
+      "sample": [
+        2012,
+        2012,
+        2012
+      ]
+    },
+    {
+      "key": "var2",
+      "label": "Wirtschaftsabschnitt (WZ 2008)",
+      "unit": null,
+      "type": "string",
+      "role": null,
+      "sample": [
+        "Land- und Forstwirtschaft, Fischerei",
+        "Bergbau und Gewinnung von Steinen und Erden",
+        "Verarbeitendes Gewerbe"
+      ]
+    },
+    {
+      "key": "var3",
+      "label": null,
+      "unit": null,
+      "type": "integer",
+      "role": null,
+      "sample": [
+        358,
+        31,
+        27
+      ]
+    },
+    {
+      "key": "var4",
+      "label": null,
+      "unit": null,
+      "type": "number",
+      "role": null,
+      "sample": [
+        5.176402544823597,
+        0.448235974551764,
+        0.39039907460960094
+      ]
+    },
+    {
+      "key": "var5",
+      "label": null,
+      "unit": null,
+      "type": "number",
+      "role": null,
+      "sample": [
+        1574229,
+        794872,
+        126960
+      ]
+    },
+    {
+      "key": "var6",
+      "label": null,
+      "unit": null,
+      "type": "number",
+      "role": null,
+      "sample": [
+        23.961972675452156,
+        12.099066364856705,
+        1.932509216178463
+      ]
+    },
+    {
+      "key": "var7",
+      "label": null,
+      "unit": null,
+      "type": "number",
+      "role": null,
+      "sample": [
+        1454044,
+        792497,
+        126586
+      ]
+    },
+    {
+      "key": "var8",
+      "label": null,
+      "unit": null,
+      "type": "number",
+      "role": null,
+      "sample": [
+        22.711037964552798,
+        12.37818762966884,
+        1.977175004182047
+      ]
+    }
+  ],
+  "rowCount": 180,
+  "rows": [
+    {
+      "var1": 2012,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2012,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2012,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 358,
+      "var4": 5.176402544823597,
+      "var5": 1574229,
+      "var6": 23.961972675452156,
+      "var7": 1454044,
+      "var8": 22.711037964552798
+    },
+    {
+      "var1": 2012,
+      "var2": "Energieversorgung",
+      "var3": 31,
+      "var4": 0.448235974551764,
+      "var5": 794872,
+      "var6": 12.099066364856705,
+      "var7": 792497,
+      "var8": 12.37818762966884
+    },
+    {
+      "var1": 2012,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 27,
+      "var4": 0.39039907460960094,
+      "var5": 126960,
+      "var6": 1.932509216178463,
+      "var7": 126586,
+      "var8": 1.977175004182047
+    },
+    {
+      "var1": 2012,
+      "var2": "Baugewerbe",
+      "var3": 937,
+      "var4": 13.548293811451707,
+      "var5": 638060,
+      "var6": 9.712167851881144,
+      "var7": 636859,
+      "var8": 9.947242949365446
+    },
+    {
+      "var1": 2012,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1261,
+      "var4": 18.23308270676692,
+      "var5": 929012,
+      "var6": 14.140865248427744,
+      "var7": 908583,
+      "var8": 14.191360788908227
+    },
+    {
+      "var1": 2012,
+      "var2": "Verkehr und Lagerei",
+      "var3": 266,
+      "var4": 3.8461538461538463,
+      "var5": 145525,
+      "var6": 2.2150945469783463,
+      "var7": 144989,
+      "var8": 2.2646155710848817
+    },
+    {
+      "var1": 2012,
+      "var2": "Gastgewerbe",
+      "var3": 428,
+      "var4": 6.1885482938114516,
+      "var5": 115163,
+      "var6": 1.7529423350879043,
+      "var7": 115041,
+      "var8": 1.7968510708617609
+    },
+    {
+      "var1": 2012,
+      "var2": "Information und Kommunikation",
+      "var3": 271,
+      "var4": 3.91844997108155,
+      "var5": 386253,
+      "var6": 5.879312242254095,
+      "var7": 386101,
+      "var8": 6.030597746114835
+    },
+    {
+      "var1": 2012,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 45,
+      "var4": 0.6506651243493349,
+      "var5": 93794,
+      "var6": 1.4276761926767703,
+      "var7": 83448,
+      "var8": 1.3033929482642903
+    },
+    {
+      "var1": 2012,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 431,
+      "var4": 6.231925968768074,
+      "var5": 285286,
+      "var6": 4.342452931999756,
+      "var7": 285116,
+      "var8": 4.453290478349648
+    },
+    {
+      "var1": 2012,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1189,
+      "var4": 17.192018507807983,
+      "var5": 360593,
+      "var6": 5.48873106324386,
+      "var7": 357074,
+      "var8": 5.577218550576685
+    },
+    {
+      "var1": 2012,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 468,
+      "var4": 6.7669172932330826,
+      "var5": 236609,
+      "var6": 3.601520739845384,
+      "var7": 235977,
+      "var8": 3.685777463241329
+    },
+    {
+      "var1": 2012,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2012,
+      "var2": "Erziehung und Unterricht",
+      "var3": 96,
+      "var4": 1.3880855986119145,
+      "var5": 20565,
+      "var6": 0.3130281350875086,
+      "var7": 20258,
+      "var8": 0.3164142261760377
+    },
+    {
+      "var1": 2012,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 130,
+      "var4": 1.8796992481203008,
+      "var5": 326873,
+      "var6": 4.9754653829544955,
+      "var7": 321254,
+      "var8": 5.0177379709722985
+    },
+    {
+      "var1": 2012,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 265,
+      "var4": 3.8316946211683054,
+      "var5": 270070,
+      "var6": 4.110844076979501,
+      "var7": 269765,
+      "var8": 4.2135197810434795
+    },
+    {
+      "var1": 2012,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 696,
+      "var4": 10.063620589936379,
+      "var5": 199140,
+      "var6": 3.031190022918865,
+      "var7": 198098,
+      "var8": 3.0941369028048533
+    },
+    {
+      "var1": 2012,
+      "var2": "Insgesamt",
+      "var3": 6916,
+      "var4": 100,
+      "var5": 6569697,
+      "var6": 100,
+      "var7": 6402367,
+      "var8": 100
+    },
+    {
+      "var1": 2013,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2013,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2013,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 356,
+      "var4": 5.206200643463001,
+      "var5": 1435606,
+      "var6": 21.595233664836936,
+      "var7": 1354872,
+      "var8": 20.793483704118987
+    },
+    {
+      "var1": 2013,
+      "var2": "Energieversorgung",
+      "var3": 32,
+      "var4": 0.46797309154723604,
+      "var5": 836603,
+      "var6": 12.584676624159815,
+      "var7": 836439,
+      "var8": 12.836991771908773
+    },
+    {
+      "var1": 2013,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 26,
+      "var4": 0.38022813688212925,
+      "var5": 128484,
+      "var6": 1.9327322414317778,
+      "var7": 127439,
+      "var8": 1.955831082027837
+    },
+    {
+      "var1": 2013,
+      "var2": "Baugewerbe",
+      "var3": 926,
+      "var4": 13.541971336648142,
+      "var5": 620258,
+      "var6": 9.330287308972258,
+      "var7": 619162,
+      "var8": 9.502399457077658
+    },
+    {
+      "var1": 2013,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1204,
+      "var4": 17.607487569464755,
+      "var5": 940846,
+      "var6": 14.152761421049489,
+      "var7": 915320,
+      "var8": 14.04759379783049
+    },
+    {
+      "var1": 2013,
+      "var2": "Verkehr und Lagerei",
+      "var3": 259,
+      "var4": 3.7876572097104417,
+      "var5": 148065,
+      "var6": 2.227281212661469,
+      "var7": 147569,
+      "var8": 2.2647701013329193
+    },
+    {
+      "var1": 2013,
+      "var2": "Gastgewerbe",
+      "var3": 431,
+      "var4": 6.303012576776835,
+      "var5": 119632,
+      "var6": 1.7995752273198722,
+      "var7": 119199,
+      "var8": 1.8293702017956524
+    },
+    {
+      "var1": 2013,
+      "var2": "Information und Kommunikation",
+      "var3": 267,
+      "var4": 3.904650482597251,
+      "var5": 390468,
+      "var6": 5.873650359946635,
+      "var7": 389277,
+      "var8": 5.974309717735939
+    },
+    {
+      "var1": 2013,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 42,
+      "var4": 0.6142146826557473,
+      "var5": 99116,
+      "var6": 1.4909614336551795,
+      "var7": 86957,
+      "var8": 1.3345459663046213
+    },
+    {
+      "var1": 2013,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 449,
+      "var4": 6.566247440772155,
+      "var5": 320906,
+      "var6": 4.827257655964214,
+      "var7": 320627,
+      "var8": 4.9207248357044495
+    },
+    {
+      "var1": 2013,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1165,
+      "var4": 17.037145364141562,
+      "var5": 368647,
+      "var6": 5.5454059852362985,
+      "var7": 366265,
+      "var8": 5.621140084737998
+    },
+    {
+      "var1": 2013,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 466,
+      "var4": 6.814858145656625,
+      "var5": 239512,
+      "var6": 3.6028810171679586,
+      "var7": 239204,
+      "var8": 3.6711102421188704
+    },
+    {
+      "var1": 2013,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2013,
+      "var2": "Erziehung und Unterricht",
+      "var3": 92,
+      "var4": 1.3454226381983037,
+      "var5": 24632,
+      "var6": 0.37052909756037755,
+      "var7": 24094,
+      "var8": 0.36977529712551654
+    },
+    {
+      "var1": 2013,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 137,
+      "var4": 2.003509798186604,
+      "var5": 415431,
+      "var6": 6.249158555074911,
+      "var7": 412971,
+      "var8": 6.337946137180282
+    },
+    {
+      "var1": 2013,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 261,
+      "var4": 3.816905527932144,
+      "var5": 292278,
+      "var6": 4.396618365408901,
+      "var7": 291504,
+      "var8": 4.4737684989323725
+    },
+    {
+      "var1": 2013,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 709,
+      "var4": 10.368528809593448,
+      "var5": 203412,
+      "var6": 3.0598434878593506,
+      "var7": 201079,
+      "var8": 3.0859984631319723
+    },
+    {
+      "var1": 2013,
+      "var2": "Insgesamt",
+      "var3": 6838,
+      "var4": 100,
+      "var5": 6647791,
+      "var6": 100,
+      "var7": 6515849,
+      "var8": 100
+    },
+    {
+      "var1": 2014,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 14,
+      "var4": 0.20420070011668612,
+      "var5": 54729,
+      "var6": 0.7806745219582807,
+      "var7": 54699,
+      "var8": 0.7949295646104259
+    },
+    {
+      "var1": 2014,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2014,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 356,
+      "var4": 5.192532088681447,
+      "var5": 1300033,
+      "var6": 18.544147358895458,
+      "var7": 1227740,
+      "var8": 17.842498467153042
+    },
+    {
+      "var1": 2014,
+      "var2": "Energieversorgung",
+      "var3": 34,
+      "var4": 0.4959159859976663,
+      "var5": 956284,
+      "var6": 13.640785590022704,
+      "var7": 955744,
+      "var8": 13.889635309585675
+    },
+    {
+      "var1": 2014,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 25,
+      "var4": 0.3646441073512252,
+      "var5": 139197,
+      "var6": 1.9855570434874894,
+      "var7": 138784,
+      "var8": 2.0169199563957902
+    },
+    {
+      "var1": 2014,
+      "var2": "Baugewerbe",
+      "var3": 921,
+      "var4": 13.433488914819137,
+      "var5": 653180,
+      "var6": 9.317199003320175,
+      "var7": 650850,
+      "var8": 9.45867213526199
+    },
+    {
+      "var1": 2014,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1199,
+      "var4": 17.48833138856476,
+      "var5": 1040760,
+      "var6": 14.84578222648505,
+      "var7": 1009971,
+      "var8": 14.677705393136188
+    },
+    {
+      "var1": 2014,
+      "var2": "Verkehr und Lagerei",
+      "var3": 237,
+      "var4": 3.4568261376896148,
+      "var5": 150481,
+      "var6": 2.146516156677521,
+      "var7": 150355,
+      "var8": 2.185078971955622
+    },
+    {
+      "var1": 2014,
+      "var2": "Gastgewerbe",
+      "var3": 434,
+      "var4": 6.330221703617269,
+      "var5": 134980,
+      "var6": 1.9254042093575385,
+      "var7": 134275,
+      "var8": 1.9513915663552337
+    },
+    {
+      "var1": 2014,
+      "var2": "Information und Kommunikation",
+      "var3": 246,
+      "var4": 3.588098016336056,
+      "var5": 397391,
+      "var6": 5.6685309242910185,
+      "var7": 396326,
+      "var8": 5.759726039302211
+    },
+    {
+      "var1": 2014,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 51,
+      "var4": 0.7438739789964994,
+      "var5": 93289,
+      "var6": 1.3307084996796223,
+      "var7": 82677,
+      "var8": 1.2015282109964749
+    },
+    {
+      "var1": 2014,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 483,
+      "var4": 7.044924154025671,
+      "var5": 450332,
+      "var6": 6.423700758693133,
+      "var7": 449696,
+      "var8": 6.535341514233351
+    },
+    {
+      "var1": 2014,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1166,
+      "var4": 17.007001166861144,
+      "var5": 485345,
+      "var6": 6.923139027934765,
+      "var7": 481588,
+      "var8": 6.998821535340787
+    },
+    {
+      "var1": 2014,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 459,
+      "var4": 6.694865810968495,
+      "var5": 263978,
+      "var6": 3.76547897746173,
+      "var7": 263420,
+      "var8": 3.828229874580493
+    },
+    {
+      "var1": 2014,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2014,
+      "var2": "Erziehung und Unterricht",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2014,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 149,
+      "var4": 2.173278879813302,
+      "var5": 370208,
+      "var6": 5.280782645857428,
+      "var7": 367228,
+      "var8": 5.336850658197727
+    },
+    {
+      "var1": 2014,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 263,
+      "var4": 3.836056009334889,
+      "var5": 296575,
+      "var6": 4.230454536895926,
+      "var7": 296273,
+      "var8": 4.305675915388301
+    },
+    {
+      "var1": 2014,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 717,
+      "var4": 10.45799299883314,
+      "var5": 188377,
+      "var6": 2.687078594948474,
+      "var7": 186173,
+      "var8": 2.705614761370716
+    },
+    {
+      "var1": 2014,
+      "var2": "Insgesamt",
+      "var3": 6856,
+      "var4": 100,
+      "var5": 7010476,
+      "var6": 100,
+      "var7": 6880987,
+      "var8": 100
+    },
+    {
+      "var1": 2015,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 14,
+      "var4": 0.20521841102316035,
+      "var5": null,
+      "var6": null,
+      "var7": 54429,
+      "var8": 0.7788754451820739
+    },
+    {
+      "var1": 2015,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2015,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 356,
+      "var4": 5.218411023160363,
+      "var5": null,
+      "var6": null,
+      "var7": 1185971,
+      "var8": 16.971167770821243
+    },
+    {
+      "var1": 2015,
+      "var2": "Energieversorgung",
+      "var3": 38,
+      "var4": 0.5570214013485781,
+      "var5": null,
+      "var6": null,
+      "var7": 939823,
+      "var8": 13.448805921794488
+    },
+    {
+      "var1": 2015,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 25,
+      "var4": 0.36646144825564353,
+      "var5": null,
+      "var6": null,
+      "var7": 137027,
+      "var8": 1.9608474457911047
+    },
+    {
+      "var1": 2015,
+      "var2": "Baugewerbe",
+      "var3": 877,
+      "var4": 12.855467604807973,
+      "var5": null,
+      "var6": null,
+      "var7": 621509,
+      "var8": 8.893753312749922
+    },
+    {
+      "var1": 2015,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1192,
+      "var4": 17.472881852829083,
+      "var5": null,
+      "var6": null,
+      "var7": 1237544,
+      "var8": 17.7091740420071
+    },
+    {
+      "var1": 2015,
+      "var2": "Verkehr und Lagerei",
+      "var3": 239,
+      "var4": 3.503371445323952,
+      "var5": null,
+      "var6": null,
+      "var7": 165970,
+      "var8": 2.375019890809473
+    },
+    {
+      "var1": 2015,
+      "var2": "Gastgewerbe",
+      "var3": 449,
+      "var4": 6.581647610671357,
+      "var5": null,
+      "var6": null,
+      "var7": 141123,
+      "var8": 2.0194609390293743
+    },
+    {
+      "var1": 2015,
+      "var2": "Information und Kommunikation",
+      "var3": 243,
+      "var4": 3.5620052770448547,
+      "var5": null,
+      "var6": null,
+      "var7": 417454,
+      "var8": 5.973739552316549
+    },
+    {
+      "var1": 2015,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 46,
+      "var4": 0.6742890647903841,
+      "var5": null,
+      "var6": null,
+      "var7": 88169,
+      "var8": 1.2616926477844215
+    },
+    {
+      "var1": 2015,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 475,
+      "var4": 6.962767516857227,
+      "var5": null,
+      "var6": null,
+      "var7": 352681,
+      "var8": 5.046842140812049
+    },
+    {
+      "var1": 2015,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1155,
+      "var4": 16.93051890941073,
+      "var5": null,
+      "var6": null,
+      "var7": 421709,
+      "var8": 6.0346283251995665
+    },
+    {
+      "var1": 2015,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 446,
+      "var4": 6.53767223688068,
+      "var5": null,
+      "var6": null,
+      "var7": 285791,
+      "var8": 4.089650597182202
+    },
+    {
+      "var1": 2015,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": null,
+      "var6": null,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2015,
+      "var2": "Erziehung und Unterricht",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2015,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 145,
+      "var4": 2.125476399882732,
+      "var5": null,
+      "var6": null,
+      "var7": 375397,
+      "var8": 5.371906621378585
+    },
+    {
+      "var1": 2015,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 270,
+      "var4": 3.9577836411609497,
+      "var5": null,
+      "var6": null,
+      "var7": 313764,
+      "var8": 4.489942405374125
+    },
+    {
+      "var1": 2015,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 740,
+      "var4": 10.847258868367048,
+      "var5": null,
+      "var6": null,
+      "var7": 211746,
+      "var8": 3.030071469538728
+    },
+    {
+      "var1": 2015,
+      "var2": "Insgesamt",
+      "var3": 6822,
+      "var4": 100,
+      "var5": null,
+      "var6": null,
+      "var7": 6988152,
+      "var8": 100
+    },
+    {
+      "var1": 2016,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 14,
+      "var4": 0.20390329158170697,
+      "var5": null,
+      "var6": null,
+      "var7": 52817,
+      "var8": 0.7253901665731608
+    },
+    {
+      "var1": 2016,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2016,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 341,
+      "var4": 4.966501602097291,
+      "var5": null,
+      "var6": null,
+      "var7": 1126905,
+      "var8": 15.476945030238896
+    },
+    {
+      "var1": 2016,
+      "var2": "Energieversorgung",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2016,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 26,
+      "var4": 0.37867754150888433,
+      "var5": null,
+      "var6": null,
+      "var7": 141710,
+      "var8": 1.9462491338978476
+    },
+    {
+      "var1": 2016,
+      "var2": "Baugewerbe",
+      "var3": 866,
+      "var4": 12.612875036411301,
+      "var5": null,
+      "var6": null,
+      "var7": 670446,
+      "var8": 9.207924259581374
+    },
+    {
+      "var1": 2016,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1178,
+      "var4": 17.157005534517914,
+      "var5": null,
+      "var6": null,
+      "var7": 1265690,
+      "var8": 17.383022131699718
+    },
+    {
+      "var1": 2016,
+      "var2": "Verkehr und Lagerei",
+      "var3": 233,
+      "var4": 3.3935333527526943,
+      "var5": null,
+      "var6": null,
+      "var7": 186217,
+      "var8": 2.557509526265299
+    },
+    {
+      "var1": 2016,
+      "var2": "Gastgewerbe",
+      "var3": 477,
+      "var4": 6.9472764346053015,
+      "var5": null,
+      "var6": null,
+      "var7": 156437,
+      "var8": 2.148510166957714
+    },
+    {
+      "var1": 2016,
+      "var2": "Information und Kommunikation",
+      "var3": 249,
+      "var4": 3.626565685988931,
+      "var5": null,
+      "var6": null,
+      "var7": 470629,
+      "var8": 6.463631950019125
+    },
+    {
+      "var1": 2016,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 51,
+      "var4": 0.7427905621905039,
+      "var5": null,
+      "var6": null,
+      "var7": 92817,
+      "var8": 1.2747512939171302
+    },
+    {
+      "var1": 2016,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 494,
+      "var4": 7.194873288668803,
+      "var5": null,
+      "var6": null,
+      "var7": 397127,
+      "var8": 5.454153410468214
+    },
+    {
+      "var1": 2016,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1172,
+      "var4": 17.069618409554327,
+      "var5": null,
+      "var6": null,
+      "var7": 423361,
+      "var8": 5.814451905836756
+    },
+    {
+      "var1": 2016,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 460,
+      "var4": 6.6996795805418,
+      "var5": null,
+      "var6": null,
+      "var7": 384326,
+      "var8": 5.2783441156899595
+    },
+    {
+      "var1": 2016,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": null,
+      "var6": null,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2016,
+      "var2": "Erziehung und Unterricht",
+      "var3": 98,
+      "var4": 1.4273230410719486,
+      "var5": null,
+      "var6": null,
+      "var7": 23158,
+      "var8": 0.3180526246757911
+    },
+    {
+      "var1": 2016,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 156,
+      "var4": 2.272065249053306,
+      "var5": null,
+      "var6": null,
+      "var7": 409637,
+      "var8": 5.62596610304504
+    },
+    {
+      "var1": 2016,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 261,
+      "var4": 3.801339935916108,
+      "var5": null,
+      "var6": null,
+      "var7": 313490,
+      "var8": 4.305480495276524
+    },
+    {
+      "var1": 2016,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 749,
+      "var4": 10.908826099621322,
+      "var5": null,
+      "var6": null,
+      "var7": 231453,
+      "var8": 3.178782025178594
+    },
+    {
+      "var1": 2016,
+      "var2": "Insgesamt",
+      "var3": 6866,
+      "var4": 100,
+      "var5": null,
+      "var6": null,
+      "var7": 7281185,
+      "var8": 100
+    },
+    {
+      "var1": 2017,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 15,
+      "var4": 0.22091310751104565,
+      "var5": 54413,
+      "var6": 0.7213403012652654,
+      "var7": 54380,
+      "var8": 0.7391553620841843
+    },
+    {
+      "var1": 2017,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2017,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 344,
+      "var4": 5.0662739322533135,
+      "var5": 1208553,
+      "var6": 16.021501940989104,
+      "var7": 1110941,
+      "var8": 15.100367729113016
+    },
+    {
+      "var1": 2017,
+      "var2": "Energieversorgung",
+      "var3": 40,
+      "var4": 0.5891016200294551,
+      "var5": 934819,
+      "var6": 12.392674895493615,
+      "var7": 933094,
+      "var8": 12.682998040246044
+    },
+    {
+      "var1": 2017,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 26,
+      "var4": 0.38291605301914583,
+      "var5": 148411,
+      "var6": 1.9674496067314666,
+      "var7": 147416,
+      "var8": 2.003739000680436
+    },
+    {
+      "var1": 2017,
+      "var2": "Baugewerbe",
+      "var3": 843,
+      "var4": 12.415316642120766,
+      "var5": 688404,
+      "var6": 9.126009386584341,
+      "var7": 684622,
+      "var8": 9.305664257094492
+    },
+    {
+      "var1": 2017,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1158,
+      "var4": 17.054491899852724,
+      "var5": 1148992,
+      "var6": 15.231915818487856,
+      "var7": 1106547,
+      "var8": 15.040642670985067
+    },
+    {
+      "var1": 2017,
+      "var2": "Verkehr und Lagerei",
+      "var3": 231,
+      "var4": 3.402061855670103,
+      "var5": 213782,
+      "var6": 2.834057528257787,
+      "var7": 208511,
+      "var8": 2.8341674090388995
+    },
+    {
+      "var1": 2017,
+      "var2": "Gastgewerbe",
+      "var3": 475,
+      "var4": 6.995581737849779,
+      "var5": 164925,
+      "var6": 2.1863718079535017,
+      "var7": 164065,
+      "var8": 2.2300390673104395
+    },
+    {
+      "var1": 2017,
+      "var2": "Information und Kommunikation",
+      "var3": 243,
+      "var4": 3.57879234167894,
+      "var5": 500729,
+      "var6": 6.638046196906163,
+      "var7": 498351,
+      "var8": 6.773792089923048
+    },
+    {
+      "var1": 2017,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 51,
+      "var4": 0.7511045655375552,
+      "var5": 113257,
+      "var6": 1.5014213239556753,
+      "var7": 98327,
+      "var8": 1.3365010902473629
+    },
+    {
+      "var1": 2017,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 489,
+      "var4": 7.2017673048600885,
+      "var5": 412605,
+      "var6": 5.469807123363071,
+      "var7": 412195,
+      "var8": 5.6027242455735635
+    },
+    {
+      "var1": 2017,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1139,
+      "var4": 16.774668630338734,
+      "var5": 505569,
+      "var6": 6.7022089348203355,
+      "var7": 499761,
+      "var8": 6.792957390778853
+    },
+    {
+      "var1": 2017,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 462,
+      "var4": 6.804123711340206,
+      "var5": 414297,
+      "var6": 5.492237568104968,
+      "var7": 412726,
+      "var8": 5.609941816321387
+    },
+    {
+      "var1": 2017,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2017,
+      "var2": "Erziehung und Unterricht",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2017,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 154,
+      "var4": 2.268041237113402,
+      "var5": 422608,
+      "var6": 5.602414533973706,
+      "var7": 419101,
+      "var8": 5.696593442531146
+    },
+    {
+      "var1": 2017,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 259,
+      "var4": 3.814432989690722,
+      "var5": 331657,
+      "var6": 4.396698588512563,
+      "var7": 329731,
+      "var8": 4.481839586159989
+    },
+    {
+      "var1": 2017,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 762,
+      "var4": 11.222385861561119,
+      "var5": 241761,
+      "var6": 3.2049685291050265,
+      "var7": 239135,
+      "var8": 3.2504214327326486
+    },
+    {
+      "var1": 2017,
+      "var2": "Insgesamt",
+      "var3": 6790,
+      "var4": 100,
+      "var5": 7543319,
+      "var6": 100,
+      "var7": 7357046,
+      "var8": 100
+    },
+    {
+      "var1": 2018,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 18,
+      "var4": 0.2658396101019052,
+      "var5": 66938,
+      "var6": 0.8491334938878702,
+      "var7": 66874,
+      "var8": 0.8704538363605622
+    },
+    {
+      "var1": 2018,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2018,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 340,
+      "var4": 5.021414857480432,
+      "var5": 1175692,
+      "var6": 14.914091483104034,
+      "var7": 1062182,
+      "var8": 13.825708000316036
+    },
+    {
+      "var1": 2018,
+      "var2": "Energieversorgung",
+      "var3": 37,
+      "var4": 0.546448087431694,
+      "var5": 721001,
+      "var6": 9.146166575437693,
+      "var7": 720310,
+      "var8": 9.375790335091015
+    },
+    {
+      "var1": 2018,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 24,
+      "var4": 0.35445281346920693,
+      "var5": 166497,
+      "var6": 2.1120765384661735,
+      "var7": 164755,
+      "var8": 2.1445049168523553
+    },
+    {
+      "var1": 2018,
+      "var2": "Baugewerbe",
+      "var3": 823,
+      "var4": 12.15477772854822,
+      "var5": 728610,
+      "var6": 9.24268957814158,
+      "var7": 725804,
+      "var8": 9.44730203436076
+    },
+    {
+      "var1": 2018,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1130,
+      "var4": 16.688819967508493,
+      "var5": 1161042,
+      "var6": 14.728250769526436,
+      "var7": 1115006,
+      "var8": 14.513282445569951
+    },
+    {
+      "var1": 2018,
+      "var2": "Verkehr und Lagerei",
+      "var3": 227,
+      "var4": 3.352532860729582,
+      "var5": 224611,
+      "var6": 2.849274301527509,
+      "var7": 223777,
+      "var8": 2.9127545554215017
+    },
+    {
+      "var1": 2018,
+      "var2": "Gastgewerbe",
+      "var3": 468,
+      "var4": 6.911829862649535,
+      "var5": 163697,
+      "var6": 2.076557494232912,
+      "var7": 162892,
+      "var8": 2.120255500081417
+    },
+    {
+      "var1": 2018,
+      "var2": "Information und Kommunikation",
+      "var3": 238,
+      "var4": 3.514990400236302,
+      "var5": 516684,
+      "var6": 6.554329232363685,
+      "var7": 513665,
+      "var8": 6.686031489878699
+    },
+    {
+      "var1": 2018,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2018,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 515,
+      "var4": 7.605966622360065,
+      "var5": 467023,
+      "var6": 5.924360926767976,
+      "var7": 466882,
+      "var8": 6.077088674637258
+    },
+    {
+      "var1": 2018,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1115,
+      "var4": 16.467286959090238,
+      "var5": 944435,
+      "var6": 11.980510193014291,
+      "var7": 936650,
+      "var8": 12.1917424683303
+    },
+    {
+      "var1": 2018,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 448,
+      "var4": 6.6164525180918625,
+      "var5": 339853,
+      "var6": 4.311162049930896,
+      "var7": 338739,
+      "var8": 4.409137513457255
+    },
+    {
+      "var1": 2018,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2018,
+      "var2": "Erziehung und Unterricht",
+      "var3": 112,
+      "var4": 1.6541131295229656,
+      "var5": 33567,
+      "var6": 0.42580991349209923,
+      "var7": 33071,
+      "var8": 0.43046294258276985
+    },
+    {
+      "var1": 2018,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 168,
+      "var4": 2.4811696942844486,
+      "var5": 452933,
+      "var6": 5.74562402203703,
+      "var7": 450060,
+      "var8": 5.85812802572651
+    },
+    {
+      "var1": 2018,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 270,
+      "var4": 3.9875941515285778,
+      "var5": 329546,
+      "var6": 4.180413911033674,
+      "var7": 328970,
+      "var8": 4.281981017249366
+    },
+    {
+      "var1": 2018,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 778,
+      "var4": 11.490178703293457,
+      "var5": 268891,
+      "var6": 3.4109826153306537,
+      "var7": 266419,
+      "var8": 3.467796761511867
+    },
+    {
+      "var1": 2018,
+      "var2": "Insgesamt",
+      "var3": 6771,
+      "var4": 100,
+      "var5": 7883095,
+      "var6": 100,
+      "var7": 7682659,
+      "var8": 100
+    },
+    {
+      "var1": 2019,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 17,
+      "var4": 0.2560240963855422,
+      "var5": 64270,
+      "var6": 0.791117231830707,
+      "var7": 64244,
+      "var8": 0.8101377942950633
+    },
+    {
+      "var1": 2019,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2019,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 320,
+      "var4": 4.819277108433735,
+      "var5": 1285650,
+      "var6": 15.82542195586041,
+      "var7": 1180977,
+      "var8": 14.892505166135372
+    },
+    {
+      "var1": 2019,
+      "var2": "Energieversorgung",
+      "var3": 45,
+      "var4": 0.677710843373494,
+      "var5": 1163069,
+      "var6": 14.316538473753052,
+      "var7": 1160383,
+      "var8": 14.63280810904502
+    },
+    {
+      "var1": 2019,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 26,
+      "var4": 0.39156626506024095,
+      "var5": 172483,
+      "var6": 2.1231410222165215,
+      "var7": 171768,
+      "var8": 2.1660505051129197
+    },
+    {
+      "var1": 2019,
+      "var2": "Baugewerbe",
+      "var3": 794,
+      "var4": 11.957831325301205,
+      "var5": 802040,
+      "var6": 9.872532513108764,
+      "var7": 799004,
+      "var8": 10.075701049015203
+    },
+    {
+      "var1": 2019,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1102,
+      "var4": 16.596385542168676,
+      "var5": 1190815,
+      "var6": 14.658071672980915,
+      "var7": 1144087,
+      "var8": 14.42731023382193
+    },
+    {
+      "var1": 2019,
+      "var2": "Verkehr und Lagerei",
+      "var3": 215,
+      "var4": 3.2379518072289155,
+      "var5": 233217,
+      "var6": 2.870732650628007,
+      "var7": 232672,
+      "var8": 2.934069810009043
+    },
+    {
+      "var1": 2019,
+      "var2": "Gastgewerbe",
+      "var3": 465,
+      "var4": 7.003012048192771,
+      "var5": 171703,
+      "var6": 2.1135397861681637,
+      "var7": 170569,
+      "var8": 2.1509307240382705
+    },
+    {
+      "var1": 2019,
+      "var2": "Information und Kommunikation",
+      "var3": 240,
+      "var4": 3.6144578313253013,
+      "var5": 525812,
+      "var6": 6.472365550075739,
+      "var7": 521660,
+      "var8": 6.57830274845842
+    },
+    {
+      "var1": 2019,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 50,
+      "var4": 0.7530120481927711,
+      "var5": 96036,
+      "var6": 1.1821337245385684,
+      "var7": 80731,
+      "var8": 1.018044241816119
+    },
+    {
+      "var1": 2019,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 495,
+      "var4": 7.454819277108434,
+      "var5": 496999,
+      "var6": 6.117698352304801,
+      "var7": 496216,
+      "var8": 6.2574456094564335
+    },
+    {
+      "var1": 2019,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1099,
+      "var4": 16.551204819277107,
+      "var5": 447201,
+      "var6": 5.504720977002085,
+      "var7": 443008,
+      "var8": 5.586475374744215
+    },
+    {
+      "var1": 2019,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 460,
+      "var4": 6.927710843373494,
+      "var5": 334145,
+      "var6": 4.113083358177557,
+      "var7": 333413,
+      "var8": 4.204446678433782
+    },
+    {
+      "var1": 2019,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2019,
+      "var2": "Erziehung und Unterricht",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2019,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 175,
+      "var4": 2.6355421686746987,
+      "var5": 461288,
+      "var6": 5.678121761890823,
+      "var7": 458709,
+      "var8": 5.784470105897736
+    },
+    {
+      "var1": 2019,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 269,
+      "var4": 4.051204819277109,
+      "var5": 347969,
+      "var6": 4.283246803219221,
+      "var7": 346186,
+      "var8": 4.3655183745693105
+    },
+    {
+      "var1": 2019,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 761,
+      "var4": 11.460843373493976,
+      "var5": 286006,
+      "var6": 3.520527073393079,
+      "var7": 281411,
+      "var8": 3.5486844970793854
+    },
+    {
+      "var1": 2019,
+      "var2": "Insgesamt",
+      "var3": 6640,
+      "var4": 100,
+      "var5": 8123954,
+      "var6": 100,
+      "var7": 7930009,
+      "var8": 100
+    },
+    {
+      "var1": 2020,
+      "var2": "Land- und Forstwirtschaft, Fischerei",
+      "var3": 19,
+      "var4": 0.3122432210353328,
+      "var5": 75812.994,
+      "var6": 0.9225390549899688,
+      "var7": 75771.703,
+      "var8": 0.9528902713444973
+    },
+    {
+      "var1": 2020,
+      "var2": "Bergbau und Gewinnung von Steinen und Erden",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2020,
+      "var2": "Verarbeitendes Gewerbe",
+      "var3": 301,
+      "var4": 4.9465899753492195,
+      "var5": 1309647.873,
+      "var6": 15.936599352968999,
+      "var7": 1129372.089,
+      "var8": 14.202764801737553
+    },
+    {
+      "var1": 2020,
+      "var2": "Energieversorgung",
+      "var3": 42,
+      "var4": 0.6902218570254725,
+      "var5": 1159210.611,
+      "var6": 14.1059863907536,
+      "var7": 1156584.344,
+      "var8": 14.544980853696234
+    },
+    {
+      "var1": 2020,
+      "var2": "Wasserversorgung; Abwasser- und Abfallentsorung und Beseitigung von Umweltverschmutzungen",
+      "var3": 24,
+      "var4": 0.3944124897288414,
+      "var5": 180493.961,
+      "var6": 2.1963613284067938,
+      "var7": 180114.002,
+      "var8": 2.265078828157305
+    },
+    {
+      "var1": 2020,
+      "var2": "Baugewerbe",
+      "var3": 777,
+      "var4": 12.76910435497124,
+      "var5": 844105.856,
+      "var6": 10.271598279125326,
+      "var7": 840012.814,
+      "var8": 10.563838564712144
+    },
+    {
+      "var1": 2020,
+      "var2": "Handel, Instandhaltung und Reparatur von KFZ",
+      "var3": 1020,
+      "var4": 16.76253081347576,
+      "var5": 1236586.5,
+      "var6": 15.047543711614304,
+      "var7": 1188340.309,
+      "var8": 14.944337723181617
+    },
+    {
+      "var1": 2020,
+      "var2": "Verkehr und Lagerei",
+      "var3": 194,
+      "var4": 3.1881676253081346,
+      "var5": 244279.238,
+      "var6": 2.9725397387443855,
+      "var7": 243079.161,
+      "var8": 3.056916480859388
+    },
+    {
+      "var1": 2020,
+      "var2": "Gastgewerbe",
+      "var3": 406,
+      "var4": 6.672144617912901,
+      "var5": 123819.779,
+      "var6": 1.5067150877556266,
+      "var7": 123067.479,
+      "var8": 1.5476727962415366
+    },
+    {
+      "var1": 2020,
+      "var2": "Information und Kommunikation",
+      "var3": 229,
+      "var4": 3.763352506162695,
+      "var5": 499571.151,
+      "var6": 6.0790884679187185,
+      "var7": 496645.505,
+      "var8": 6.245717745336606
+    },
+    {
+      "var1": 2020,
+      "var2": "Erbringung von Finanz- und Versicherungsleistungen",
+      "var3": 38,
+      "var4": 0.6244864420706656,
+      "var5": 90743.624,
+      "var6": 1.1042241272165698,
+      "var7": 78969.027,
+      "var8": 0.9930991991276867
+    },
+    {
+      "var1": 2020,
+      "var2": "Grundstücks- und Wohnungswesen",
+      "var3": 464,
+      "var4": 7.625308134757601,
+      "var5": 557735.123,
+      "var6": 6.786863387919148,
+      "var7": 556331.68,
+      "var8": 6.996319529900761
+    },
+    {
+      "var1": 2020,
+      "var2": "Erbringung von freiberuflichen, wissenschaftlichen und technischen Dienstleistungen",
+      "var3": 1035,
+      "var4": 17.009038619556286,
+      "var5": 456143.53,
+      "var6": 5.55063451399886,
+      "var7": 451240.339,
+      "var8": 5.67471116587274
+    },
+    {
+      "var1": 2020,
+      "var2": "Erbringung von sonstigen wirtschaftlichen Dienstleistungen",
+      "var3": 416,
+      "var4": 6.836483155299918,
+      "var5": 297824.681,
+      "var6": 3.624113562411595,
+      "var7": 297011.297,
+      "var8": 3.7351565846515435
+    },
+    {
+      "var1": 2020,
+      "var2": "Öffentliche Verwaltung, Verteidigung; Sozialversicherung",
+      "var3": 0,
+      "var4": 0,
+      "var5": 0,
+      "var6": 0,
+      "var7": 0,
+      "var8": 0
+    },
+    {
+      "var1": 2020,
+      "var2": "Erziehung und Unterricht",
+      "var3": null,
+      "var4": null,
+      "var5": null,
+      "var6": null,
+      "var7": null,
+      "var8": null
+    },
+    {
+      "var1": 2020,
+      "var2": "Gesundheits- und Sozialwesen",
+      "var3": 152,
+      "var4": 2.4979457682826625,
+      "var5": 492350.946,
+      "var6": 5.99122858076621,
+      "var7": 488872.332,
+      "var8": 6.147963826183202
+    },
+    {
+      "var1": 2020,
+      "var2": "Kunst, Unterhaltung und Erholung",
+      "var3": 218,
+      "var4": 3.582580115036976,
+      "var5": 320973.054,
+      "var6": 3.905797176594875,
+      "var7": 320276.379,
+      "var8": 4.027733752936014
+    },
+    {
+      "var1": 2020,
+      "var2": "Erbringung von sonstigen Dienstleistungen",
+      "var3": 651,
+      "var4": 10.698438783894824,
+      "var5": 286127.385,
+      "var6": 3.4817736833431345,
+      "var7": 284754.248,
+      "var8": 3.581014308774587
+    },
+    {
+      "var1": 2020,
+      "var2": "Insgesamt",
+      "var3": 6085,
+      "var4": 100,
+      "var5": 8217862.82,
+      "var6": 100,
+      "var7": 7951776.325,
+      "var8": 100
+    }
+  ]
+}
