@@ -1,6 +1,14 @@
 name: Build and deploy
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/**"
+      - "pyproject.toml"
+      - "Dockerfile"
+      - ".github/workflows/build.yaml"
 
 jobs:
   deploy:
