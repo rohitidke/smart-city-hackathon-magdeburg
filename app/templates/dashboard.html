@@ -196,6 +196,41 @@
       line-height: 1.5;
     }
 
+    .chat-toolbar {
+      display: grid;
+      gap: .6rem;
+    }
+
+    .chat-mode {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .chat-mode select {
+      min-width: 220px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #11141d;
+      color: var(--text);
+      padding: .55rem .85rem;
+      font: inherit;
+    }
+
+    .chat-mode select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(108,99,255,.18);
+    }
+
+    .chat-mode-copy {
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+
     .chat-status {
       padding: .75rem 1rem;
       border-radius: calc(var(--radius) - 4px);
@@ -374,10 +409,10 @@
 
     </div>
 
-    <section class="card chat-card" id="chatbot" data-chat-enabled="{{ 'true' if llm_configured else 'false' }}">
+    <section class="card chat-card" id="chatbot" data-chat-enabled="{{ 'true' if llm_configured else 'false' }}" data-rag-enabled="{{ 'true' if rag_configured else 'false' }}">
       <div>
         <h2>Ask The Assistant</h2>
-        <p class="chat-copy">Ask a question, brainstorm an idea, or get a quick summary right from the dashboard. The backend forwards requests to the shared LLM service so your token stays server-side.</p>
+        <p class="chat-copy">Ask a question, brainstorm an idea, or switch to knowledge mode to answer from the indexed Magdeburg sources. The backend keeps all tokens server-side.</p>
       </div>
 
       <div class="chat-status{% if not llm_configured %} warning{% endif %}" id="chat-status">
@@ -386,6 +421,19 @@
         {% else %}
         Chat is not configured yet. Set `SERVER_URL` and `SERVER_TOKEN` before using the assistant.
         {% endif %}
+      </div>
+
+      <div class="chat-toolbar">
+        <label class="chat-mode" for="chat-mode">
+          <span>Mode</span>
+          <select id="chat-mode" {% if not llm_configured %}disabled{% endif %}>
+            <option value="chat">General Chat</option>
+            <option value="rag" {% if not rag_configured %}disabled{% endif %}>Knowledge Base (RAG)</option>
+          </select>
+        </label>
+        <p class="chat-mode-copy" id="chat-mode-copy">
+          General chat uses the shared assistant directly. Knowledge mode retrieves relevant documents first, then answers from those sources.
+        </p>
       </div>
 
       <div class="chat-log" id="chat-log" aria-live="polite">
@@ -417,17 +465,31 @@
   <script>
     const chatRoot = document.getElementById("chatbot");
     const chatEnabled = chatRoot?.dataset.chatEnabled === "true";
+    const ragEnabled = chatRoot?.dataset.ragEnabled === "true";
     const chatForm = document.getElementById("chat-form");
     const chatInput = document.getElementById("chat-input");
     const chatLog = document.getElementById("chat-log");
+    const chatMode = document.getElementById("chat-mode");
+    const chatModeCopy = document.getElementById("chat-mode-copy");
     const chatStatus = document.getElementById("chat-status");
     const chatSubmit = document.getElementById("chat-submit");
-    const conversation = [
-      {
-        role: "system",
-        content: "You are a concise, helpful assistant. Answer the user's questions clearly."
-      }
-    ];
+    const conversations = {
+      chat: [
+        {
+          role: "system",
+          content: "You are a concise, helpful assistant. Answer the user's questions clearly."
+        }
+      ],
+      rag: []
+    };
+    const modeDescriptions = {
+      chat: "General chat uses the shared assistant directly for open-ended questions and brainstorming.",
+      rag: "Knowledge mode searches the indexed Magdeburg sources first and asks the assistant to answer from those results."
+    };
+    const modeGreetings = {
+      chat: "Hi! Ask me anything and I will respond here.",
+      rag: "Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context."
+    };
 
     function addMessage(role, content) {
       const message = document.createElement("div");
@@ -438,29 +500,86 @@
       return message;
     }
 
-    function setBusy(isBusy) {
-      chatSubmit.disabled = isBusy || !chatEnabled;
-      chatInput.disabled = isBusy || !chatEnabled;
-      chatSubmit.textContent = isBusy ? "Thinking..." : "Send";
+    function currentMode() {
+      return chatMode?.value === "rag" ? "rag" : "chat";
     }
 
-    async function sendMessage() {
-      const prompt = chatInput.value.trim();
-      if (!prompt || !chatEnabled) {
+    function isModeEnabled(mode) {
+      return mode === "rag" ? ragEnabled : chatEnabled;
+    }
+
+    function readyText(mode) {
+      if (mode === "rag") {
+        return "Knowledge mode is ready. I will search the indexed sources before answering.";
+      }
+      return "General chat is ready. Keep prompts concise because the shared model has a small context window.";
+    }
+
+    function unavailableText(mode) {
+      if (mode === "rag") {
+        return "Knowledge mode is not configured yet. Check the LLM, embedding, and Qdrant settings before using RAG.";
+      }
+      return "Chat is not configured yet. Set SERVER_URL and SERVER_TOKEN before using the assistant.";
+    }
+
+    function thinkingText(mode) {
+      return mode === "rag"
+        ? "Searching the knowledge base and drafting a grounded answer..."
+        : "Waiting for response...";
+    }
+
+    function renderConversation() {
+      const mode = currentMode();
+      const visibleMessages = conversations[mode].filter((message) => message.role !== "system");
+      chatLog.innerHTML = "";
+
+      if (visibleMessages.length === 0) {
+        addMessage("assistant", modeGreetings[mode]);
         return;
       }
 
+      for (const message of visibleMessages) {
+        addMessage(message.role, message.content);
+      }
+    }
+
+    function refreshStatus() {
+      const mode = currentMode();
+      const enabled = isModeEnabled(mode);
+      chatStatus.classList.toggle("warning", !enabled);
+      chatStatus.textContent = enabled ? readyText(mode) : unavailableText(mode);
+      chatModeCopy.textContent = modeDescriptions[mode];
+    }
+
+    function setBusy(isBusy) {
+      const mode = currentMode();
+      const enabled = isModeEnabled(mode);
+      chatSubmit.disabled = isBusy || !enabled;
+      chatInput.disabled = isBusy || !enabled;
+      chatMode.disabled = isBusy || !chatEnabled;
+      chatSubmit.textContent = isBusy ? "Thinking..." : mode === "rag" ? "Ask With RAG" : "Send";
+    }
+
+    async function sendMessage() {
+      const mode = currentMode();
+      const prompt = chatInput.value.trim();
+      if (!prompt || !isModeEnabled(mode)) {
+        return;
+      }
+
+      const conversation = conversations[mode];
       conversation.push({ role: "user", content: prompt });
-      addMessage("user", prompt);
+      renderConversation();
       chatInput.value = "";
       setBusy(true);
-      chatStatus.textContent = "Waiting for response...";
+      chatStatus.classList.remove("warning");
+      chatStatus.textContent = thinkingText(mode);
 
       try {
         const response = await fetch("/api/chat", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: conversation })
+          body: JSON.stringify({ messages: conversation, mode })
         });
 
         const data = await response.json();
@@ -469,10 +588,12 @@
         }
 
         conversation.push({ role: "assistant", content: data.response });
-        addMessage("assistant", data.response);
-        chatStatus.textContent = "Ready for the next question.";
+        renderConversation();
+        chatStatus.textContent = readyText(mode);
       } catch (error) {
         conversation.pop();
+        renderConversation();
+        chatStatus.classList.add("warning");
         chatStatus.textContent = error.message || "Something went wrong.";
       } finally {
         setBusy(false);
@@ -485,12 +606,23 @@
       await sendMessage();
     });
 
+    chatMode?.addEventListener("change", () => {
+      renderConversation();
+      refreshStatus();
+      setBusy(false);
+      chatInput.focus();
+    });
+
     chatInput?.addEventListener("keydown", async (event) => {
       if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
         await sendMessage();
       }
     });
+
+    renderConversation();
+    refreshStatus();
+    setBusy(false);
   </script>
 
 </body>

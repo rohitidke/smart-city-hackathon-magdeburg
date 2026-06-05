@@ -4,7 +4,10 @@ import requests
 from qdrant_client import QdrantClient
 
 EMBEDDING_URL = os.getenv("EMBEDDING_URL", "http://localhost:11434")
-qdrant = QdrantClient(url="http://localhost:6333")
+QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
+QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "magdeburg")
+
+qdrant = QdrantClient(url=QDRANT_URL)
 
 
 def embed(text: str) -> list[float]:
@@ -21,7 +24,7 @@ def search(question: str, k: int = 5, category: str | None = None):
         flt = Filter(must=[FieldCondition(key="category",
                                           match=MatchValue(value=category))])
     return qdrant.query_points(
-        collection_name="magdeburg",
+        collection_name=QDRANT_COLLECTION,
         query=embed(question),
         query_filter=flt,
         limit=k,
@@ -44,6 +47,16 @@ def get_server_config() -> tuple[str, str]:
     return server_url.rstrip("/"), server_token
 
 
+def rag_is_configured() -> bool:
+    return bool(
+        os.getenv("SERVER_URL")
+        and os.getenv("SERVER_TOKEN")
+        and EMBEDDING_URL
+        and QDRANT_URL
+        and QDRANT_COLLECTION
+    )
+
+
 def post_chat(prompt: str) -> str:
     server_url, server_token = get_server_config()
     r = requests.post(
@@ -63,15 +76,34 @@ def post_chat(prompt: str) -> str:
     return response
 
 
-def answer(question: str, k: int = 5):
+def format_history(messages: list[dict[str, str]] | None) -> str:
+    if not messages:
+        return ""
+
+    history_lines = []
+    for message in messages[-6:]:
+        role = message.get("role")
+        content = message.get("content", "").strip()
+        if role not in {"user", "assistant"} or not content:
+            continue
+        speaker = "Nutzer" if role == "user" else "Assistent"
+        history_lines.append(f"{speaker}: {content}")
+    return "\n".join(history_lines)
+
+
+def answer(question: str, k: int = 5, history: list[dict[str, str]] | None = None):
     hits = search(question, k=k)
     context = "\n\n".join(
         f"[Quelle: {h.payload['title']} — {h.payload['source_url']}]\n{h.payload['text']}"
         for h in hits
     )
+    conversation_history = format_history(history)
     prompt = f"""Beantworte die Frage auf Deutsch. Stütze dich AUSSCHLIESSLICH
 auf die folgenden Quellen. Wenn die Quellen die Frage nicht beantworten,
 sage das ehrlich. Nenne am Ende die genutzten Quellen.
+
+Bisherige Unterhaltung:
+{conversation_history or "Keine vorherige Unterhaltung."}
 
 Quellen:
 {context}

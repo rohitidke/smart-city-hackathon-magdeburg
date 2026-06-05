@@ -2,11 +2,15 @@ import asyncio
 import json
 import os
 from pathlib import Path
+from typing import Literal
 from urllib import error, request as urllib_request
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
+
+from app.rag_query import answer as rag_answer
+from app.rag_query import rag_is_configured
 
 app = FastAPI(title="MD-Hackathon Dashboard")
 
@@ -47,6 +51,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: list[ChatMessage]
+    mode: Literal["chat", "rag"] = "chat"
 
 
 class ChatResponse(BaseModel):
@@ -111,9 +116,32 @@ def post_llm_chat(messages: list[dict[str, str]]) -> dict:
     return parsed
 
 
+def post_rag_chat(messages: list[dict[str, str]]) -> str:
+    user_prompt = next(
+        (message["content"] for message in reversed(messages) if message["role"] == "user"),
+        None,
+    )
+    if not user_prompt:
+        raise HTTPException(status_code=400, detail="No user message provided.")
+
+    try:
+        return rag_answer(user_prompt, history=messages)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"RAG backend request failed: {exc}",
+        ) from exc
+
+
 @app.get("/")
 async def dashboard(request: Request):
-    context = {**DUMMY_DATA, "llm_configured": llm_is_configured()}
+    context = {
+        **DUMMY_DATA,
+        "llm_configured": llm_is_configured(),
+        "rag_configured": rag_is_configured(),
+    }
     return templates.TemplateResponse(
         request=request,
         name="dashboard.html",
@@ -125,5 +153,9 @@ async def dashboard(request: Request):
 async def chat(payload: ChatRequest):
     # Keep the context short to match the platform's limited token window.
     messages = [message.model_dump() for message in payload.messages[-8:]]
+    if payload.mode == "rag":
+        response = await asyncio.to_thread(post_rag_chat, messages)
+        return ChatResponse(response=response)
+
     response = await asyncio.to_thread(post_llm_chat, messages)
     return ChatResponse(response=response["response"])
