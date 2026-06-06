@@ -427,17 +427,18 @@
         <label class="chat-mode" for="chat-mode">
           <span>Mode</span>
           <select id="chat-mode" {% if not llm_configured %}disabled{% endif %}>
+            <option value="agent">Smart Agent (Tools)</option>
             <option value="chat">General Chat</option>
             <option value="rag" {% if not rag_configured %}disabled{% endif %}>Knowledge Base (RAG)</option>
           </select>
         </label>
         <p class="chat-mode-copy" id="chat-mode-copy">
-          General chat uses the shared assistant directly. Knowledge mode retrieves relevant documents first, then answers from those sources.
+          Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, accidents, transit, etc.).
         </p>
       </div>
 
       <div class="chat-log" id="chat-log" aria-live="polite">
-        <div class="chat-message assistant">Hi! Ask me anything and I will respond here.</div>
+        <div class="chat-message assistant">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.</div>
       </div>
 
       <form class="chat-form" id="chat-form">
@@ -474,6 +475,7 @@
     const chatStatus = document.getElementById("chat-status");
     const chatSubmit = document.getElementById("chat-submit");
     const conversations = {
+      agent: [],
       chat: [
         {
           role: "system",
@@ -483,10 +485,12 @@
       rag: []
     };
     const modeDescriptions = {
+      agent: "Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, accidents, transit, etc.).",
       chat: "General chat uses the shared assistant directly for open-ended questions and brainstorming.",
       rag: "Knowledge mode searches the indexed Magdeburg sources first and asks the assistant to answer from those results."
     };
     const modeGreetings = {
+      agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.",
       chat: "Hi! Ask me anything and I will respond here.",
       rag: "Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context."
     };
@@ -501,14 +505,19 @@
     }
 
     function currentMode() {
-      return chatMode?.value === "rag" ? "rag" : "chat";
+      return chatMode?.value || "agent";
     }
 
     function isModeEnabled(mode) {
-      return mode === "rag" ? ragEnabled : chatEnabled;
+      if (mode === "rag") return ragEnabled;
+      if (mode === "agent") return chatEnabled;
+      return chatEnabled;
     }
 
     function readyText(mode) {
+      if (mode === "agent") {
+        return "Smart Agent is ready. I can fetch live weather, transit, accident data, and more for Magdeburg.";
+      }
       if (mode === "rag") {
         return "Knowledge mode is ready. I will search the indexed sources before answering.";
       }
@@ -519,10 +528,16 @@
       if (mode === "rag") {
         return "Knowledge mode is not configured yet. Check the LLM, embedding, and Qdrant settings before using RAG.";
       }
+      if (mode === "agent") {
+        return "Smart Agent is not configured yet. Set OPENAI_API_KEY or SERVER_URL+SERVER_TOKEN.";
+      }
       return "Chat is not configured yet. Set SERVER_URL and SERVER_TOKEN before using the assistant.";
     }
 
     function thinkingText(mode) {
+      if (mode === "agent") {
+        return "Agent is thinking and calling tools...";
+      }
       return mode === "rag"
         ? "Searching the knowledge base and drafting a grounded answer..."
         : "Waiting for response...";

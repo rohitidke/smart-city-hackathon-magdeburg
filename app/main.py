@@ -1,47 +1,49 @@
 import asyncio
 import json
 import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 from urllib import error, request as urllib_request
 
+import httpx
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
 from app.rag_query import answer as rag_answer
 from app.rag_query import rag_is_configured
 
-app = FastAPI(title="MD-Hackathon Dashboard")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    from app.data_loader import load_all
+    load_all()
+    # Import tools to register them
+    import app.tools.weather  # noqa: F401
+    import app.tools.water_level  # noqa: F401
+    import app.tools.air_quality  # noqa: F401
+    import app.tools.cafes  # noqa: F401
+    import app.tools.trees  # noqa: F401
+    import app.tools.accidents  # noqa: F401
+    import app.tools.rent  # noqa: F401
+    import app.tools.climate  # noqa: F401
+    import app.tools.tax  # noqa: F401
+    import app.tools.population  # noqa: F401
+    import app.tools.transit  # noqa: F401
+    import app.tools.rag_tool  # noqa: F401
+    yield
+
+
+app = FastAPI(title="Smart City Dashboard Magdeburg", lifespan=lifespan)
 
 templates = Jinja2Templates(directory=Path(__file__).parent / "templates")
 
 # ---------------------------------------------------------------------------
-# Dummy data
+# Models
 # ---------------------------------------------------------------------------
-DUMMY_DATA = {
-    "title": "MD-Hackathon Dashboard",
-    "llm_configured": False,
-    "stats": [
-        {"label": "Total Projects", "value": 42, "icon": "📁"},
-        {"label": "Active Users", "value": 128, "icon": "👥"},
-        {"label": "Tasks Completed", "value": 317, "icon": "✅"},
-        {"label": "Uptime", "value": "99.9 %", "icon": "⚡"},
-    ],
-    "recent_activity": [
-        {"user": "Alice", "action": "Submitted proposal", "time": "2 min ago"},
-        {"user": "Bob", "action": "Updated dataset", "time": "15 min ago"},
-        {"user": "Carol", "action": "Opened issue #84", "time": "1 hr ago"},
-        {"user": "Dave", "action": "Merged pull request", "time": "3 hr ago"},
-        {"user": "Eve", "action": "Deployed to staging", "time": "5 hr ago"},
-    ],
-    "projects": [
-        {"name": "Alpha", "status": "Active", "progress": 75},
-        {"name": "Beta", "status": "Active", "progress": 50},
-        {"name": "Gamma", "status": "Paused", "progress": 30},
-        {"name": "Delta", "status": "Completed", "progress": 100},
-    ],
-}
 
 
 class ChatMessage(BaseModel):
@@ -51,15 +53,20 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: list[ChatMessage]
-    mode: Literal["chat", "rag"] = "chat"
+    mode: Literal["chat", "rag", "agent"] = "agent"
 
 
 class ChatResponse(BaseModel):
     response: str
 
 
+# ---------------------------------------------------------------------------
+# LLM helpers
+# ---------------------------------------------------------------------------
+
+
 def llm_is_configured() -> bool:
-    return bool(os.getenv("SERVER_URL") and os.getenv("SERVER_TOKEN"))
+    return bool(os.getenv("OPENAI_API_KEY") or (os.getenv("SERVER_URL") and os.getenv("SERVER_TOKEN")))
 
 
 def post_llm_chat(messages: list[dict[str, str]]) -> dict:
@@ -89,29 +96,17 @@ def post_llm_chat(messages: list[dict[str, str]]) -> dict:
             body = response.read().decode("utf-8")
     except error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")
-        raise HTTPException(
-            status_code=exc.code,
-            detail=f"LLM backend request failed: {detail}",
-        ) from exc
+        raise HTTPException(status_code=exc.code, detail=f"LLM backend request failed: {detail}") from exc
     except error.URLError as exc:
-        raise HTTPException(
-            status_code=502,
-            detail=f"LLM backend is unreachable: {exc.reason}",
-        ) from exc
+        raise HTTPException(status_code=502, detail=f"LLM backend is unreachable: {exc.reason}") from exc
 
     try:
         parsed = json.loads(body)
     except json.JSONDecodeError as exc:
-        raise HTTPException(
-            status_code=502,
-            detail="LLM backend returned invalid JSON.",
-        ) from exc
+        raise HTTPException(status_code=502, detail="LLM backend returned invalid JSON.") from exc
 
     if "response" not in parsed or not isinstance(parsed["response"], str):
-        raise HTTPException(
-            status_code=502,
-            detail="LLM backend returned an unexpected response format.",
-        )
+        raise HTTPException(status_code=502, detail="LLM backend returned an unexpected response format.")
 
     return parsed
 
@@ -129,33 +124,238 @@ def post_rag_chat(messages: list[dict[str, str]]) -> str:
     except RuntimeError as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
     except Exception as exc:
-        raise HTTPException(
-            status_code=502,
-            detail=f"RAG backend request failed: {exc}",
-        ) from exc
+        raise HTTPException(status_code=502, detail=f"RAG backend request failed: {exc}") from exc
+
+
+# ---------------------------------------------------------------------------
+# Routes
+# ---------------------------------------------------------------------------
 
 
 @app.get("/")
 async def dashboard(request: Request):
+    from app.data_loader import trees_data, accidents_data, transit_stops, cafes_geojson
+    from app.tools import get_available_tool_names
+
     context = {
-        **DUMMY_DATA,
+        "title": "Smart City Dashboard Magdeburg",
         "llm_configured": llm_is_configured(),
         "rag_configured": rag_is_configured(),
+        "tools": get_available_tool_names(),
+        "stats": {
+            "trees": len(trees_data),
+            "accidents": len(accidents_data),
+            "transit_stops": len(transit_stops),
+            "cafes": len(cafes_geojson.get("features", [])),
+        },
     }
-    return templates.TemplateResponse(
-        request=request,
-        name="dashboard.html",
-        context=context,
-    )
+    return templates.TemplateResponse(request=request, name="dashboard.html", context=context)
 
 
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(payload: ChatRequest):
-    # Keep the context short to match the platform's limited token window.
     messages = [message.model_dump() for message in payload.messages[-8:]]
+
+    if payload.mode == "agent":
+        from app.agent import run_agent
+        user_msg = next(
+            (m["content"] for m in reversed(messages) if m["role"] == "user"), ""
+        )
+        history = [m for m in messages[:-1] if m["role"] in ("user", "assistant")]
+        response = await asyncio.to_thread(run_agent, user_msg, history)
+        return ChatResponse(response=response)
+
     if payload.mode == "rag":
         response = await asyncio.to_thread(post_rag_chat, messages)
         return ChatResponse(response=response)
 
     response = await asyncio.to_thread(post_llm_chat, messages)
     return ChatResponse(response=response["response"])
+
+
+# ---------------------------------------------------------------------------
+# Data API endpoints
+# ---------------------------------------------------------------------------
+
+
+@app.get("/api/data/trees/summary")
+async def trees_summary():
+    from app.data_loader import trees_data
+    from collections import Counter
+
+    if not trees_data:
+        return {"total": 0}
+
+    by_district = Counter(t["stadtteil"] for t in trees_data)
+    by_species = Counter(t["gattungsgruppe"] for t in trees_data)
+    return {
+        "total": len(trees_data),
+        "by_district": dict(by_district.most_common(20)),
+        "top_species": dict(by_species.most_common(10)),
+    }
+
+
+@app.get("/api/data/accidents/summary")
+async def accidents_summary():
+    from app.data_loader import accidents_data
+    from collections import Counter
+
+    if not accidents_data:
+        return {"total": 0}
+
+    by_year = Counter(a["jahr"] for a in accidents_data)
+    by_type = {
+        "Fahrrad": sum(1 for a in accidents_data if a["ist_rad"]),
+        "PKW": sum(1 for a in accidents_data if a["ist_pkw"]),
+        "Fußgänger": sum(1 for a in accidents_data if a["ist_fuss"]),
+        "Motorrad": sum(1 for a in accidents_data if a["ist_krad"]),
+    }
+    return {
+        "total": len(accidents_data),
+        "by_year": dict(sorted(by_year.items())),
+        "by_type": by_type,
+    }
+
+
+@app.get("/api/data/climate/yearly")
+async def climate_yearly():
+    from app.data_loader import climate_monthly
+
+    if not climate_monthly:
+        return []
+
+    yearly = {}
+    for r in climate_monthly:
+        if not r.get("date"):
+            continue
+        year = r["date"][:4]
+        if year not in yearly:
+            yearly[year] = {"temps": [], "precip": []}
+        if r.get("MO_TT") is not None:
+            yearly[year]["temps"].append(r["MO_TT"])
+        if r.get("MO_RR") is not None:
+            yearly[year]["precip"].append(r["MO_RR"])
+
+    result = []
+    for year in sorted(yearly.keys()):
+        d = yearly[year]
+        if d["temps"]:
+            result.append({
+                "year": int(year),
+                "avg_temp": round(sum(d["temps"]) / len(d["temps"]), 1),
+                "total_precip": round(sum(d["precip"])) if d["precip"] else None,
+            })
+    return result
+
+
+@app.get("/api/data/rent/by-district")
+async def rent_by_district():
+    from app.data_loader import mietspiegel_wohnflaeche
+    from collections import defaultdict
+
+    data = [r for r in mietspiegel_wohnflaeche if r.get("year") == 2024 and r.get("nettokaltmiete_pro_qm")]
+    by_district = defaultdict(list)
+    for r in data:
+        by_district[r["stadtteil"]].append(r["nettokaltmiete_pro_qm"])
+
+    return [
+        {"district": d, "avg_rent": round(sum(v) / len(v), 2)}
+        for d, v in sorted(by_district.items(), key=lambda x: sum(x[1]) / len(x[1]), reverse=True)
+    ]
+
+
+@app.get("/api/data/tax/revenue")
+async def tax_revenue_endpoint():
+    from app.data_loader import tax_revenue
+
+    result = []
+    for row in sorted(tax_revenue, key=lambda r: r["jahr"]):
+        total = sum(v for k, v in row.items() if k != "jahr" and v is not None)
+        result.append({"year": row["jahr"], "total": round(total)})
+    return result
+
+
+@app.get("/api/data/transit/stops")
+async def transit_stops_endpoint():
+    from app.data_loader import transit_stops
+    return transit_stops
+
+
+@app.get("/api/data/cafes/geojson")
+async def cafes_geojson_endpoint():
+    from app.data_loader import cafes_geojson
+    return cafes_geojson
+
+
+@app.get("/api/data/districts/geojson")
+async def districts_geojson_endpoint():
+    from app.data_loader import districts_geojson
+    return districts_geojson
+
+
+@app.get("/api/data/accidents/geojson")
+async def accidents_geojson_endpoint():
+    from app.data_loader import accidents_data
+    features = [
+        {
+            "type": "Feature",
+            "geometry": {"type": "Point", "coordinates": [a["lon"], a["lat"]]},
+            "properties": {"jahr": a["jahr"], "kategorie": a["kategorie"], "ist_rad": a["ist_rad"]},
+        }
+        for a in accidents_data
+        if a.get("lon") and a.get("lat")
+    ]
+    return {"type": "FeatureCollection", "features": features}
+
+
+# ---------------------------------------------------------------------------
+# Live data proxy endpoints
+# ---------------------------------------------------------------------------
+
+
+@app.get("/api/live/weather")
+async def live_weather():
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.get(
+            "https://api.brightsky.dev/current_weather",
+            params={"lat": 52.1205, "lon": 11.6276},
+        )
+        r.raise_for_status()
+        return r.json()
+
+
+@app.get("/api/live/water-level")
+async def live_water_level():
+    station = "MAGDEBURG-STROMBR%C3%9CCKE"
+    base = "https://www.pegelonline.wsv.de/webservices/rest-api/v2"
+    async with httpx.AsyncClient(timeout=10) as client:
+        r = await client.get(f"{base}/stations/{station}/W/currentmeasurement.json")
+        r.raise_for_status()
+        return r.json()
+
+
+@app.get("/api/live/air-quality")
+async def live_air_quality():
+    async with httpx.AsyncClient(timeout=15) as client:
+        r = await client.get("https://data.sensor.community/airrohr/v1/filter/area=52.1205,11.6276,10")
+        r.raise_for_status()
+        data = r.json()
+
+    pm10 = []
+    pm25 = []
+    for sensor in data:
+        for sv in sensor.get("sensordatavalues", []):
+            try:
+                val = float(sv["value"])
+                if sv["value_type"] == "P1":
+                    pm10.append(val)
+                elif sv["value_type"] == "P2":
+                    pm25.append(val)
+            except (ValueError, KeyError):
+                continue
+
+    return {
+        "pm10": round(sum(pm10) / len(pm10), 1) if pm10 else None,
+        "pm25": round(sum(pm25) / len(pm25), 1) if pm25 else None,
+        "sensors": len(pm10),
+    }
