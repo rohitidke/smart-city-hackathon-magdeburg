@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Smart City Dashboard Magdeburg{% endblock %}</title>
+  <script>
+    document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+  </script>
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
   <link rel="stylesheet" href="/static/css/dashboard.css" />
   <link rel="stylesheet" href="/static/css/chatbot-widget.css" />
@@ -28,8 +31,8 @@
         <a href="/economy" class="nav-link">💰 Wirtschaft</a>
         <a href="/quality" class="nav-link">🎨 Lebensqualität</a>
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-          <span class="theme-toggle-icon" id="theme-icon">☀️</span>
-          <span id="theme-label">Hell</span>
+          <span class="theme-toggle-icon" id="theme-icon">🌙</span>
+          <span id="theme-label">Dunkel</span>
         </button>
       </nav>
     </div>
@@ -95,8 +98,8 @@
     const themeIcon = document.getElementById('theme-icon');
     const themeLabel = document.getElementById('theme-label');
 
-    // Get saved theme or default to dark
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    // Get saved theme or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeButton(savedTheme);
 
