@@ -13,6 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
+import app.env  # noqa: F401
 from app.rag_query import answer as rag_answer
 from app.rag_query import rag_is_configured
 

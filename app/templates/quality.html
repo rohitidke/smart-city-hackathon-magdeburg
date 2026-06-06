@@ -6,6 +6,128 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  .schools-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+    padding: 1rem 0 0;
+  }
+
+  .schools-summary {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .schools-total {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--surface-elevated);
+    border-radius: var(--radius);
+  }
+
+  .schools-types {
+    background: var(--surface-elevated);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .schools-types h4 {
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+
+  .schools-type-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .schools-type-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .schools-type-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .schools-type-label {
+    color: var(--text-muted);
+  }
+
+  .schools-chart-wrap {
+    min-width: 0;
+  }
+
+  .schools-chart-wrap .chart-container {
+    height: 360px;
+    margin: 0;
+  }
+
+  .health-layout {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+    padding: 1rem 0 0;
+  }
+
+  .health-panel {
+    background: var(--surface-elevated);
+    padding: 1.75rem;
+    border-radius: var(--radius);
+  }
+
+  .health-panel h4 {
+    color: var(--accent2);
+    margin-bottom: 1rem;
+  }
+
+  .health-total {
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+
+  .health-metric-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .health-metric-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-muted);
+  }
+
+  .health-growth {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-weight: 700;
+  }
+
+  .health-copy {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .schools-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .health-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -18,19 +140,19 @@
 <section class="viz-grid">
   <!-- Cafes Map Card -->
   <div class="viz-card">
-    <h3>☕ Cafés & Restaurants in Magdeburg</h3>
+    <h3>☕ Cafés in Magdeburg</h3>
     <div class="map-container" id="cafesMap"></div>
     <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-      Entdecken Sie die vielfältige Gastronomieszene der Stadt. Klicken Sie auf die Marker für Details.
+      Entdecken Sie die Cafészene der Stadt. Klicken Sie auf die Marker für Details.
     </p>
   </div>
 
   <!-- Cafes Stats Card -->
   <div class="viz-card">
-    <h3>🍽️ Gastronomie-Kennzahlen</h3>
+    <h3>☕ Café-Kennzahlen</h3>
     <div style="text-align: center; padding: 3rem 2rem;">
       <div style="font-size: 3.5rem; font-weight: 700; color: var(--accent2);">{{quality.cafes_count}}</div>
-      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Cafés & Restaurants</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Cafés</div>
     </div>
     <div class="viz-insight">
       {{quality.insight}}
@@ -207,40 +329,75 @@
 <script src="/static/js/charts.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
+    const schoolTypeLabels = {
+      Grundschule: 'Grundschule',
+      Förderschule: 'Förderschule',
+      Gemeinschaftsschule: 'Gemeinschaftsschule',
+      Gymnasium: 'Gymnasium',
+      IGS: 'IGS',
+      Sekundarschule: 'Sekundarschule',
+      'berufsbildende Schule Vollzeit': 'Berufsbildende Schule Vollzeit',
+      'berufsbildende Schule Teilzeit': 'Berufsbildende Schule Teilzeit',
+      'Primary school': 'Grundschule',
+      'Special needs school': 'Förderschule',
+      'Community school': 'Gemeinschaftsschule',
+      'High school': 'Gymnasium',
+      'Integrated comprehensive school': 'IGS',
+      'Secondary school': 'Sekundarschule',
+      'Vocational school full-time': 'Berufsbildende Schule Vollzeit',
+      'Vocational school part-time': 'Berufsbildende Schule Teilzeit',
+    };
+
+    function normalizeSchoolType(label) {
+      return schoolTypeLabels[label] || label;
+    }
+
     // Cafes map
     MapHelpers.createCafesMap('cafesMap');
 
     // Schools & Education (KISS-MD Phase 2)
     try {
+      const schoolsContainer = document.getElementById('schoolsInfrastructure');
       const schoolsRes = await fetch('/api/data/education/schools');
       const schoolsData = await schoolsRes.json();
 
       if (schoolsData && schoolsData.total_schools) {
-        // Create schools visualization
-        const topTypes = Object.entries(schoolsData.by_type)
-          .sort((a, b) => b[1] - a[1])
+        schoolsContainer.classList.remove('loading');
+
+        const normalizedTypes = Object.entries(schoolsData.by_type).reduce((acc, [type, count]) => {
+          const normalized = normalizeSchoolType(type);
+          acc[normalized] = (acc[normalized] || 0) + count;
+          return acc;
+        }, {});
+
+        const topTypes = Object.entries(normalizedTypes)
+          .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'de'))
           .slice(0, 8); // Top 8 types
 
-        document.getElementById('schoolsInfrastructure').innerHTML = `
-          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding: 1.5rem 0;">
-            <div>
-              <div style="text-align: center; margin-bottom: 2rem;">
+        schoolsContainer.innerHTML = `
+          <div class="schools-layout">
+            <div class="schools-summary">
+              <div class="schools-total">
                 <div style="font-size: 3rem; font-weight: 700; color: var(--info);">🏫</div>
                 <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent2); margin-top: 1rem;">${schoolsData.total_schools}</div>
                 <div style="color: var(--text-muted); margin-top: 0.5rem;">Schulen in Magdeburg (${schoolsData.latest_year})</div>
               </div>
-              <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
-                <h4 style="color: var(--accent2); margin-bottom: 1rem;">🎓 Top Schultypen</h4>
+              <div class="schools-types">
+                <h4>🎓 Häufigste Schultypen</h4>
+                <div class="schools-type-list">
                 ${topTypes.map(([type, count]) => `
-                  <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
-                    <span style="color: var(--text-muted); font-size: 0.9rem;">${type}</span>
+                  <div class="schools-type-item">
+                    <span class="schools-type-label">${type}</span>
                     <strong>${count}</strong>
                   </div>
                 `).join('')}
+                </div>
               </div>
             </div>
-            <div class="chart-container">
-              <canvas id="schoolsByTypeChart"></canvas>
+            <div class="schools-chart-wrap">
+              <div class="chart-container">
+                <canvas id="schoolsByTypeChart"></canvas>
+              </div>
             </div>
           </div>
           <div class="viz-insight">
@@ -251,7 +408,7 @@
         // Create schools chart
         const schoolsCtx = document.getElementById('schoolsByTypeChart').getContext('2d');
         const schoolsByType = Object.fromEntries(topTypes);
-        ChartHelpers.createSchoolsByTypeChart(schoolsCtx, schoolsByType);
+        ChartHelpers.createSchoolsByTypeChart(schoolsCtx, schoolsByType, schoolsData.latest_year);
       }
     } catch (err) {
       console.error('Failed to load schools data:', err);
@@ -260,41 +417,43 @@
 
     // Health Infrastructure (KISS-MD)
     try {
+      const healthContainer = document.getElementById('healthInfrastructure');
       const doctorsRes = await fetch('/api/data/health/doctors-pharmacies');
       const doctorsData = await doctorsRes.json();
 
       if (doctorsData.length > 0) {
+        healthContainer.classList.remove('loading');
         const latest = doctorsData[doctorsData.length - 1];
         const oldest = doctorsData[0];
         const growth = latest.doctors - oldest.doctors;
         const growthPercent = ((growth / oldest.doctors) * 100).toFixed(1);
 
-        document.getElementById('healthInfrastructure').innerHTML = `
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 1.5rem 0;">
-            <div style="text-align: center;">
+        healthContainer.innerHTML = `
+          <div class="health-layout">
+            <div class="health-panel health-total">
               <div style="font-size: 3rem; font-weight: 700; color: var(--success);">🏥</div>
               <div style="font-size: 2rem; font-weight: 700; color: var(--accent2); margin-top: 1rem;">${latest.doctors.toLocaleString('de-DE')}</div>
               <div style="color: var(--text-muted); margin-top: 0.5rem;">Ärzte & Praxen (${latest.year})</div>
             </div>
-            <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm);">
-              <h4 style="color: var(--accent2); margin-bottom: 1rem;">📈 Entwicklung</h4>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span style="color: var(--text-muted);">${oldest.year}:</span>
-                <strong>${oldest.doctors.toLocaleString('de-DE')}</strong>
+            <div class="health-panel">
+              <h4>📈 Entwicklung</h4>
+              <div class="health-metric-list">
+                <div class="health-metric-row">
+                  <span>${oldest.year}</span>
+                  <strong>${oldest.doctors.toLocaleString('de-DE')}</strong>
+                </div>
+                <div class="health-metric-row">
+                  <span>${latest.year}</span>
+                  <strong>${latest.doctors.toLocaleString('de-DE')}</strong>
+                </div>
               </div>
-              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span style="color: var(--text-muted);">${latest.year}:</span>
-                <strong>${latest.doctors.toLocaleString('de-DE')}</strong>
-              </div>
-              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-                <span style="color: ${growth >= 0 ? 'var(--success)' : 'var(--danger)'}; font-weight: 600;">
-                  ${growth >= 0 ? '+' : ''}${growth.toLocaleString('de-DE')} (${growth >= 0 ? '+' : ''}${growthPercent}%)
-                </span>
+              <div class="health-growth" style="color: ${growth >= 0 ? 'var(--success)' : 'var(--danger)'};">
+                ${growth >= 0 ? '+' : ''}${growth.toLocaleString('de-DE')} (${growth >= 0 ? '+' : ''}${growthPercent}%)
               </div>
             </div>
-            <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm);">
-              <h4 style="color: var(--accent2); margin-bottom: 1rem;">🏥 Versorgung</h4>
-              <p style="color: var(--text-muted); line-height: 1.6;">
+            <div class="health-panel">
+              <h4>🏥 Versorgung</h4>
+              <p class="health-copy">
                 Magdeburg verfügt über eine umfassende Gesundheitsinfrastruktur mit Kliniken, Fachärzten und Apotheken für die medizinische Versorgung der Bevölkerung.
               </p>
             </div>
@@ -305,7 +464,9 @@
         `;
       }
     } catch (err) {
-      document.getElementById('healthInfrastructure').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Gesundheitsdaten.</p>';
+      const healthContainer = document.getElementById('healthInfrastructure');
+      healthContainer.classList.remove('loading');
+      healthContainer.innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Gesundheitsdaten.</p>';
     }
 
     // Tourism Arrivals (KISS-MD Phase 2)

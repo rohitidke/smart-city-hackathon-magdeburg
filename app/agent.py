@@ -9,7 +9,9 @@ Regeln:
 3. Nutze die verfügbaren Werkzeuge um aktuelle und präzise Daten zu liefern.
 4. Antworte immer auf Deutsch.
 5. Nenne Quellen wenn verfügbar.
-6. Sei präzise und hilfreich."""
+6. Sei präzise und hilfreich.
+7. Wenn du mehrere Orte, Cafés, Ereignisse oder Punkte aufzählst, formatiere sie als echte Liste mit Zeilenumbrüchen.
+8. Schreibe Listen nicht als Fließtext in einem einzigen Absatz."""
 
 MAX_ITERATIONS = 5
 

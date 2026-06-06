@@ -329,6 +329,10 @@
     }
 
     .chat-message {
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+      width: fit-content;
       max-width: 85%;
       padding: .85rem 1rem;
       border-radius: 16px;
@@ -339,14 +343,81 @@
 
     .chat-message.user {
       align-self: flex-end;
+      margin-left: auto;
       background: linear-gradient(135deg, var(--accent), #5b8cff);
       color: white;
     }
 
     .chat-message.assistant {
       align-self: flex-start;
+      margin-right: auto;
       background: var(--surface);
       border: 1px solid var(--border);
+    }
+
+    .chat-message-icon {
+      flex: 0 0 auto;
+      line-height: 1.4;
+    }
+
+    .chat-message-content {
+      min-width: 0;
+    }
+
+    .chat-message-content p,
+    .chat-message-content ul,
+    .chat-message-content ol,
+    .chat-message-content pre,
+    .chat-message-content blockquote {
+      margin: 0 0 .75rem;
+    }
+
+    .chat-message-content p:last-child,
+    .chat-message-content ul:last-child,
+    .chat-message-content ol:last-child,
+    .chat-message-content pre:last-child,
+    .chat-message-content blockquote:last-child {
+      margin-bottom: 0;
+    }
+
+    .chat-message-content ul,
+    .chat-message-content ol {
+      padding-left: 1.25rem;
+    }
+
+    .chat-message-content li + li {
+      margin-top: .25rem;
+    }
+
+    .chat-message-content code {
+      padding: .1rem .35rem;
+      border-radius: 6px;
+      background: rgba(91, 77, 214, 0.14);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .92em;
+    }
+
+    .chat-message-content pre {
+      overflow-x: auto;
+      padding: .75rem;
+      border-radius: 10px;
+      background: rgba(15, 17, 23, 0.72);
+      border: 1px solid var(--border);
+    }
+
+    .chat-message-content pre code {
+      padding: 0;
+      background: transparent;
+    }
+
+    .chat-message-content a {
+      color: var(--accent2);
+    }
+
+    .chat-message-content blockquote {
+      padding-left: .85rem;
+      border-left: 3px solid var(--accent);
+      color: var(--text-muted);
     }
 
     .chat-form {
@@ -450,12 +521,15 @@
           </select>
         </label>
         <p class="chat-mode-copy" id="chat-mode-copy">
-          Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, accidents, transit, etc.).
+          Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, transit, trees, cafes, and more).
         </p>
       </div>
 
       <div class="chat-log" id="chat-log" aria-live="polite">
-        <div class="chat-message assistant"><span style="margin-right: 0.5rem;">🤖</span>Hi! I'm the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.</div>
+        <div class="chat-message assistant">
+          <span class="chat-message-icon">🤖</span>
+          <span class="chat-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.</span>
+        </div>
       </div>
 
       <form class="chat-form" id="chat-form">
@@ -525,39 +599,158 @@
       chat: [
         {
           role: "system",
-          content: "You are a concise, helpful assistant. Answer the user's questions clearly."
+          content: "You are a concise, helpful assistant. Answer the user's questions clearly. If you list multiple items, format them as a real list with line breaks instead of one long paragraph."
         }
       ],
       rag: []
     };
     const modeDescriptions = {
-      agent: "Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, accidents, transit, etc.).",
+      agent: "Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, transit, trees, cafes, and more).",
       chat: "General chat uses the shared assistant directly for open-ended questions and brainstorming.",
       rag: "Knowledge mode searches the indexed Magdeburg sources first and asks the assistant to answer from those results."
     };
     const modeGreetings = {
-      agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.",
+      agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.",
       chat: "Hi! Ask me anything and I will respond here.",
       rag: "Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context."
     };
 
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderInlineMarkdown(text) {
+      let html = escapeHtml(text);
+      html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,!?:;]|$)/g, '$1<em>$2</em>');
+      return html;
+    }
+
+    function renderMarkdown(text) {
+      const lines = text.replace(/\r\n/g, "\n").split("\n");
+      const blocks = [];
+      let paragraph = [];
+      let listItems = [];
+      let listType = null;
+      let codeLines = [];
+      let inCodeBlock = false;
+
+      function flushParagraph() {
+        if (!paragraph.length) return;
+        blocks.push(`<p>${paragraph.map(renderInlineMarkdown).join("<br>")}</p>`);
+        paragraph = [];
+      }
+
+      function flushList() {
+        if (!listItems.length || !listType) return;
+        const tag = listType === "ol" ? "ol" : "ul";
+        blocks.push(`<${tag}>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</${tag}>`);
+        listItems = [];
+        listType = null;
+      }
+
+      function flushCodeBlock() {
+        if (!codeLines.length) return;
+        blocks.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+        codeLines = [];
+      }
+
+      for (const rawLine of lines) {
+        const line = rawLine.trimEnd();
+
+        if (line.trim().startsWith("```")) {
+          flushParagraph();
+          flushList();
+          if (inCodeBlock) {
+            flushCodeBlock();
+            inCodeBlock = false;
+          } else {
+            inCodeBlock = true;
+          }
+          continue;
+        }
+
+        if (inCodeBlock) {
+          codeLines.push(rawLine);
+          continue;
+        }
+
+        if (!line.trim()) {
+          flushParagraph();
+          flushList();
+          continue;
+        }
+
+        const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+        if (headingMatch) {
+          flushParagraph();
+          flushList();
+          const level = headingMatch[1].length;
+          blocks.push(`<h${level}>${renderInlineMarkdown(headingMatch[2])}</h${level}>`);
+          continue;
+        }
+
+        const blockquoteMatch = line.match(/^>\s?(.*)$/);
+        if (blockquoteMatch) {
+          flushParagraph();
+          flushList();
+          blocks.push(`<blockquote>${renderInlineMarkdown(blockquoteMatch[1])}</blockquote>`);
+          continue;
+        }
+
+        const unorderedMatch = line.match(/^\s*[-*]\s+(.*)$/);
+        if (unorderedMatch) {
+          flushParagraph();
+          if (listType && listType !== "ul") flushList();
+          listType = "ul";
+          listItems.push(unorderedMatch[1]);
+          continue;
+        }
+
+        const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
+        if (orderedMatch) {
+          flushParagraph();
+          if (listType && listType !== "ol") flushList();
+          listType = "ol";
+          listItems.push(orderedMatch[1]);
+          continue;
+        }
+
+        flushList();
+        paragraph.push(line);
+      }
+
+      flushParagraph();
+      flushList();
+      flushCodeBlock();
+
+      return blocks.join("");
+    }
+
     function addMessage(role, content) {
       const message = document.createElement("div");
       message.className = `chat-message ${role}`;
+      const text = document.createElement("span");
+      text.className = "chat-message-content";
 
-      // Add AI emoji for assistant messages
       if (role === "assistant") {
         const emoji = document.createElement("span");
-        emoji.textContent = "🤖 ";
-        emoji.style.marginRight = "0.5rem";
+        emoji.className = "chat-message-icon";
+        emoji.textContent = "🤖";
         message.appendChild(emoji);
-
-        const textNode = document.createTextNode(content);
-        message.appendChild(textNode);
+        text.innerHTML = renderMarkdown(content);
       } else {
-        message.textContent = content;
+        text.textContent = content;
       }
 
+      message.appendChild(text);
       chatLog.appendChild(message);
       chatLog.scrollTop = chatLog.scrollHeight;
       return message;
@@ -575,7 +768,7 @@
 
     function readyText(mode) {
       if (mode === "agent") {
-        return "Smart Agent is ready. I can fetch live weather, transit, accident data, and more for Magdeburg.";
+        return "Smart Agent is ready. I can fetch live weather, transit, cafe, and tree data for Magdeburg.";
       }
       if (mode === "rag") {
         return "Knowledge mode is ready. I will search the indexed sources before answering.";

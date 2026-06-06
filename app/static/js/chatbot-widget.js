@@ -10,7 +10,7 @@ class ChatbotWidget {
     this.currentMode = 'agent';
     this.conversations = {
       agent: [],
-      chat: [{ role: 'system', content: 'You are a concise, helpful assistant. Answer the user\'s questions clearly.' }],
+      chat: [{ role: 'system', content: "You are a concise, helpful assistant. Answer the user's questions clearly. If you list multiple items, format them as a real list with line breaks instead of one long paragraph." }],
       rag: []
     };
     this.isSending = false;
@@ -54,7 +54,8 @@ class ChatbotWidget {
 
         <div class="chat-widget-body" id="chatWidgetBody">
           <div class="chat-widget-message assistant">
-            Hi! I'm the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.
+            <span class="chat-widget-message-icon">🤖</span>
+            <span class="chat-widget-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.</span>
           </div>
         </div>
 
@@ -143,19 +144,12 @@ class ChatbotWidget {
 
   renderMessages() {
     const messages = this.conversations[this.currentMode].filter(m => m.role !== 'system');
+    this.body.innerHTML = '';
 
     if (messages.length === 0) {
-      this.body.innerHTML = `
-        <div class="chat-widget-message assistant">
-          ${this.getGreeting()}
-        </div>
-      `;
+      this.addMessage('assistant', this.getGreeting());
     } else {
-      this.body.innerHTML = messages.map(msg => `
-        <div class="chat-widget-message ${msg.role}">
-          ${msg.content}
-        </div>
-      `).join('');
+      messages.forEach((msg) => this.addMessage(msg.role, msg.content));
     }
 
     // Scroll to bottom
@@ -164,24 +158,159 @@ class ChatbotWidget {
 
   getGreeting() {
     const greetings = {
-      agent: 'Hi! I\'m the Magdeburg Smart Agent. Ask me about weather, accidents, transit, trees, cafes, or any Magdeburg data.',
+      agent: 'Hi! I\'m the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.',
       chat: 'Hi! Ask me anything and I will respond here.',
       rag: 'Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context.'
     };
     return greetings[this.currentMode];
   }
 
+  escapeHtml(value) {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  renderInlineMarkdown(text) {
+    let html = this.escapeHtml(text);
+    html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,!?:;]|$)/g, '$1<em>$2</em>');
+    return html;
+  }
+
+  renderMarkdown(text) {
+    const lines = text.replace(/\r\n/g, '\n').split('\n');
+    const blocks = [];
+    let paragraph = [];
+    let listItems = [];
+    let listType = null;
+    let codeLines = [];
+    let inCodeBlock = false;
+
+    const flushParagraph = () => {
+      if (!paragraph.length) return;
+      blocks.push(`<p>${paragraph.map((line) => this.renderInlineMarkdown(line)).join('<br>')}</p>`);
+      paragraph = [];
+    };
+
+    const flushList = () => {
+      if (!listItems.length || !listType) return;
+      const tag = listType === 'ol' ? 'ol' : 'ul';
+      blocks.push(`<${tag}>${listItems.map((item) => `<li>${this.renderInlineMarkdown(item)}</li>`).join('')}</${tag}>`);
+      listItems = [];
+      listType = null;
+    };
+
+    const flushCodeBlock = () => {
+      if (!codeLines.length) return;
+      blocks.push(`<pre><code>${this.escapeHtml(codeLines.join('\n'))}</code></pre>`);
+      codeLines = [];
+    };
+
+    for (const rawLine of lines) {
+      const line = rawLine.trimEnd();
+
+      if (line.trim().startsWith('```')) {
+        flushParagraph();
+        flushList();
+        if (inCodeBlock) {
+          flushCodeBlock();
+          inCodeBlock = false;
+        } else {
+          inCodeBlock = true;
+        }
+        continue;
+      }
+
+      if (inCodeBlock) {
+        codeLines.push(rawLine);
+        continue;
+      }
+
+      if (!line.trim()) {
+        flushParagraph();
+        flushList();
+        continue;
+      }
+
+      const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+      if (headingMatch) {
+        flushParagraph();
+        flushList();
+        const level = headingMatch[1].length;
+        blocks.push(`<h${level}>${this.renderInlineMarkdown(headingMatch[2])}</h${level}>`);
+        continue;
+      }
+
+      const blockquoteMatch = line.match(/^>\s?(.*)$/);
+      if (blockquoteMatch) {
+        flushParagraph();
+        flushList();
+        blocks.push(`<blockquote>${this.renderInlineMarkdown(blockquoteMatch[1])}</blockquote>`);
+        continue;
+      }
+
+      const unorderedMatch = line.match(/^\s*[-*]\s+(.*)$/);
+      if (unorderedMatch) {
+        flushParagraph();
+        if (listType && listType !== 'ul') flushList();
+        listType = 'ul';
+        listItems.push(unorderedMatch[1]);
+        continue;
+      }
+
+      const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
+      if (orderedMatch) {
+        flushParagraph();
+        if (listType && listType !== 'ol') flushList();
+        listType = 'ol';
+        listItems.push(orderedMatch[1]);
+        continue;
+      }
+
+      flushList();
+      paragraph.push(line);
+    }
+
+    flushParagraph();
+    flushList();
+    flushCodeBlock();
+
+    return blocks.join('');
+  }
+
   addMessage(role, content) {
     const messageEl = document.createElement('div');
     messageEl.className = `chat-widget-message ${role}`;
-    messageEl.textContent = content;
+
+    if (role === 'assistant') {
+      const iconEl = document.createElement('span');
+      iconEl.className = 'chat-widget-message-icon';
+      iconEl.textContent = '🤖';
+      messageEl.appendChild(iconEl);
+    }
+
+    const contentEl = document.createElement('span');
+    contentEl.className = 'chat-widget-message-content';
+    if (role === 'assistant') {
+      contentEl.innerHTML = this.renderMarkdown(content);
+    } else {
+      contentEl.textContent = content;
+    }
+    messageEl.appendChild(contentEl);
+
     this.body.appendChild(messageEl);
     this.body.scrollTop = this.body.scrollHeight;
   }
 
   updateStatus() {
     const statusTexts = {
-      agent: 'Smart Agent is ready. I can fetch live weather, transit, accident data, and more.',
+      agent: 'Smart Agent is ready. I can fetch live weather, transit, cafe, and tree data.',
       chat: 'General chat is ready. Keep prompts concise.',
       rag: 'Knowledge mode is ready. I will search indexed sources before answering.'
     };

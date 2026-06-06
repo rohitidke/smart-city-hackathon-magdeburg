@@ -3,6 +3,8 @@ import os
 import requests
 from qdrant_client import QdrantClient
 
+import app.env  # noqa: F401
+
 EMBEDDING_URL = os.getenv("EMBEDDING_URL", "http://localhost:11434")
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 QDRANT_COLLECTION = os.getenv("QDRANT_COLLECTION", "magdeburg")
@@ -101,6 +103,7 @@ def answer(question: str, k: int = 5, history: list[dict[str, str]] | None = Non
     prompt = f"""Beantworte die Frage auf Deutsch. Stütze dich AUSSCHLIESSLICH
 auf die folgenden Quellen. Wenn die Quellen die Frage nicht beantworten,
 sage das ehrlich. Nenne am Ende die genutzten Quellen.
+Wenn du mehrere Punkte aufzählst, formatiere sie als echte Liste mit Zeilenumbrüchen.
 
 Bisherige Unterhaltung:
 {conversation_history or "Keine vorherige Unterhaltung."}

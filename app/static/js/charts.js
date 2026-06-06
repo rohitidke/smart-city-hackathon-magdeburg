@@ -626,7 +626,7 @@ function createEmploymentChart(ctx, employmentData) {
 /**
  * Create schools by type bar chart (Education - Phase 2)
  */
-function createSchoolsByTypeChart(ctx, schoolsByType) {
+function createSchoolsByTypeChart(ctx, schoolsByType, year = 2023) {
   const types = Object.keys(schoolsByType);
   const counts = Object.values(schoolsByType);
   const colors = getThemeColors();
@@ -644,11 +644,32 @@ function createSchoolsByTypeChart(ctx, schoolsByType) {
     plugins: {
       title: {
         display: true,
-        text: 'Schulen nach Schultyp (2023)',
+        text: `Schulen nach Schultyp (${year})`,
         color: colors.textColor,
       },
     },
     indexAxis: 'y',
+    scales: {
+      x: {
+        ticks: {
+          color: colors.mutedColor,
+          precision: 0,
+        },
+        grid: {
+          color: colors.gridColor,
+        },
+        beginAtZero: true,
+      },
+      y: {
+        ticks: {
+          color: colors.mutedColor,
+          autoSkip: false,
+        },
+        grid: {
+          color: colors.gridColor,
+        },
+      },
+    },
   });
 }
 

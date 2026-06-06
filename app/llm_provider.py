@@ -5,6 +5,8 @@ from typing import Any
 
 import requests
 
+import app.env  # noqa: F401
+
 
 def get_provider():
     if os.getenv("OPENAI_API_KEY"):
@@ -20,7 +22,12 @@ class OpenAIProvider:
     def __init__(self):
         from openai import OpenAI
 
-        self.client = OpenAI()
+        client_kwargs = {}
+        base_url = os.getenv("OPENAI_BASE_URL", "").strip()
+        if base_url:
+            client_kwargs["base_url"] = base_url.rstrip("/")
+
+        self.client = OpenAI(**client_kwargs)
         self.model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
     def chat_with_tools(

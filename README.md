@@ -17,6 +17,14 @@ Install dependencies:
 uv sync
 ```
 
+Create a local env file for secrets:
+
+```bash
+OPENAI_API_KEY=your_key_here
+OPENAI_BASE_URL=https://eu.api.openai.com/v1
+OPENAI_MODEL=gpt-4o-mini
+```
+
 Start the development server:
 
 ```bash

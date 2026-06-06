@@ -133,16 +133,22 @@
 
 /* Chat Messages */
 .chat-widget-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: fit-content;
   max-width: 85%;
   padding: 0.75rem 1rem;
   border-radius: 12px;
   font-size: 0.9rem;
   line-height: 1.4;
+  white-space: pre-wrap;
   word-wrap: break-word;
 }
 
 .chat-widget-message.user {
   align-self: flex-end;
+  margin-left: auto;
   background: linear-gradient(135deg, var(--accent), #5b8cff);
   color: white;
   border-bottom-right-radius: 4px;
@@ -150,15 +156,76 @@
 
 .chat-widget-message.assistant {
   align-self: flex-start;
+  margin-right: auto;
   background: var(--surface-elevated);
   color: var(--text);
   border: 1px solid var(--border);
   border-bottom-left-radius: 4px;
 }
 
-.chat-widget-message.assistant::before {
-  content: "🤖 ";
-  margin-right: 0.25rem;
+.chat-widget-message-icon {
+  flex: 0 0 auto;
+  line-height: 1.4;
+}
+
+.chat-widget-message-content {
+  min-width: 0;
+}
+
+.chat-widget-message-content p,
+.chat-widget-message-content ul,
+.chat-widget-message-content ol,
+.chat-widget-message-content pre,
+.chat-widget-message-content blockquote {
+  margin: 0 0 0.75rem;
+}
+
+.chat-widget-message-content p:last-child,
+.chat-widget-message-content ul:last-child,
+.chat-widget-message-content ol:last-child,
+.chat-widget-message-content pre:last-child,
+.chat-widget-message-content blockquote:last-child {
+  margin-bottom: 0;
+}
+
+.chat-widget-message-content ul,
+.chat-widget-message-content ol {
+  padding-left: 1.25rem;
+}
+
+.chat-widget-message-content li + li {
+  margin-top: 0.25rem;
+}
+
+.chat-widget-message-content code {
+  padding: 0.1rem 0.35rem;
+  border-radius: 6px;
+  background: rgba(91, 77, 214, 0.14);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+.chat-widget-message-content pre {
+  overflow-x: auto;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: rgba(15, 17, 23, 0.72);
+  border: 1px solid var(--border);
+}
+
+.chat-widget-message-content pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.chat-widget-message-content a {
+  color: var(--accent2);
+}
+
+.chat-widget-message-content blockquote {
+  padding-left: 0.85rem;
+  border-left: 3px solid var(--accent);
+  color: var(--text-muted);
 }
 
 /* Chat Footer */
