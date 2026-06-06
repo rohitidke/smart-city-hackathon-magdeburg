@@ -100,10 +100,12 @@ def answer(question: str, k: int = 5, history: list[dict[str, str]] | None = Non
         for h in hits
     )
     conversation_history = format_history(history)
-    prompt = f"""Beantworte die Frage auf Deutsch. Stütze dich AUSSCHLIESSLICH
-auf die folgenden Quellen. Wenn die Quellen die Frage nicht beantworten,
-sage das ehrlich. Nenne am Ende die genutzten Quellen.
-Wenn du mehrere Punkte aufzählst, formatiere sie als echte Liste mit Zeilenumbrüchen.
+    prompt = f"""Beantworte die Frage in derselben Sprache wie die Frage des Nutzers
+(Deutsch oder Englisch). Stütze dich AUSSCHLIESSLICH auf die folgenden Quellen.
+Wenn die Quellen die Frage nicht beantworten, sage das ehrlich.
+Nenne am Ende die genutzten Quellen.
+Wenn du mehrere Punkte aufzählst, formatiere sie als Markdown-Liste mit Bindestrichen und Zeilenumbrüchen.
+Schreibe dabei jeden Punkt im Format `- **Titel**` und die Erläuterung in den folgenden Zeilen.
 
 Bisherige Unterhaltung:
 {conversation_history or "Keine vorherige Unterhaltung."}

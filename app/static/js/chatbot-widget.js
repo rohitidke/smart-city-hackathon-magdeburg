@@ -8,9 +8,9 @@ class ChatbotWidget {
     this.llmConfigured = config.llmConfigured || false;
     this.ragConfigured = config.ragConfigured || false;
     this.currentMode = 'agent';
+    this.isMaximized = localStorage.getItem('chatWidgetMaximized') === 'true';
     this.conversations = {
       agent: [],
-      chat: [{ role: 'system', content: "You are a concise, helpful assistant. Answer the user's questions clearly. If you list multiple items, format them as a real list with line breaks instead of one long paragraph." }],
       rag: []
     };
     this.isSending = false;
@@ -38,16 +38,20 @@ class ChatbotWidget {
             <span>✨</span>
             <span>AI Assistant</span>
           </div>
-          <button class="chat-widget-close" id="chatWidgetClose" aria-label="Close chat">
-            ×
-          </button>
+          <div class="chat-widget-header-actions">
+            <button class="chat-widget-header-btn" id="chatWidgetMaximize" aria-label="Maximize chat" title="Maximize chat">
+              ⛶
+            </button>
+            <button class="chat-widget-close" id="chatWidgetClose" aria-label="Close chat">
+              ×
+            </button>
+          </div>
         </div>
 
         <div class="chat-widget-mode">
           <label for="chatWidgetMode" style="font-weight: 600; color: var(--text-muted);">Mode:</label>
           <select id="chatWidgetMode" ${!this.llmConfigured ? 'disabled' : ''}>
             <option value="agent">Smart Agent (Tools)</option>
-            <option value="chat">General Chat</option>
             <option value="rag" ${!this.ragConfigured ? 'disabled' : ''}>Knowledge Base (RAG)</option>
           </select>
         </div>
@@ -55,7 +59,7 @@ class ChatbotWidget {
         <div class="chat-widget-body" id="chatWidgetBody">
           <div class="chat-widget-message assistant">
             <span class="chat-widget-message-icon">🤖</span>
-            <span class="chat-widget-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.</span>
+            <span class="chat-widget-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
           </div>
         </div>
 
@@ -92,11 +96,13 @@ class ChatbotWidget {
     this.button = document.getElementById('chatWidgetButton');
     this.window = document.getElementById('chatWidgetWindow');
     this.closeBtn = document.getElementById('chatWidgetClose');
+    this.maximizeBtn = document.getElementById('chatWidgetMaximize');
     this.body = document.getElementById('chatWidgetBody');
     this.input = document.getElementById('chatWidgetInput');
     this.sendBtn = document.getElementById('chatWidgetSend');
     this.status = document.getElementById('chatWidgetStatus');
     this.modeSelect = document.getElementById('chatWidgetMode');
+    this.updateWindowState();
   }
 
   attachEventListeners() {
@@ -105,6 +111,9 @@ class ChatbotWidget {
 
     // Close chat
     this.closeBtn.addEventListener('click', () => this.closeChat());
+
+    // Maximize chat
+    this.maximizeBtn.addEventListener('click', () => this.toggleMaximize());
 
     // Send message
     this.sendBtn.addEventListener('click', () => this.sendMessage());
@@ -142,6 +151,19 @@ class ChatbotWidget {
     this.button.classList.remove('open');
   }
 
+  toggleMaximize() {
+    this.isMaximized = !this.isMaximized;
+    localStorage.setItem('chatWidgetMaximized', String(this.isMaximized));
+    this.updateWindowState();
+  }
+
+  updateWindowState() {
+    this.window.classList.toggle('maximized', this.isMaximized);
+    this.maximizeBtn.textContent = this.isMaximized ? '❐' : '⛶';
+    this.maximizeBtn.setAttribute('aria-label', this.isMaximized ? 'Restore chat size' : 'Maximize chat');
+    this.maximizeBtn.setAttribute('title', this.isMaximized ? 'Restore chat size' : 'Maximize chat');
+  }
+
   renderMessages() {
     const messages = this.conversations[this.currentMode].filter(m => m.role !== 'system');
     this.body.innerHTML = '';
@@ -158,8 +180,7 @@ class ChatbotWidget {
 
   getGreeting() {
     const greetings = {
-      agent: 'Hi! I\'m the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.',
-      chat: 'Hi! Ask me anything and I will respond here.',
+      agent: 'Hi! I\'m the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.',
       rag: 'Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context.'
     };
     return greetings[this.currentMode];
@@ -200,8 +221,8 @@ class ChatbotWidget {
 
     const flushList = () => {
       if (!listItems.length || !listType) return;
-      const tag = listType === 'ol' ? 'ol' : 'ul';
-      blocks.push(`<${tag}>${listItems.map((item) => `<li>${this.renderInlineMarkdown(item)}</li>`).join('')}</${tag}>`);
+      const tag = 'ul';
+      blocks.push(`<${tag}>${listItems.map((item) => `<li>${item.split('\n').map((line) => this.renderInlineMarkdown(line)).join('<br>')}</li>`).join('')}</${tag}>`);
       listItems = [];
       listType = null;
     };
@@ -264,16 +285,20 @@ class ChatbotWidget {
         continue;
       }
 
-      const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
-      if (orderedMatch) {
+      const orderedMatch = line.match(/^\s*\d+\.\s*(.*)$/);
+      if (orderedMatch && orderedMatch[1]) {
         flushParagraph();
-        if (listType && listType !== 'ol') flushList();
-        listType = 'ol';
+        if (listType && listType !== 'ul') flushList();
+        listType = 'ul';
         listItems.push(orderedMatch[1]);
         continue;
       }
 
-      flushList();
+      if (listItems.length) {
+        listItems[listItems.length - 1] += `\n${line.trim()}`;
+        continue;
+      }
+
       paragraph.push(line);
     }
 
@@ -311,7 +336,6 @@ class ChatbotWidget {
   updateStatus() {
     const statusTexts = {
       agent: 'Smart Agent is ready. I can fetch live weather, transit, cafe, and tree data.',
-      chat: 'General chat is ready. Keep prompts concise.',
       rag: 'Knowledge mode is ready. I will search indexed sources before answering.'
     };
 

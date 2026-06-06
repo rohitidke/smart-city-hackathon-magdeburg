@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+import re
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
@@ -31,6 +32,9 @@ async def lifespan(app: FastAPI):
     import app.tools.accidents  # noqa: F401
     import app.tools.rent  # noqa: F401
     import app.tools.climate  # noqa: F401
+    import app.tools.economy  # noqa: F401
+    import app.tools.health  # noqa: F401
+    import app.tools.mobility  # noqa: F401
     import app.tools.tax  # noqa: F401
     import app.tools.population  # noqa: F401
     import app.tools.transit  # noqa: F401
@@ -67,7 +71,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: list[ChatMessage]
-    mode: Literal["chat", "rag", "agent"] = "agent"
+    mode: Literal["rag", "agent"] = "agent"
 
 
 class ChatResponse(BaseModel):
@@ -141,6 +145,58 @@ def post_rag_chat(messages: list[dict[str, str]]) -> str:
         raise HTTPException(status_code=502, detail=f"RAG backend request failed: {exc}") from exc
 
 
+def format_response_for_chat(text: str) -> str:
+    lines = text.splitlines()
+    if len(lines) < 4:
+        return text
+
+    title_pattern = re.compile(r"^[A-ZÄÖÜ][^:]{2,80}:$")
+    blocks: list[tuple[str, list[str]]] = []
+    intro_lines: list[str] = []
+    index = 0
+
+    while index < len(lines):
+        line = lines[index].strip()
+        if not line:
+            if not blocks:
+                intro_lines.append(lines[index])
+            index += 1
+            continue
+
+        if title_pattern.match(line):
+            description: list[str] = []
+            index += 1
+            while index < len(lines):
+                next_line = lines[index].strip()
+                if not next_line:
+                    break
+                if title_pattern.match(next_line):
+                    break
+                description.append(next_line)
+                index += 1
+
+            if description:
+                blocks.append((line[:-1], description))
+                continue
+
+        if blocks:
+            return text
+
+        intro_lines.append(lines[index])
+        index += 1
+
+    if len(blocks) < 2:
+        return text
+
+    formatted_blocks = [
+        f"- **{title}**\n  " + "\n  ".join(description)
+        for title, description in blocks
+    ]
+    intro = "\n".join(intro_lines).strip()
+    parts = [part for part in [intro, "\n".join(formatted_blocks)] if part]
+    return "\n\n".join(parts)
+
+
 # ---------------------------------------------------------------------------
 # Routes
 # ---------------------------------------------------------------------------
@@ -180,6 +236,7 @@ async def index(request: Request):
         cafes_geojson,
     )
     from collections import defaultdict
+    from app.tools import get_available_tool_names
 
     overview = load_json_data("overview")
     environment = load_json_data("environment")
@@ -285,6 +342,7 @@ async def index(request: Request):
         "quality": quality,
         "facts": facts,
         "kpis": kpis,
+        "tools_count": len(get_available_tool_names()),
     }
     return templates.TemplateResponse(request=request, name="index.html", context=context)
 
@@ -426,11 +484,11 @@ async def chat(payload: ChatRequest):
         )
         history = [m for m in messages[:-1] if m["role"] in ("user", "assistant")]
         response = await asyncio.to_thread(run_agent, user_msg, history)
-        return ChatResponse(response=response)
+        return ChatResponse(response=format_response_for_chat(response))
 
     if payload.mode == "rag":
         response = await asyncio.to_thread(post_rag_chat, messages)
-        return ChatResponse(response=response)
+        return ChatResponse(response=format_response_for_chat(response))
 
     response = await asyncio.to_thread(post_llm_chat, messages)
     return ChatResponse(response=response["response"])

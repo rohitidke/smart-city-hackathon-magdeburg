@@ -516,19 +516,18 @@
           <span>Mode</span>
           <select id="chat-mode" {% if not llm_configured %}disabled{% endif %}>
             <option value="agent">Smart Agent (Tools)</option>
-            <option value="chat">General Chat</option>
             <option value="rag" {% if not rag_configured %}disabled{% endif %}>Knowledge Base (RAG)</option>
           </select>
         </label>
         <p class="chat-mode-copy" id="chat-mode-copy">
-          Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, transit, trees, cafes, and more).
+          Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions about weather, air quality, transit, rents, healthcare, mobility, cafes, and more.
         </p>
       </div>
 
       <div class="chat-log" id="chat-log" aria-live="polite">
         <div class="chat-message assistant">
           <span class="chat-message-icon">🤖</span>
-          <span class="chat-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.</span>
+          <span class="chat-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
         </div>
       </div>
 
@@ -596,22 +595,14 @@
     const chatSubmit = document.getElementById("chat-submit");
     const conversations = {
       agent: [],
-      chat: [
-        {
-          role: "system",
-          content: "You are a concise, helpful assistant. Answer the user's questions clearly. If you list multiple items, format them as a real list with line breaks instead of one long paragraph."
-        }
-      ],
       rag: []
     };
     const modeDescriptions = {
       agent: "Smart Agent uses AI function calling with live data tools to answer Magdeburg-specific questions (weather, transit, trees, cafes, and more).",
-      chat: "General chat uses the shared assistant directly for open-ended questions and brainstorming.",
       rag: "Knowledge mode searches the indexed Magdeburg sources first and asks the assistant to answer from those results."
     };
     const modeGreetings = {
-      agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, transit, trees, cafes, or any Magdeburg data.",
-      chat: "Hi! Ask me anything and I will respond here.",
+      agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.",
       rag: "Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context."
     };
 
@@ -650,8 +641,8 @@
 
       function flushList() {
         if (!listItems.length || !listType) return;
-        const tag = listType === "ol" ? "ol" : "ul";
-        blocks.push(`<${tag}>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</${tag}>`);
+        const tag = "ul";
+        blocks.push(`<${tag}>${listItems.map((item) => `<li>${item.split("\n").map(renderInlineMarkdown).join("<br>")}</li>`).join("")}</${tag}>`);
         listItems = [];
         listType = null;
       }
@@ -714,16 +705,20 @@
           continue;
         }
 
-        const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
-        if (orderedMatch) {
+        const orderedMatch = line.match(/^\s*\d+\.\s*(.*)$/);
+        if (orderedMatch && orderedMatch[1]) {
           flushParagraph();
-          if (listType && listType !== "ol") flushList();
-          listType = "ol";
+          if (listType && listType !== "ul") flushList();
+          listType = "ul";
           listItems.push(orderedMatch[1]);
           continue;
         }
 
-        flushList();
+        if (listItems.length) {
+          listItems[listItems.length - 1] += `\n${line.trim()}`;
+          continue;
+        }
+
         paragraph.push(line);
       }
 
@@ -773,7 +768,7 @@
       if (mode === "rag") {
         return "Knowledge mode is ready. I will search the indexed sources before answering.";
       }
-      return "General chat is ready. Keep prompts concise because the shared model has a small context window.";
+      return "Assistant is ready.";
     }
 
     function unavailableText(mode) {
@@ -783,16 +778,14 @@
       if (mode === "agent") {
         return "Smart Agent is not configured yet. Set OPENAI_API_KEY or SERVER_URL+SERVER_TOKEN.";
       }
-      return "Chat is not configured yet. Set SERVER_URL and SERVER_TOKEN before using the assistant.";
+      return "Assistant is not configured yet.";
     }
 
     function thinkingText(mode) {
       if (mode === "agent") {
         return "Agent is thinking and calling tools...";
       }
-      return mode === "rag"
-        ? "Searching the knowledge base and drafting a grounded answer..."
-        : "Waiting for response...";
+      return "Searching the knowledge base and drafting a grounded answer...";
     }
 
     function renderConversation() {
