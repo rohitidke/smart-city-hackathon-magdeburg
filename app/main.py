@@ -39,7 +39,20 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Smart City Dashboard Magdeburg", lifespan=lifespan)
 
+# Mount static files
+app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static"), name="static")
+
 templates = Jinja2Templates(directory=Path(__file__).parent / "templates")
+
+# Add custom template filter for number formatting
+def format_number(value):
+    """Format number with German thousand separator."""
+    try:
+        return f"{int(value):,}".replace(",", ".")
+    except (ValueError, TypeError):
+        return value
+
+templates.env.filters["format_number"] = format_number
 
 # ---------------------------------------------------------------------------
 # Models
@@ -132,13 +145,49 @@ def post_rag_chat(messages: list[dict[str, str]]) -> str:
 # ---------------------------------------------------------------------------
 
 
+def load_json_data(filename: str) -> dict:
+    """Load JSON data from static/data directory."""
+    data_path = Path(__file__).parent / "static" / "data" / f"{filename}.json"
+    try:
+        with open(data_path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+
 @app.get("/")
-async def dashboard(request: Request):
+async def index(request: Request):
+    """Landing page with category overview."""
+    overview = load_json_data("overview")
+    environment = load_json_data("environment")
+    mobility = load_json_data("mobility")
+    living = load_json_data("living")
+    economy = load_json_data("economy")
+    quality = load_json_data("quality")
+    facts = load_json_data("facts")
+
+    context = {
+        "request": request,
+        "overview": overview,
+        "environment": environment,
+        "mobility": mobility,
+        "living": living,
+        "economy": economy,
+        "quality": quality,
+        "facts": facts,
+    }
+    return templates.TemplateResponse(request=request, name="index.html", context=context)
+
+
+@app.get("/chat")
+async def chat_page(request: Request):
+    """AI Assistant chat page (formerly dashboard)."""
     from app.data_loader import trees_data, accidents_data, transit_stops, cafes_geojson
     from app.tools import get_available_tool_names
 
     context = {
-        "title": "Smart City Dashboard Magdeburg",
+        "request": request,
+        "title": "KI-Assistent - Smart City Dashboard Magdeburg",
         "llm_configured": llm_is_configured(),
         "rag_configured": rag_is_configured(),
         "tools": get_available_tool_names(),
@@ -148,8 +197,89 @@ async def dashboard(request: Request):
             "transit_stops": len(transit_stops),
             "cafes": len(cafes_geojson.get("features", [])),
         },
+        "breadcrumbs": ["KI-Assistent"],
     }
-    return templates.TemplateResponse(request=request, name="dashboard.html", context=context)
+    return templates.TemplateResponse(request=request, name="chat.html", context=context)
+
+
+@app.get("/environment")
+async def environment_page(request: Request):
+    """Environment & Climate category page."""
+    environment = load_json_data("environment")
+    facts = load_json_data("facts")
+    env_facts = [f for f in facts if f.get("category") in ["Umwelt", "Klima"]]
+
+    context = {
+        "request": request,
+        "environment": environment,
+        "facts": env_facts[:3],
+        "breadcrumbs": ["Umwelt & Klima"],
+    }
+    return templates.TemplateResponse(request=request, name="environment.html", context=context)
+
+
+@app.get("/mobility")
+async def mobility_page(request: Request):
+    """Mobility & Safety category page."""
+    mobility = load_json_data("mobility")
+    facts = load_json_data("facts")
+    mobility_facts = [f for f in facts if f.get("category") == "Mobilität"]
+
+    context = {
+        "request": request,
+        "mobility": mobility,
+        "facts": mobility_facts[:3],
+        "breadcrumbs": ["Mobilität & Sicherheit"],
+    }
+    return templates.TemplateResponse(request=request, name="mobility.html", context=context)
+
+
+@app.get("/living")
+async def living_page(request: Request):
+    """Living & Housing category page."""
+    living = load_json_data("living")
+    facts = load_json_data("facts")
+    living_facts = [f for f in facts if f.get("category") == "Wohnen"]
+
+    context = {
+        "request": request,
+        "living": living,
+        "facts": living_facts[:3],
+        "breadcrumbs": ["Wohnen & Leben"],
+    }
+    return templates.TemplateResponse(request=request, name="living.html", context=context)
+
+
+@app.get("/economy")
+async def economy_page(request: Request):
+    """Economy & Finance category page."""
+    economy = load_json_data("economy")
+    facts = load_json_data("facts")
+    economy_facts = [f for f in facts if f.get("category") == "Wirtschaft"]
+
+    context = {
+        "request": request,
+        "economy": economy,
+        "facts": economy_facts[:3],
+        "breadcrumbs": ["Wirtschaft & Finanzen"],
+    }
+    return templates.TemplateResponse(request=request, name="economy.html", context=context)
+
+
+@app.get("/quality")
+async def quality_page(request: Request):
+    """Quality of Life category page."""
+    quality = load_json_data("quality")
+    facts = load_json_data("facts")
+    quality_facts = [f for f in facts if f.get("category") in ["Kultur", "Bevölkerung"]]
+
+    context = {
+        "request": request,
+        "quality": quality,
+        "facts": quality_facts[:3],
+        "breadcrumbs": ["Lebensqualität"],
+    }
+    return templates.TemplateResponse(request=request, name="quality.html", context=context)
 
 
 @app.post("/api/chat", response_model=ChatResponse)

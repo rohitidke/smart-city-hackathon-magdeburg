@@ -1,0 +1,37 @@
+[
+  {
+    "category": "Umwelt",
+    "text": "Magdeburg hat über 85.302 registrierte Straßenbäume",
+    "source": "Baumkataster Magdeburg 2024"
+  },
+  {
+    "category": "Klima",
+    "text": "Otto von Guericke erfand 1654 die Vakuumpumpe in Magdeburg",
+    "source": "Historische Aufzeichnungen"
+  },
+  {
+    "category": "Mobilität",
+    "text": "Von 3.456 Unfällen waren 1.515 Fahrradunfälle",
+    "source": "Unfallatlas Magdeburg 2016-2023"
+  },
+  {
+    "category": "Wohnen",
+    "text": "Die Mietpreise variieren stark zwischen den Stadtteilen",
+    "source": "Mietspiegel Magdeburg 2024"
+  },
+  {
+    "category": "Wirtschaft",
+    "text": "Die Steuereinnahmen der Stadt zeigen einen positiven Wachstumstrend",
+    "source": "Steuereinnahmen-Statistik"
+  },
+  {
+    "category": "Kultur",
+    "text": "Die Grüne Zitadelle ist Hundertwassers letztes Bauwerk",
+    "source": "Architekturgeschichte"
+  },
+  {
+    "category": "Bevölkerung",
+    "text": "Magdeburg ist die Landeshauptstadt von Sachsen-Anhalt",
+    "source": "Öffentliche Information"
+  }
+]

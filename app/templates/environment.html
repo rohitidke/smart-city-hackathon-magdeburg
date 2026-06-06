@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}Umwelt & Klima - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>🌳 Umwelt & Klima</h1>
+  <p class="tagline">Baumbestand, Klimadaten und Luftqualität in Magdeburg</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Tree Statistics Card -->
+  <div class="viz-card">
+    <h3>🌳 Baumbestand nach Arten</h3>
+    <div class="chart-container">
+      <canvas id="treeSpeciesChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      Magdeburg hat <strong>{{environment.total_trees | format_number}} registrierte Straßenbäume</strong> in verschiedenen Arten.
+    </div>
+  </div>
+
+  <!-- Climate Trend Card -->
+  <div class="viz-card">
+    <h3>🌡️ Temperaturentwicklung</h3>
+    <div class="chart-container">
+      <canvas id="climateTrendChart"></canvas>
+    </div>
+    {% if environment.insight %}
+    <div class="viz-insight">
+      <strong>Klimawandel:</strong> {{environment.insight}}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Air Quality Card -->
+  <div class="viz-card">
+    <h3>💨 Luftqualität (Live)</h3>
+    <div id="airQuality" class="loading">Lade Luftqualitätsdaten...</div>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+      Daten von sensor.community Sensoren im Stadtgebiet
+    </p>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Tree species chart
+    const treeData = {{ environment.top_species | tojson }};
+    const treeCtx = document.getElementById('treeSpeciesChart').getContext('2d');
+    ChartHelpers.createTreeSpeciesChart(treeCtx, treeData);
+
+    // Climate trend chart
+    const climateData = {{ environment.climate_trend | tojson }};
+    if (climateData && climateData.length > 0) {
+      const climateCtx = document.getElementById('climateTrendChart').getContext('2d');
+      ChartHelpers.createClimateTrendChart(climateCtx, climateData);
+    }
+
+    // Fetch live air quality data
+    try {
+      const response = await fetch('/api/live/air-quality');
+      const data = await response.json();
+
+      const airQualityDiv = document.getElementById('airQuality');
+
+      if (data.pm10 || data.pm25) {
+        airQualityDiv.innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm); text-align: center;">
+              <div style="font-size: 2rem; font-weight: 700; color: var(--accent2);">${data.pm10 || 'N/A'}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">PM10 (µg/m³)</div>
+            </div>
+            <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm); text-align: center;">
+              <div style="font-size: 2rem; font-weight: 700; color: var(--accent2);">${data.pm25 || 'N/A'}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">PM2.5 (µg/m³)</div>
+            </div>
+            <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm); text-align: center;">
+              <div style="font-size: 2rem; font-weight: 700; color: var(--accent);">${data.sensors || 0}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">Aktive Sensoren</div>
+            </div>
+          </div>
+        `;
+      } else {
+        airQualityDiv.innerHTML = '<p style="color: var(--text-muted);">Keine Luftqualitätsdaten verfügbar.</p>';
+      }
+    } catch (error) {
+      document.getElementById('airQuality').innerHTML =
+        '<p style="color: var(--danger);">Fehler beim Laden der Luftqualitätsdaten.</p>';
+    }
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+  "total_accidents": 3456,
+  "accidents_by_year": {
+    "2020": 810,
+    "2022": 864,
+    "2023": 925,
+    "2024": 857
+  },
+  "accidents_by_type": {
+    "Fahrrad": 1515,
+    "PKW": 2710,
+    "Fußgänger": 445,
+    "Motorrad": 258
+  },
+  "transit_stops": 463,
+  "insight": "Unfälle sind von 2020 bis 2024 um 6% gestiegen"
+}

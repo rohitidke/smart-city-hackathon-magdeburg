@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Lebensqualität - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>🎨 Lebensqualität</h1>
+  <p class="tagline">Kultur, Gastronomie und was Magdeburg lebenswert macht</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Cafes Map Card -->
+  <div class="viz-card">
+    <h3>☕ Cafés & Restaurants in Magdeburg</h3>
+    <div class="map-container" id="cafesMap"></div>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+      Entdecken Sie die vielfältige Gastronomieszene der Stadt. Klicken Sie auf die Marker für Details.
+    </p>
+  </div>
+
+  <!-- Cafes Stats Card -->
+  <div class="viz-card">
+    <h3>🍽️ Gastronomie-Kennzahlen</h3>
+    <div style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 3.5rem; font-weight: 700; color: var(--accent2);">{{quality.cafes_count}}</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Cafés & Restaurants</div>
+    </div>
+    <div class="viz-insight">
+      {{quality.insight}}
+    </div>
+  </div>
+
+  <!-- Cultural Highlights Card -->
+  <div class="viz-card">
+    <h3>🏛️ Kulturelle Highlights</h3>
+    <div style="padding: 1rem 0;">
+      <div style="display: grid; gap: 1rem;">
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">🎭 Theater & Bühnen</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Das Theater Magdeburg bietet Oper, Ballett, Schauspiel und Konzerte auf höchstem Niveau.
+          </p>
+        </div>
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">⛪ Magdeburger Dom</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Der älteste gotische Dom Deutschlands ist ein architektonisches Meisterwerk und Wahrzeichen der Stadt.
+          </p>
+        </div>
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">🏗️ Grüne Zitadelle</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Hundertwassers letztes Bauwerk – ein buntes Wohn- und Kulturzentrum mitten in der Stadt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Green Spaces Card -->
+  <div class="viz-card">
+    <h3>🌳 Grün & Erholung</h3>
+    <div style="padding: 1rem 0;">
+      <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+        Magdeburg bietet zahlreiche Parks und Grünflächen zur Erholung.
+      </p>
+      <div style="display: grid; gap: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+          <span style="font-size: 2rem;">🌲</span>
+          <div>
+            <strong>Elbauenpark</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Mit Jahrtausendturm und Schmetterlingshaus</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+          <span style="font-size: 2rem;">🚣</span>
+          <div>
+            <strong>Elbufer</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Perfekt zum Spazieren, Radfahren und Entspannen</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+          <span style="font-size: 2rem;">🌳</span>
+          <div>
+            <strong>Herrenkrug Park</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Historischer Landschaftspark mit Zoo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RAG Knowledge Section -->
+<section class="viz-card" style="margin-top: 2rem;">
+  <h3>💬 Mehr über Magdeburg erfahren</h3>
+  <div style="padding: 1rem 0;">
+    <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+      Unser KI-Assistent hat Zugriff auf eine umfangreiche Wissensdatenbank mit <strong>54 Quellen</strong> über Magdeburg – von historischen Dokumenten über Tourismus-Guides bis hin zu kulturellen Highlights.
+    </p>
+    <div style="background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(72, 199, 167, 0.1)); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border);">
+      <h4 style="color: var(--accent2); margin-bottom: 1rem;">Fragen Sie den Assistenten:</h4>
+      <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
+        <li style="padding: 0.75rem; background: var(--surface); border-radius: var(--radius-sm);">
+          💡 "Was sind die besten Sehenswürdigkeiten in Magdeburg?"
+        </li>
+        <li style="padding: 0.75rem; background: var(--surface); border-radius: var(--radius-sm);">
+          💡 "Erzähl mir über Otto von Guericke"
+        </li>
+        <li style="padding: 0.75rem; background: var(--surface); border-radius: var(--radius-sm);">
+          💡 "Welche kulturellen Veranstaltungen gibt es?"
+        </li>
+      </ul>
+      <a href="/chat" style="display: inline-block; margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--accent2), #37a2d6); color: #0a0e15; font-weight: 700; border-radius: 999px; text-decoration: none; transition: transform 0.2s;">
+        Zum KI-Assistenten →
+      </a>
+    </div>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/maps.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Cafes map
+    MapHelpers.createCafesMap('cafesMap');
+  });
+</script>
+{% endblock %}

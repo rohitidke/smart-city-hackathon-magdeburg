@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Smart City Dashboard Magdeburg{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/dashboard.css" />
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="/">
+          <span class="logo-icon">🏛️</span>
+          <span class="logo-text">Magdeburg Dashboard</span>
+        </a>
+      </div>
+      <nav class="main-nav">
+        <a href="/" class="nav-link">Übersicht</a>
+        <a href="/environment" class="nav-link">🌳 Umwelt</a>
+        <a href="/mobility" class="nav-link">🚦 Mobilität</a>
+        <a href="/living" class="nav-link">🏠 Wohnen</a>
+        <a href="/economy" class="nav-link">💰 Wirtschaft</a>
+        <a href="/quality" class="nav-link">🎨 Lebensqualität</a>
+        <a href="/chat" class="nav-link nav-link-accent">💬 KI-Assistent</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    {% if breadcrumbs %}
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Startseite</a>
+      {% for crumb in breadcrumbs %}
+      <span class="breadcrumb-sep">›</span>
+      {% if loop.last %}
+      <span class="breadcrumb-current">{{ crumb }}</span>
+      {% else %}
+      <a href="{{ crumb.url }}">{{ crumb.name }}</a>
+      {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Über das Dashboard</h3>
+        <p>Visualisierung öffentlicher Daten für mehr Transparenz in Magdeburg.</p>
+        <p class="footer-note">Erstellt für den Smart City Hackathon 2026</p>
+      </div>
+      <div class="footer-section">
+        <h3>Datenquellen</h3>
+        <ul class="footer-links">
+          <li><a href="https://opendata.magdeburg.de" target="_blank" rel="noopener">Open Data Magdeburg</a></li>
+          <li><a href="https://github.com/SmartCityMagdeburg2026" target="_blank" rel="noopener">GitHub Repository</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Kontakt</h3>
+        <p>Team WaffWaff</p>
+        <p>MD-Hackathon © 2026</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Powered by FastAPI, Chart.js & Leaflet.js | Alle Daten aus öffentlichen Quellen</p>
+    </div>
+  </footer>
+
+  {% block scripts %}{% endblock %}
+
+</body>
+</html>

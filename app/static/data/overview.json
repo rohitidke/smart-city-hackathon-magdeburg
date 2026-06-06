@@ -1,0 +1,25 @@
+{
+  "kpis": {
+    "trees": {
+      "value": 85302,
+      "label": "Straßenbäume",
+      "icon": "🌳"
+    },
+    "accidents": {
+      "value": 3456,
+      "label": "Unfälle (2016-2023)",
+      "icon": "🚦"
+    },
+    "transit_stops": {
+      "value": 463,
+      "label": "Haltestellen",
+      "icon": "🚌"
+    },
+    "cafes": {
+      "value": 84,
+      "label": "Cafés & Restaurants",
+      "icon": "☕"
+    }
+  },
+  "last_updated": "2024-06-06"
+}

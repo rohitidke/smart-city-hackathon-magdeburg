@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Mobilität & Sicherheit - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>🚦 Mobilität & Sicherheit</h1>
+  <p class="tagline">Unfallstatistiken und Verkehrssicherheit in Magdeburg</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Accident Heatmap Card -->
+  <div class="viz-card">
+    <h3>🗺️ Interaktive Unfallkarte</h3>
+    <div class="map-container" id="accidentMap"></div>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+      Klicken Sie auf die Cluster oder Marker für Details. 🟡 = Fahrradunfall, 🔴 = Sonstige Unfälle
+    </p>
+  </div>
+
+  <!-- Accident Trend Card -->
+  <div class="viz-card">
+    <h3>📈 Unfallentwicklung über die Jahre</h3>
+    <div class="chart-container">
+      <canvas id="accidentTrendChart"></canvas>
+    </div>
+    {% if mobility.insight %}
+    <div class="viz-insight">
+      <strong>Entwicklung:</strong> {{mobility.insight}}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Accident Types Card -->
+  <div class="viz-card">
+    <h3>🚴 Unfälle nach Verkehrsmittel</h3>
+    <div class="chart-container">
+      <canvas id="accidentTypeChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      Fahrradunfälle machen <strong>{{((mobility.accidents_by_type.Fahrrad / mobility.total_accidents) * 100) | round(1)}}%</strong> aller Unfälle aus.
+    </div>
+  </div>
+
+  <!-- Transit Coverage Card -->
+  <div class="viz-card">
+    <h3>🚌 ÖPNV-Abdeckung</h3>
+    <div style="text-align: center; padding: 2rem;">
+      <div style="font-size: 3rem; font-weight: 700; color: var(--accent2);">{{mobility.transit_stops}}</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem;">Haltestellen im Stadtgebiet</div>
+    </div>
+    <div class="viz-insight">
+      Ein gut ausgebautes ÖPNV-Netz trägt zur Verkehrssicherheit und Lebensqualität bei.
+    </div>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script src="/static/js/maps.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Accident trend chart
+    const accidentsByYear = {{ mobility.accidents_by_year | tojson }};
+    const trendCtx = document.getElementById('accidentTrendChart').getContext('2d');
+    ChartHelpers.createAccidentTrendChart(trendCtx, accidentsByYear);
+
+    // Accident type chart
+    const accidentsByType = {{ mobility.accidents_by_type | tojson }};
+    const typeCtx = document.getElementById('accidentTypeChart').getContext('2d');
+    ChartHelpers.createAccidentTypeChart(typeCtx, accidentsByType);
+
+    // Accident heatmap
+    MapHelpers.createAccidentMap('accidentMap');
+  });
+</script>
+{% endblock %}

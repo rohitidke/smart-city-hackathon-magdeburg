@@ -1,0 +1,123 @@
+{
+  "districts": 40,
+  "avg_rent": 7.49,
+  "rent_by_district": [
+    {
+      "district": "Alte Neustadt",
+      "avg_rent": 10.24
+    },
+    {
+      "district": "Stadtfeld Ost",
+      "avg_rent": 8.81
+    },
+    {
+      "district": "Werder",
+      "avg_rent": 8.7
+    },
+    {
+      "district": "Buckau",
+      "avg_rent": 8.51
+    },
+    {
+      "district": "Rothensee",
+      "avg_rent": 8.38
+    },
+    {
+      "district": "Altstadt",
+      "avg_rent": 8.25
+    },
+    {
+      "district": "Lemsdorf",
+      "avg_rent": 8.22
+    },
+    {
+      "district": "Herrenkrug",
+      "avg_rent": 8.16
+    },
+    {
+      "district": "Ottersleben",
+      "avg_rent": 7.79
+    },
+    {
+      "district": "Brückfeld",
+      "avg_rent": 7.73
+    },
+    {
+      "district": "Alt Olvenstedt",
+      "avg_rent": 7.59
+    },
+    {
+      "district": "Sudenburg",
+      "avg_rent": 7.58
+    },
+    {
+      "district": "Diesdorf",
+      "avg_rent": 7.47
+    },
+    {
+      "district": "Salbke",
+      "avg_rent": 7.47
+    },
+    {
+      "district": "Hopfengarten",
+      "avg_rent": 7.37
+    },
+    {
+      "district": "Stadtfeld West",
+      "avg_rent": 7.32
+    },
+    {
+      "district": "Leipziger Straße",
+      "avg_rent": 7.26
+    },
+    {
+      "district": "Cracau",
+      "avg_rent": 7.1
+    },
+    {
+      "district": "Neue Neustadt",
+      "avg_rent": 7.1
+    },
+    {
+      "district": "Nordwest",
+      "avg_rent": 7.08
+    },
+    {
+      "district": "Westerhüsen",
+      "avg_rent": 6.9
+    },
+    {
+      "district": "Reform",
+      "avg_rent": 6.84
+    },
+    {
+      "district": "Berliner Chaussee",
+      "avg_rent": 6.77
+    },
+    {
+      "district": "Fermersleben",
+      "avg_rent": 6.67
+    },
+    {
+      "district": "Neu Olvenstedt",
+      "avg_rent": 6.58
+    },
+    {
+      "district": "Neustädter Feld",
+      "avg_rent": 6.43
+    },
+    {
+      "district": "Prester",
+      "avg_rent": 6.36
+    },
+    {
+      "district": "Neustädter See",
+      "avg_rent": 6.35
+    },
+    {
+      "district": "Kannenstieg",
+      "avg_rent": 6.22
+    }
+  ],
+  "insight": "Die teuerste Gegend ist Alte Neustadt (€10.24/m²), die günstigste ist Kannenstieg (€6.22/m²)"
+}

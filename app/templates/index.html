@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Smart City Dashboard Magdeburg - Startseite{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>Smart City Dashboard Magdeburg</h1>
+  <p class="tagline">Transparenz für unsere Stadt – Datenbasierte Einblicke in Echtzeit</p>
+</section>
+
+<section class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-icon">{{overview.kpis.trees.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{overview.kpis.trees.value | format_number}}</div>
+      <div class="kpi-label">{{overview.kpis.trees.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{overview.kpis.accidents.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{overview.kpis.accidents.value | format_number}}</div>
+      <div class="kpi-label">{{overview.kpis.accidents.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{overview.kpis.transit_stops.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{overview.kpis.transit_stops.value | format_number}}</div>
+      <div class="kpi-label">{{overview.kpis.transit_stops.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{overview.kpis.cafes.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{overview.kpis.cafes.value | format_number}}</div>
+      <div class="kpi-label">{{overview.kpis.cafes.label}}</div>
+    </div>
+  </div>
+</section>
+
+<section class="category-grid">
+  <a href="/environment" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">🌳</div>
+      <h2 class="category-title">Umwelt & Klima</h2>
+    </div>
+    <p class="category-description">
+      Erkunden Sie Magdeburgs Baumbestand, Klimadaten und Luftqualität. Wie grün ist unsere Stadt?
+    </p>
+    <div class="category-metric">
+      <strong>{{environment.total_trees | format_number}}</strong> Straßenbäume registriert
+    </div>
+    <span class="category-link">Zur Umwelt-Ansicht</span>
+  </a>
+
+  <a href="/mobility" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">🚦</div>
+      <h2 class="category-title">Mobilität & Sicherheit</h2>
+    </div>
+    <p class="category-description">
+      Unfallstatistiken, ÖPNV-Abdeckung und Verkehrssicherheit. Wo sind die Gefahrenstellen?
+    </p>
+    <div class="category-metric">
+      <strong>{{mobility.total_accidents | format_number}}</strong> Unfälle erfasst (2016-2023)
+    </div>
+    <span class="category-link">Zur Mobilitäts-Ansicht</span>
+  </a>
+
+  <a href="/living" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">🏠</div>
+      <h2 class="category-title">Wohnen & Leben</h2>
+    </div>
+    <p class="category-description">
+      Mietpreise, Stadtteile und demografische Daten. Wo lebt es sich am besten?
+    </p>
+    <div class="category-metric">
+      ø <strong>€{{living.avg_rent}}/m²</strong> Durchschnittsmiete (2024)
+    </div>
+    <span class="category-link">Zur Wohn-Ansicht</span>
+  </a>
+
+  <a href="/economy" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">💰</div>
+      <h2 class="category-title">Wirtschaft & Finanzen</h2>
+    </div>
+    <p class="category-description">
+      Steuereinnahmen und wirtschaftliche Entwicklung. Wie steht Magdeburg finanziell da?
+    </p>
+    <div class="category-metric">
+      <strong>€{{economy.latest_revenue}}M</strong> Steuereinnahmen ({{economy.latest_year}})
+    </div>
+    <span class="category-link">Zur Wirtschafts-Ansicht</span>
+  </a>
+
+  <a href="/quality" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">🎨</div>
+      <h2 class="category-title">Lebensqualität</h2>
+    </div>
+    <p class="category-description">
+      Cafés, Kultur und Freizeitmöglichkeiten. Was macht Magdeburg lebenswert?
+    </p>
+    <div class="category-metric">
+      <strong>{{quality.cafes_count}}</strong> Cafés & Restaurants
+    </div>
+    <span class="category-link">Zur Lebensqualität-Ansicht</span>
+  </a>
+
+  <a href="/chat" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">💬</div>
+      <h2 class="category-title">KI-Assistent</h2>
+    </div>
+    <p class="category-description">
+      Fragen Sie unseren intelligenten Assistenten über Magdeburg. Mit Zugriff auf Live-Daten und Wissensquellen.
+    </p>
+    <div class="category-metric">
+      <strong>12 Tools</strong> für präzise Antworten
+    </div>
+    <span class="category-link">Zum Chat-Assistenten</span>
+  </a>
+</section>
+
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts[:6] %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Add active state to current page nav link
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav-link').forEach(link => {
+      if (link.getAttribute('href') === currentPath) {
+        link.style.background = 'var(--surface-elevated)';
+        link.style.color = 'var(--text)';
+      }
+    });
+  });
+</script>
+{% endblock %}

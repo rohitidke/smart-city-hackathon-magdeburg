@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Wohnen & Leben - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>🏠 Wohnen & Leben</h1>
+  <p class="tagline">Mietpreise und Lebensqualität nach Stadtteilen</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Rent Map Card -->
+  <div class="viz-card">
+    <h3>🗺️ Mietpreise nach Stadtteil</h3>
+    <div class="map-container" id="rentMap"></div>
+    <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+      Bewegen Sie die Maus über die Stadtteile für Details. Dunklere Farben = höhere Mieten.
+    </p>
+  </div>
+
+  <!-- Rent Comparison Card -->
+  <div class="viz-card">
+    <h3>💶 Mietpreisvergleich der Stadtteile</h3>
+    <div class="chart-container">
+      <canvas id="rentDistrictChart"></canvas>
+    </div>
+    {% if living.insight %}
+    <div class="viz-insight">
+      {{living.insight}}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- City Average Card -->
+  <div class="viz-card">
+    <h3>📊 Durchschnittswerte</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; padding: 1rem 0;">
+      <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm); text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent2);">€{{living.avg_rent}}</div>
+        <div style="color: var(--text-muted); margin-top: 0.5rem;">Durchschnittsmiete/m²</div>
+      </div>
+      <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm); text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent);">{{living.districts}}</div>
+        <div style="color: var(--text-muted); margin-top: 0.5rem;">Stadtteile</div>
+      </div>
+    </div>
+    <div class="viz-insight">
+      Die Mietpreise in Magdeburg variieren stark zwischen den Stadtteilen. Nutzen Sie die Karte zur Orientierung bei der Wohnungssuche.
+    </div>
+  </div>
+
+  <!-- Affordability Tips Card -->
+  <div class="viz-card">
+    <h3>💡 Wohnungssuche in Magdeburg</h3>
+    <div style="padding: 1rem 0;">
+      <p style="margin-bottom: 1rem; line-height: 1.6;">
+        <strong>Günstige Stadtteile:</strong> Die südlichen und östlichen Stadtteile bieten oft attraktive Preise bei guter Anbindung.
+      </p>
+      <p style="margin-bottom: 1rem; line-height: 1.6;">
+        <strong>Zentrale Lagen:</strong> Stadtfeld und Altstadt sind beliebte, aber teurere Wohngegenden mit urbanem Flair.
+      </p>
+      <p style="line-height: 1.6;">
+        <strong>Tipp:</strong> Nutzen Sie unseren <a href="/chat" style="color: var(--accent2); text-decoration: none;">KI-Assistenten</a>, um gezielt nach Informationen zu Stadtteilen zu fragen!
+      </p>
+    </div>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script src="/static/js/maps.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Rent district chart
+    const rentData = {{ living.rent_by_district | tojson }};
+    const rentCtx = document.getElementById('rentDistrictChart').getContext('2d');
+    ChartHelpers.createRentDistrictChart(rentCtx, rentData);
+
+    // Rent choropleth map
+    MapHelpers.createRentMap('rentMap');
+  });
+</script>
+{% endblock %}

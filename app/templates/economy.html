@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Wirtschaft & Finanzen - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>💰 Wirtschaft & Finanzen</h1>
+  <p class="tagline">Steuereinnahmen und wirtschaftliche Entwicklung der Stadt</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Tax Revenue Trend Card -->
+  <div class="viz-card">
+    <h3>📈 Steuereinnahmen-Entwicklung</h3>
+    <div class="chart-container">
+      <canvas id="taxRevenueChart"></canvas>
+    </div>
+    {% if economy.insight %}
+    <div class="viz-insight">
+      <strong>Entwicklung:</strong> {{economy.insight}}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Latest Revenue Card -->
+  <div class="viz-card">
+    <h3>💶 Aktuelle Kennzahlen ({{economy.latest_year}})</h3>
+    <div style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 3.5rem; font-weight: 700; color: var(--accent2);">€{{economy.latest_revenue}}M</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Gesamtsteuereinnahmen</div>
+    </div>
+    <div class="viz-insight">
+      Die Steuereinnahmen zeigen einen positiven Wachstumstrend, was auf eine gesunde wirtschaftliche Entwicklung der Stadt hindeutet.
+    </div>
+  </div>
+
+  <!-- Economic Context Card -->
+  <div class="viz-card">
+    <h3>🏢 Wirtschaftsstandort Magdeburg</h3>
+    <div style="padding: 1rem 0;">
+      <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm); margin-bottom: 1rem;">
+        <h4 style="color: var(--accent2); margin-bottom: 0.75rem; font-size: 1rem;">Wichtige Branchen</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">🏭 Maschinenbau & Anlagenbau</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">🔬 Forschung & Entwicklung (OvGU)</li>
+          <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border);">⚡ Erneuerbare Energien</li>
+          <li style="padding: 0.5rem 0;">🚢 Binnenhafen & Logistik</li>
+        </ul>
+      </div>
+      <p style="line-height: 1.6; color: var(--text-muted);">
+        Als Landeshauptstadt von Sachsen-Anhalt ist Magdeburg ein wichtiger Wirtschaftsstandort mit diversifizierter Industriestruktur.
+      </p>
+    </div>
+  </div>
+
+  <!-- Investment & Growth Card -->
+  <div class="viz-card">
+    <h3>📊 Wirtschaftliche Perspektiven</h3>
+    <div style="padding: 1rem 0;">
+      <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+        Die kontinuierlich steigenden Steuereinnahmen seit 2014 zeigen, dass Magdeburg wirtschaftlich auf einem stabilen Wachstumskurs ist.
+      </p>
+      <div style="display: grid; gap: 1rem;">
+        <div style="background: var(--surface-elevated); padding: 1.25rem; border-left: 4px solid var(--success); border-radius: var(--radius-sm);">
+          <strong style="color: var(--success);">✓ Positive Faktoren:</strong>
+          <p style="margin-top: 0.5rem; color: var(--text-muted);">Steigendes Steueraufkommen, Ansiedlung neuer Unternehmen, Ausbau der Infrastruktur</p>
+        </div>
+        <div style="background: var(--surface-elevated); padding: 1.25rem; border-left: 4px solid var(--info); border-radius: var(--radius-sm);">
+          <strong style="color: var(--info);">→ Potenziale:</strong>
+          <p style="margin-top: 0.5rem; color: var(--text-muted);">Digitalisierung, Wissenschaftshafen, Tourismus, Kulturwirtschaft</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Tax revenue trend chart
+    const revenueTrend = {{ economy.revenue_trend | tojson }};
+    const revenueCtx = document.getElementById('taxRevenueChart').getContext('2d');
+    ChartHelpers.createTaxRevenueChart(revenueCtx, revenueTrend);
+  });
+</script>
+{% endblock %}

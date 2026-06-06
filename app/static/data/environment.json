@@ -1,0 +1,205 @@
+{
+  "total_trees": 85302,
+  "top_species": {
+    "Ahorn": 19832,
+    "Linde": 14463,
+    "Obst-, Nuss- und Wildgehölze": 11181,
+    "Esche": 6348,
+    "Eiche": 6236,
+    "Robinie": 6081,
+    "Pappel": 4197,
+    "Buchenartige": 3308,
+    "Kastanie": 3059,
+    "Nadelbäume": 2198
+  },
+  "trees_by_district": {
+    "Werder": 11175,
+    "Herrenkrug": 6866,
+    "Westerhüsen": 6292,
+    "Ottersleben": 5572,
+    "Altstadt": 4535,
+    "Neu Olvenstedt": 4178,
+    "null": 3909,
+    "Stadtfeld Ost": 3127,
+    "Neustädter Feld": 3062,
+    "Sudenburg": 2705
+  },
+  "climate_trend": [
+    {
+      "year": 1992,
+      "avg_temp": 10.1,
+      "total_precip": 553.5
+    },
+    {
+      "year": 1993,
+      "avg_temp": 8.9,
+      "total_precip": 561.1
+    },
+    {
+      "year": 1994,
+      "avg_temp": 10.2,
+      "total_precip": 662.3
+    },
+    {
+      "year": 1995,
+      "avg_temp": 9.5,
+      "total_precip": 508.9
+    },
+    {
+      "year": 1996,
+      "avg_temp": 7.3,
+      "total_precip": 467.0
+    },
+    {
+      "year": 1997,
+      "avg_temp": 9.3,
+      "total_precip": 509.6
+    },
+    {
+      "year": 1998,
+      "avg_temp": 9.6,
+      "total_precip": 522.8
+    },
+    {
+      "year": 1999,
+      "avg_temp": 10.2,
+      "total_precip": 439.0
+    },
+    {
+      "year": 2000,
+      "avg_temp": 10.5,
+      "total_precip": 475.7
+    },
+    {
+      "year": 2001,
+      "avg_temp": 9.4,
+      "total_precip": 571.0
+    },
+    {
+      "year": 2002,
+      "avg_temp": 9.7,
+      "total_precip": 731.9
+    },
+    {
+      "year": 2003,
+      "avg_temp": 9.7,
+      "total_precip": 401.0
+    },
+    {
+      "year": 2004,
+      "avg_temp": 9.5,
+      "total_precip": 472.6
+    },
+    {
+      "year": 2005,
+      "avg_temp": 9.6,
+      "total_precip": 493.2
+    },
+    {
+      "year": 2006,
+      "avg_temp": 10.6,
+      "total_precip": 392.9
+    },
+    {
+      "year": 2007,
+      "avg_temp": 11.0,
+      "total_precip": 745.4
+    },
+    {
+      "year": 2008,
+      "avg_temp": 10.6,
+      "total_precip": 493.3
+    },
+    {
+      "year": 2009,
+      "avg_temp": 10.1,
+      "total_precip": 573.8
+    },
+    {
+      "year": 2010,
+      "avg_temp": 8.5,
+      "total_precip": 754.5
+    },
+    {
+      "year": 2011,
+      "avg_temp": 10.5,
+      "total_precip": 468.7
+    },
+    {
+      "year": 2012,
+      "avg_temp": 10.0,
+      "total_precip": 443.3
+    },
+    {
+      "year": 2013,
+      "avg_temp": 9.7,
+      "total_precip": 577.8
+    },
+    {
+      "year": 2014,
+      "avg_temp": 11.2,
+      "total_precip": 545.5
+    },
+    {
+      "year": 2015,
+      "avg_temp": 10.8,
+      "total_precip": 512.4
+    },
+    {
+      "year": 2016,
+      "avg_temp": 10.7,
+      "total_precip": 390.7
+    },
+    {
+      "year": 2017,
+      "avg_temp": 10.6,
+      "total_precip": 439.6
+    },
+    {
+      "year": 2018,
+      "avg_temp": 11.5,
+      "total_precip": 374.8
+    },
+    {
+      "year": 2019,
+      "avg_temp": 11.5,
+      "total_precip": 464.5
+    },
+    {
+      "year": 2020,
+      "avg_temp": 11.6,
+      "total_precip": 456.6
+    },
+    {
+      "year": 2021,
+      "avg_temp": 10.2,
+      "total_precip": 480.8
+    },
+    {
+      "year": 2022,
+      "avg_temp": 11.5,
+      "total_precip": 366.4
+    },
+    {
+      "year": 2023,
+      "avg_temp": 11.7,
+      "total_precip": 713.4
+    },
+    {
+      "year": 2024,
+      "avg_temp": 12.1,
+      "total_precip": 553.5
+    },
+    {
+      "year": 2025,
+      "avg_temp": 11.0,
+      "total_precip": 376.9
+    },
+    {
+      "year": 2026,
+      "avg_temp": 4.6,
+      "total_precip": 129.0
+    }
+  ],
+  "insight": "Die Durchschnittstemperatur ist seit 1834 relativ stabil"
+}
