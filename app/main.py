@@ -33,6 +33,7 @@ async def lifespan(app: FastAPI):
     import app.tools.rent  # noqa: F401
     import app.tools.climate  # noqa: F401
     import app.tools.economy  # noqa: F401
+    import app.tools.events  # noqa: F401
     import app.tools.health  # noqa: F401
     import app.tools.mobility  # noqa: F401
     import app.tools.tax  # noqa: F401

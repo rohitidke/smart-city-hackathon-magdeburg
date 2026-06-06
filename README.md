@@ -106,6 +106,9 @@ docker run --rm -p 8080:8080 md-dashboard
 - `How many doctors and pharmacies are there in Magdeburg?`
   Deutsch: `Wie viele Ärzte und Apotheken gibt es in Magdeburg?`
   Tool: `gesundheitsversorgung`
+- `What events can I attend in Magdeburg today?`
+  Deutsch: `Welche Veranstaltungen kann ich heute in Magdeburg besuchen?`
+  Tool: `veranstaltungen`
 - `How has public transport usage changed in Magdeburg?`
   Deutsch: `Wie hat sich die ÖPNV-Nutzung in Magdeburg entwickelt?`
   Tool: `mobilitaet_trends`

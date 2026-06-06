@@ -31,6 +31,8 @@ LOCAL_TOPIC_KEYWORDS = {
     "healthcare", "gesundheit", "pharmacy", "apotheke", "tourism", "tourismus",
     "hotel", "overnight stays", "übernachtungen", "tax", "steuern", "economy",
     "wirtschaft", "employment", "arbeitsmarkt", "accident", "accidents", "unfall",
+    "event", "events", "veranstaltung", "veranstaltungen", "concert", "konzert",
+    "festival", "show", "ausstellung", "flohmarkt",
 }
 
 RAG_QUERY_KEYWORDS = {
@@ -79,6 +81,11 @@ DIRECT_TOOL_KEYWORDS = {
         "public transport usage", "oepnv entwicklung", "öpnv entwicklung",
         "fahrgast", "fahrgäste", "passengers transported", "vehicle fleet",
         "kraftfahrzeugbestand", "vehicle ownership", "kfz-bestand", "car fleet",
+    },
+    "veranstaltungen": {
+        "event", "events", "veranstaltung", "veranstaltungen", "concert",
+        "konzert", "festival", "show", "market", "flohmarkt", "exhibition",
+        "ausstellung", "what's on", "what is on",
     },
 }
 
@@ -218,6 +225,42 @@ def pick_direct_tool(user_message: str) -> tuple[str, dict] | None:
                 if "ridership" in lower_message or "passenger numbers" in lower_message or "public transport usage" in lower_message or "oepnv entwicklung" in lower_message or "öpnv entwicklung" in lower_message or "fahrgast" in lower_message or "fahrgäste" in lower_message or "passengers transported" in lower_message:
                     return tool_name, {"thema": "oepnv", "sprache": infer_language(user_message)}
                 return tool_name, {"thema": "uebersicht", "sprache": infer_language(user_message)}
+            if tool_name == "veranstaltungen":
+                zeitraum = "heute"
+                if "tomorrow" in lower_message or "morgen" in lower_message:
+                    zeitraum = "morgen"
+                elif "weekend" in lower_message or "wochenende" in lower_message:
+                    zeitraum = "wochenende"
+                elif "upcoming" in lower_message or "demnächst" in lower_message or "kommende" in lower_message:
+                    zeitraum = "bald"
+
+                suchbegriff = ""
+                topic_map = {
+                    "music": "music",
+                    "concert": "music",
+                    "konzert": "musik",
+                    "musik": "musik",
+                    "family": "family",
+                    "kids": "kinder",
+                    "children": "kinder",
+                    "kinder": "kinder",
+                    "market": "markt",
+                    "flohmarkt": "flohmarkt",
+                    "museum": "museum",
+                    "exhibition": "ausstellung",
+                    "ausstellung": "ausstellung",
+                    "sport": "sport",
+                }
+                for keyword, mapped in topic_map.items():
+                    if keyword in lower_message:
+                        suchbegriff = mapped
+                        break
+
+                return tool_name, {
+                    "zeitraum": zeitraum,
+                    "suchbegriff": suchbegriff,
+                    "sprache": infer_language(user_message),
+                }
             return tool_name, {}
     return None
 
