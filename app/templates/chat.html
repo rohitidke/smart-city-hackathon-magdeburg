@@ -360,8 +360,53 @@
       line-height: 1.4;
     }
 
+    .chat-assistant-stack {
+      align-self: flex-start;
+      margin-right: auto;
+      max-width: min(100%, 860px);
+      display: grid;
+      gap: .7rem;
+    }
+
+    .chat-assistant-stack .chat-message {
+      max-width: 100%;
+    }
+
+    .chat-message-body {
+      min-width: 0;
+    }
+
     .chat-message-content {
       min-width: 0;
+    }
+
+    .chat-suggestions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .75rem;
+      width: 100%;
+    }
+
+    .chat-suggestion {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--surface), var(--bg));
+      color: var(--text);
+      padding: .85rem 1rem;
+      font: inherit;
+      font-size: .88rem;
+      line-height: 1.35;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(14, 26, 45, 0.06);
+      transition: border-color .15s ease, transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+
+    .chat-suggestion:hover {
+      border-color: var(--accent2);
+      background: rgba(55, 162, 214, 0.08);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(14, 26, 45, 0.1);
     }
 
     .chat-message-content p,
@@ -499,7 +544,7 @@
 
     <section class="card chat-card" id="chatbot" data-chat-enabled="{{ 'true' if llm_configured else 'false' }}" data-rag-enabled="{{ 'true' if rag_configured else 'false' }}">
       <div>
-        <h2>Ask The Assistant</h2>
+        <h2>City AI Agent</h2>
         <p class="chat-copy">Ask a question, brainstorm an idea, or switch to knowledge mode to answer from the indexed Magdeburg sources. The backend keeps all tokens server-side.</p>
       </div>
 
@@ -507,7 +552,7 @@
         {% if llm_configured %}
         Ready. Keep prompts concise because the shared model has a small context window.
         {% else %}
-        Chat is not configured yet. Set `SERVER_URL` and `SERVER_TOKEN` before using the assistant.
+        Chat is not configured yet. Set `SERVER_URL` and `SERVER_TOKEN` before using the City AI Agent.
         {% endif %}
       </div>
 
@@ -525,9 +570,18 @@
       </div>
 
       <div class="chat-log" id="chat-log" aria-live="polite">
-        <div class="chat-message assistant">
-          <span class="chat-message-icon">🤖</span>
-          <span class="chat-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
+        <div class="chat-assistant-stack">
+          <div class="chat-message assistant">
+            <span class="chat-message-icon">🤖</span>
+            <div class="chat-message-body">
+              <span class="chat-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
+            </div>
+          </div>
+          <div class="chat-suggestions">
+            <button class="chat-suggestion" type="button">What's the weather in Magdeburg today?</button>
+            <button class="chat-suggestion" type="button">How many people live in Magdeburg?</button>
+            <button class="chat-suggestion" type="button">How has public transport usage changed in Magdeburg?</button>
+          </div>
         </div>
       </div>
 
@@ -604,6 +658,14 @@
     const modeGreetings = {
       agent: "Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.",
       rag: "Hi! Ask about the indexed Magdeburg sources and I will answer with retrieval-backed context."
+    };
+    const modeSuggestions = {
+      agent: [
+        "What's the weather in Magdeburg today?",
+        "How many people live in Magdeburg?",
+        "How has public transport usage changed in Magdeburg?"
+      ],
+      rag: []
     };
 
     function escapeHtml(value) {
@@ -729,26 +791,70 @@
       return blocks.join("");
     }
 
-    function addMessage(role, content) {
-      const message = document.createElement("div");
-      message.className = `chat-message ${role}`;
-      const text = document.createElement("span");
-      text.className = "chat-message-content";
+    async function sendSuggestedMessage(prompt) {
+      if (!prompt || chatSubmit.disabled || !isModeEnabled(currentMode())) {
+        return;
+      }
+      chatInput.value = prompt;
+      await sendMessage();
+    }
 
+    function buildSuggestionRow(suggestions) {
+      if (!suggestions?.length) return null;
+      const row = document.createElement("div");
+      row.className = "chat-suggestions";
+      for (const suggestion of suggestions) {
+        const button = document.createElement("button");
+        button.className = "chat-suggestion";
+        button.type = "button";
+        button.textContent = suggestion;
+        button.addEventListener("click", async () => {
+          await sendSuggestedMessage(suggestion);
+        });
+        row.appendChild(button);
+      }
+      return row;
+    }
+
+    function addMessage(role, content, options = {}) {
       if (role === "assistant") {
+        const stack = document.createElement("div");
+        stack.className = "chat-assistant-stack";
+        const message = document.createElement("div");
+        message.className = `chat-message ${role}`;
         const emoji = document.createElement("span");
         emoji.className = "chat-message-icon";
         emoji.textContent = "🤖";
         message.appendChild(emoji);
-        text.innerHTML = renderMarkdown(content);
-      } else {
-        text.textContent = content;
-      }
 
-      message.appendChild(text);
-      chatLog.appendChild(message);
-      chatLog.scrollTop = chatLog.scrollHeight;
-      return message;
+        const body = document.createElement("div");
+        body.className = "chat-message-body";
+        const text = document.createElement("span");
+        text.className = "chat-message-content";
+        text.innerHTML = renderMarkdown(content);
+        body.appendChild(text);
+        message.appendChild(body);
+        stack.appendChild(message);
+
+        const suggestions = buildSuggestionRow(options.suggestions);
+        if (suggestions) {
+          stack.appendChild(suggestions);
+        }
+
+        chatLog.appendChild(stack);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return stack;
+      } else {
+        const message = document.createElement("div");
+        message.className = `chat-message ${role}`;
+        const text = document.createElement("span");
+        text.className = "chat-message-content";
+        text.textContent = content;
+        message.appendChild(text);
+        chatLog.appendChild(message);
+        chatLog.scrollTop = chatLog.scrollHeight;
+        return message;
+      }
     }
 
     function currentMode() {
@@ -794,7 +900,7 @@
       chatLog.innerHTML = "";
 
       if (visibleMessages.length === 0) {
-        addMessage("assistant", modeGreetings[mode]);
+        addMessage("assistant", modeGreetings[mode], { suggestions: modeSuggestions[mode] });
         return;
       }
 

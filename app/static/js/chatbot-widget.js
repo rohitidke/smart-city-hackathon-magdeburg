@@ -9,6 +9,14 @@ class ChatbotWidget {
     this.ragConfigured = config.ragConfigured || false;
     this.currentMode = 'agent';
     this.isMaximized = localStorage.getItem('chatWidgetMaximized') === 'true';
+    this.modeSuggestions = {
+      agent: [
+        "What's the weather in Magdeburg today?",
+        'How many people live in Magdeburg?',
+        'How has public transport usage changed in Magdeburg?'
+      ],
+      rag: []
+    };
     this.conversations = {
       agent: [],
       rag: []
@@ -21,6 +29,8 @@ class ChatbotWidget {
   init() {
     this.createWidget();
     this.attachEventListeners();
+    this.renderMessages();
+    this.updateStatus();
   }
 
   createWidget() {
@@ -36,7 +46,7 @@ class ChatbotWidget {
         <div class="chat-widget-header">
           <div class="chat-widget-header-title">
             <span>✨</span>
-            <span>AI Assistant</span>
+            <span>City AI Agent</span>
           </div>
           <div class="chat-widget-header-actions">
             <button class="chat-widget-header-btn" id="chatWidgetMaximize" aria-label="Maximize chat" title="Maximize chat">
@@ -57,9 +67,18 @@ class ChatbotWidget {
         </div>
 
         <div class="chat-widget-body" id="chatWidgetBody">
-          <div class="chat-widget-message assistant">
-            <span class="chat-widget-message-icon">🤖</span>
-            <span class="chat-widget-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
+          <div class="chat-widget-assistant-stack">
+            <div class="chat-widget-message assistant">
+              <span class="chat-widget-message-icon">🤖</span>
+              <div class="chat-widget-message-body">
+                <span class="chat-widget-message-content">Hi! I'm the Magdeburg Smart Agent. Ask me about weather, air quality, transit, rents, healthcare, mobility, cafes, or any Magdeburg data.</span>
+              </div>
+            </div>
+            <div class="chat-widget-suggestions">
+              <button class="chat-widget-suggestion" type="button">What's the weather in Magdeburg today?</button>
+              <button class="chat-widget-suggestion" type="button">How many people live in Magdeburg?</button>
+              <button class="chat-widget-suggestion" type="button">How has public transport usage changed in Magdeburg?</button>
+            </div>
           </div>
         </div>
 
@@ -169,7 +188,7 @@ class ChatbotWidget {
     this.body.innerHTML = '';
 
     if (messages.length === 0) {
-      this.addMessage('assistant', this.getGreeting());
+      this.addMessage('assistant', this.getGreeting(), { suggestions: this.modeSuggestions[this.currentMode] });
     } else {
       messages.forEach((msg) => this.addMessage(msg.role, msg.content));
     }
@@ -309,28 +328,71 @@ class ChatbotWidget {
     return blocks.join('');
   }
 
-  addMessage(role, content) {
-    const messageEl = document.createElement('div');
-    messageEl.className = `chat-widget-message ${role}`;
+  async sendSuggestedMessage(prompt) {
+    if (!prompt || this.isSending || this.sendBtn.disabled || this.input.disabled) return;
+    this.input.value = prompt;
+    await this.sendMessage();
+  }
 
+  buildSuggestionRow(suggestions = []) {
+    if (!suggestions.length) return null;
+
+    const row = document.createElement('div');
+    row.className = 'chat-widget-suggestions';
+
+    for (const suggestion of suggestions) {
+      const button = document.createElement('button');
+      button.className = 'chat-widget-suggestion';
+      button.type = 'button';
+      button.textContent = suggestion;
+      button.addEventListener('click', async () => {
+        await this.sendSuggestedMessage(suggestion);
+      });
+      row.appendChild(button);
+    }
+
+    return row;
+  }
+
+  addMessage(role, content, options = {}) {
     if (role === 'assistant') {
+      const stackEl = document.createElement('div');
+      stackEl.className = 'chat-widget-assistant-stack';
+      const messageEl = document.createElement('div');
+      messageEl.className = `chat-widget-message ${role}`;
       const iconEl = document.createElement('span');
       iconEl.className = 'chat-widget-message-icon';
       iconEl.textContent = '🤖';
       messageEl.appendChild(iconEl);
-    }
 
-    const contentEl = document.createElement('span');
-    contentEl.className = 'chat-widget-message-content';
-    if (role === 'assistant') {
+      const bodyEl = document.createElement('div');
+      bodyEl.className = 'chat-widget-message-body';
+      const contentEl = document.createElement('span');
+      contentEl.className = 'chat-widget-message-content';
       contentEl.innerHTML = this.renderMarkdown(content);
-    } else {
-      contentEl.textContent = content;
-    }
-    messageEl.appendChild(contentEl);
+      bodyEl.appendChild(contentEl);
+      messageEl.appendChild(bodyEl);
 
-    this.body.appendChild(messageEl);
-    this.body.scrollTop = this.body.scrollHeight;
+      const suggestionsEl = this.buildSuggestionRow(options.suggestions || []);
+      if (suggestionsEl) {
+        stackEl.appendChild(messageEl);
+        stackEl.appendChild(suggestionsEl);
+      } else {
+        stackEl.appendChild(messageEl);
+      }
+      this.body.appendChild(stackEl);
+      this.body.scrollTop = this.body.scrollHeight;
+      return;
+    } else {
+      const messageEl = document.createElement('div');
+      messageEl.className = `chat-widget-message ${role}`;
+      const contentEl = document.createElement('span');
+      contentEl.className = 'chat-widget-message-content';
+      contentEl.textContent = content;
+      messageEl.appendChild(contentEl);
+      this.body.appendChild(messageEl);
+      this.body.scrollTop = this.body.scrollHeight;
+    }
   }
 
   updateStatus() {
