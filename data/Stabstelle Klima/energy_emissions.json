@@ -1,0 +1,302 @@
+[
+  {
+    "year": 1990,
+    "haushalte": 4723874.13,
+    "industrie": 2923884.41,
+    "ghd": 1434961.5,
+    "kommunale_verwaltung": 219353.98,
+    "verkehr": 749219.48,
+    "kommunale_flotte": 0.0,
+    "total": 10051293.5
+  },
+  {
+    "year": 1991,
+    "haushalte": 4053014.57,
+    "industrie": 2358899.03,
+    "ghd": 1279721.87,
+    "kommunale_verwaltung": 215837.29,
+    "verkehr": 774061.74,
+    "kommunale_flotte": 0.0,
+    "total": 8681534.5
+  },
+  {
+    "year": 1992,
+    "haushalte": 3380879.73,
+    "industrie": 1861384.04,
+    "ghd": 1056389.94,
+    "kommunale_verwaltung": 212280.6,
+    "verkehr": 811219.89,
+    "kommunale_flotte": 0.0,
+    "total": 7322154.2
+  },
+  {
+    "year": 1993,
+    "haushalte": 2710664.42,
+    "industrie": 1432635.08,
+    "ghd": 765041.38,
+    "kommunale_verwaltung": 208723.91,
+    "verkehr": 843177.26,
+    "kommunale_flotte": 0.0,
+    "total": 5960242.05
+  },
+  {
+    "year": 1994,
+    "haushalte": 2053909.65,
+    "industrie": 965597.28,
+    "ghd": 511928.67,
+    "kommunale_verwaltung": 205167.22,
+    "verkehr": 884151.66,
+    "kommunale_flotte": 0.0,
+    "total": 4620754.48
+  },
+  {
+    "year": 1995,
+    "haushalte": 2019907.39,
+    "industrie": 863505.23,
+    "ghd": 439948.21,
+    "kommunale_verwaltung": 201620.53,
+    "verkehr": 924795.83,
+    "kommunale_flotte": 0.0,
+    "total": 4449777.19
+  },
+  {
+    "year": 1996,
+    "haushalte": 1962053.64,
+    "industrie": 759666.31,
+    "ghd": 393160.71,
+    "kommunale_verwaltung": 198090.0,
+    "verkehr": 944535.2,
+    "kommunale_flotte": 0.0,
+    "total": 4257505.86
+  },
+  {
+    "year": 1997,
+    "haushalte": 1879420.23,
+    "industrie": 644746.88,
+    "ghd": 381150.76,
+    "kommunale_verwaltung": 194597.86,
+    "verkehr": 966813.76,
+    "kommunale_flotte": 0.0,
+    "total": 4066729.49
+  },
+  {
+    "year": 1998,
+    "haushalte": 1772186.66,
+    "industrie": 579410.48,
+    "ghd": 343456.9,
+    "kommunale_verwaltung": 191105.72,
+    "verkehr": 983678.89,
+    "kommunale_flotte": 0.0,
+    "total": 3869838.65
+  },
+  {
+    "year": 1999,
+    "haushalte": 1879875.51,
+    "industrie": 617557.14,
+    "ghd": 393899.69,
+    "kommunale_verwaltung": 187613.58,
+    "verkehr": 1005753.63,
+    "kommunale_flotte": 0.0,
+    "total": 4084699.55
+  },
+  {
+    "year": 2000,
+    "haushalte": 1981629.65,
+    "industrie": 664932.03,
+    "ghd": 442309.07,
+    "kommunale_verwaltung": 184121.44,
+    "verkehr": 1025053.03,
+    "kommunale_flotte": 0.0,
+    "total": 4298045.22
+  },
+  {
+    "year": 2001,
+    "haushalte": 2079828.52,
+    "industrie": 702706.8,
+    "ghd": 506823.26,
+    "kommunale_verwaltung": 180629.31,
+    "verkehr": 1033082.46,
+    "kommunale_flotte": 0.0,
+    "total": 4503070.35
+  },
+  {
+    "year": 2002,
+    "haushalte": 2060318.1,
+    "industrie": 713445.8,
+    "ghd": 491362.16,
+    "kommunale_verwaltung": 175037.17,
+    "verkehr": 1035205.51,
+    "kommunale_flotte": 0.0,
+    "total": 4475368.74
+  },
+  {
+    "year": 2003,
+    "haushalte": 2039434.86,
+    "industrie": 743087.38,
+    "ghd": 519953.19,
+    "kommunale_verwaltung": 169051.2,
+    "verkehr": 1048669.64,
+    "kommunale_flotte": 0.0,
+    "total": 4520196.27
+  },
+  {
+    "year": 2004,
+    "haushalte": 1997055.64,
+    "industrie": 718718.16,
+    "ghd": 527073.52,
+    "kommunale_verwaltung": 166758.22,
+    "verkehr": 1059310.39,
+    "kommunale_flotte": 0.0,
+    "total": 4468915.93
+  },
+  {
+    "year": 2005,
+    "haushalte": 1954480.44,
+    "industrie": 809233.6,
+    "ghd": 452306.8,
+    "kommunale_verwaltung": 162274.84,
+    "verkehr": 1072553.91,
+    "kommunale_flotte": 0.0,
+    "total": 4450849.59
+  },
+  {
+    "year": 2006,
+    "haushalte": 1916320.75,
+    "industrie": 769681.35,
+    "ghd": 499987.9,
+    "kommunale_verwaltung": 151606.34,
+    "verkehr": 1076735.34,
+    "kommunale_flotte": 0.0,
+    "total": 4414331.68
+  },
+  {
+    "year": 2007,
+    "haushalte": 2021306.94,
+    "industrie": 657564.42,
+    "ghd": 436387.77,
+    "kommunale_verwaltung": 136766.4,
+    "verkehr": 1071194.79,
+    "kommunale_flotte": 7817.28,
+    "total": 4331037.6
+  },
+  {
+    "year": 2008,
+    "haushalte": 2081917.22,
+    "industrie": 852223.16,
+    "ghd": 604752.06,
+    "kommunale_verwaltung": 133410.62,
+    "verkehr": 1069828.97,
+    "kommunale_flotte": 10684.86,
+    "total": 4752816.89
+  },
+  {
+    "year": 2009,
+    "haushalte": 1978401.64,
+    "industrie": 923314.55,
+    "ghd": 632685.21,
+    "kommunale_verwaltung": 132785.77,
+    "verkehr": 1062299.11,
+    "kommunale_flotte": 15107.49,
+    "total": 4744593.77
+  },
+  {
+    "year": 2010,
+    "haushalte": 1936907.32,
+    "industrie": 914735.54,
+    "ghd": 566384.22,
+    "kommunale_verwaltung": 130349.92,
+    "verkehr": 1082372.09,
+    "kommunale_flotte": 9327.16,
+    "total": 4640076.25
+  },
+  {
+    "year": 2011,
+    "haushalte": 1975147.19,
+    "industrie": 878378.82,
+    "ghd": 545605.88,
+    "kommunale_verwaltung": 135634.27,
+    "verkehr": 1085479.44,
+    "kommunale_flotte": 8726.09,
+    "total": 4628971.69
+  },
+  {
+    "year": 2012,
+    "haushalte": 1960442.45,
+    "industrie": 846746.26,
+    "ghd": 510962.33,
+    "kommunale_verwaltung": 127554.24,
+    "verkehr": 1076355.94,
+    "kommunale_flotte": 8847.34,
+    "total": 4530908.56
+  },
+  {
+    "year": 2013,
+    "haushalte": 1915878.03,
+    "industrie": 801994.9,
+    "ghd": 489741.64,
+    "kommunale_verwaltung": 115522.87,
+    "verkehr": 1081456.95,
+    "kommunale_flotte": 7414.45,
+    "total": 4412008.84
+  },
+  {
+    "year": 2014,
+    "haushalte": 1660869.4,
+    "industrie": 738725.98,
+    "ghd": 443259.24,
+    "kommunale_verwaltung": 98425.93,
+    "verkehr": 1088197.47,
+    "kommunale_flotte": 8673.45,
+    "total": 4038151.47
+  },
+  {
+    "year": 2015,
+    "haushalte": 1467311.28,
+    "industrie": 871402.61,
+    "ghd": 410332.67,
+    "kommunale_verwaltung": 82610.34,
+    "verkehr": 1085158.31,
+    "kommunale_flotte": 8929.75,
+    "total": 3925744.96
+  },
+  {
+    "year": 2016,
+    "haushalte": 1555791.59,
+    "industrie": 876629.63,
+    "ghd": 431433.77,
+    "kommunale_verwaltung": 85543.85,
+    "verkehr": 1094997.03,
+    "kommunale_flotte": 8985.69,
+    "total": 4053381.56
+  },
+  {
+    "year": 2017,
+    "haushalte": 1530112.91,
+    "industrie": 871708.75,
+    "ghd": 438208.46,
+    "kommunale_verwaltung": 72287.04,
+    "verkehr": 1101857.79,
+    "kommunale_flotte": 8641.05,
+    "total": 4022816.0
+  },
+  {
+    "year": 2018,
+    "haushalte": 1521366.58,
+    "industrie": 857921.02,
+    "ghd": 479560.4,
+    "kommunale_verwaltung": 69107.69,
+    "verkehr": 1098429.73,
+    "kommunale_flotte": 8495.34,
+    "total": 4034880.76
+  },
+  {
+    "year": 2019,
+    "haushalte": 1504940.65,
+    "industrie": 840107.6,
+    "ghd": 472657.85,
+    "kommunale_verwaltung": 67921.94,
+    "verkehr": 1105149.21,
+    "kommunale_flotte": 8927.77,
+    "total": 3999705.02
+  }
+]

@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+
+{% block title %}Demografie - Smart City Dashboard Magdeburg{% endblock %}
+
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <h1>👥 Demografie & Bevölkerung</h1>
+  <p class="tagline">Bevölkerungsstruktur, Altersverteilung und demografische Entwicklung</p>
+</section>
+
+<section class="viz-grid">
+  <!-- Population Pyramid - Full Width -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>🏛️ Bevölkerungspyramide</h3>
+    <div class="chart-container">
+      <canvas id="populationPyramidChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      Altersstruktur der Bevölkerung nach Geschlecht. Zeigt die Verteilung über alle Altersgruppen.
+    </div>
+  </div>
+
+  <!-- Current Population Card -->
+  <div class="viz-card">
+    <h3>📊 Aktuelle Einwohnerzahl</h3>
+    <div style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 4rem; font-weight: 700; color: var(--accent2);">{{latest_population | format_number}}</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Einwohner mit Hauptwohnsitz</div>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Aktuelle Bevölkerungszahl der Landeshauptstadt Magdeburg.
+    </div>
+  </div>
+
+  <!-- Population Development Stats -->
+  <div class="viz-card">
+    <h3>📉 Bevölkerungsentwicklung (5 Jahre)</h3>
+    <div id="popDevelopment" class="loading">Lade Entwicklungsdaten...</div>
+  </div>
+
+  <!-- Age Structure Insights -->
+  <div class="viz-card">
+    <h3>👶👴 Altersstruktur-Kennzahlen</h3>
+    <div id="ageStats" class="loading">Lade Altersstatistiken...</div>
+  </div>
+
+  <!-- Dependency Ratios Chart - Full Width -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>📈 Demografische Abhängigkeitsquoten</h3>
+    <div class="chart-container">
+      <canvas id="dependencyRatioChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>Jugendquotient:</strong> Unter 15-Jährige je 100 Personen im erwerbsfähigen Alter (15-64) |
+      <strong>Altenquotient:</strong> Über 65-Jährige je 100 Personen im erwerbsfähigen Alter
+    </div>
+  </div>
+
+  <!-- Foreign Residents Chart - Full Width -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>🌍 Ausländische Bevölkerung</h3>
+    <div class="chart-container">
+      <canvas id="foreignResidentsChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      Entwicklung der ausländischen Einwohner mit Hauptwohnsitz in Magdeburg.
+    </div>
+  </div>
+
+  <!-- Demographic Facts Card - Full Width -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>💡 Demografische Fakten</h3>
+    <div style="padding: 1rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">🏙️ Großstadt Charakter</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Als Landeshauptstadt von Sachsen-Anhalt ist Magdeburg die zweitgrößte Stadt des Bundeslandes.
+          </p>
+        </div>
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">🎓 Junge Universitätsstadt</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Mit über 14.500 Studierenden an OvGU und Hochschule prägt eine junge Bevölkerung das Stadtbild.
+          </p>
+        </div>
+        <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--accent2); margin-bottom: 0.75rem;">📊 Demografischer Wandel</h4>
+          <p style="color: var(--text-muted); line-height: 1.6;">
+            Wie viele deutsche Städte erlebt Magdeburg einen demografischen Wandel mit steigendem Durchschnittsalter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if facts %}
+<section class="facts-section">
+  <h2>💡 Wussten Sie, dass ...</h2>
+  <div class="facts-carousel">
+    {% for fact in facts %}
+    <div class="fact-card">
+      <div class="fact-category">{{fact.category}}</div>
+      <p class="fact-text">{{fact.text}}</p>
+      <p class="fact-source">Quelle: {{fact.source}}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/charts.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    // Population Pyramid
+    try {
+      const ageGenderRes = await fetch('/api/data/demographics/age-gender');
+      const ageGenderData = await ageGenderRes.json();
+      if (ageGenderData.length > 0) {
+        const pyramidCtx = document.getElementById('populationPyramidChart').getContext('2d');
+        ChartHelpers.createPopulationPyramid(pyramidCtx, ageGenderData);
+      }
+    } catch (err) {
+      console.error('Failed to load age-gender data:', err);
+    }
+
+    // Dependency Ratios
+    try {
+      const ratioRes = await fetch('/api/data/demographics/dependency-ratios');
+      const ratioData = await ratioRes.json();
+      if (ratioData.length > 0) {
+        const ratioCtx = document.getElementById('dependencyRatioChart').getContext('2d');
+        ChartHelpers.createDependencyRatioChart(ratioCtx, ratioData);
+      }
+    } catch (err) {
+      console.error('Failed to load dependency ratio data:', err);
+    }
+
+    // Foreign Residents
+    try {
+      const foreignRes = await fetch('/api/data/demographics/foreign-residents');
+      const foreignData = await foreignRes.json();
+      if (foreignData.length > 0) {
+        const foreignCtx = document.getElementById('foreignResidentsChart').getContext('2d');
+        ChartHelpers.createForeignResidentsChart(foreignCtx, foreignData);
+
+        // Display latest value
+        const latest = foreignData[foreignData.length - 1];
+        const percentage = (latest.total_foreign / {{latest_population}} * 100).toFixed(1);
+        document.getElementById('foreignResidentsChart').parentElement.querySelector('.viz-insight').innerHTML =
+          `<strong>Aktuell:</strong> ${latest.total_foreign.toLocaleString('de-DE')} ausländische Einwohner (${percentage}% der Gesamtbevölkerung)`;
+      }
+    } catch (err) {
+      console.error('Failed to load foreign residents data:', err);
+    }
+
+    // Population Development Summary
+    try {
+      const popRes = await fetch('/api/data/kiss/population/recent');
+      const popData = await popRes.json();
+      if (popData.length > 0) {
+        const oldest = popData[0];
+        const newest = popData[popData.length - 1];
+        const change = newest.population - oldest.population;
+        const changePercent = ((change / oldest.population) * 100).toFixed(1);
+        const trend = change >= 0 ? '📈' : '📉';
+
+        document.getElementById('popDevelopment').innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 1rem 0;">
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent1);">${oldest.year}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">${oldest.population.toLocaleString('de-DE')} Einwohner</div>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent2);">${newest.year}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">${newest.population.toLocaleString('de-DE')} Einwohner</div>
+            </div>
+          </div>
+          <div style="margin-top: 1rem; padding: 1.25rem; background: ${change >= 0 ? 'var(--success-bg)' : 'var(--warning-bg)'}; border-radius: var(--radius-sm); text-align: center;">
+            <strong style="font-size: 1.5rem;">${trend} ${change >= 0 ? '+' : ''}${change.toLocaleString('de-DE')}</strong>
+            <p style="color: var(--text-muted); margin-top: 0.5rem;">Veränderung: ${changePercent}% in 5 Jahren</p>
+          </div>
+        `;
+      }
+    } catch (err) {
+      document.getElementById('popDevelopment').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Daten.</p>';
+    }
+
+    // Age Statistics
+    try {
+      const ageGenderRes = await fetch('/api/data/demographics/age-gender');
+      const ageGenderData = await ageGenderRes.json();
+
+      if (ageGenderData.length > 0) {
+        const totalPop = ageGenderData.reduce((sum, d) => sum + (d.total || 0), 0);
+        const children = ageGenderData.filter(d => parseInt(d.age) < 18).reduce((sum, d) => sum + (d.total || 0), 0);
+        const working = ageGenderData.filter(d => parseInt(d.age) >= 18 && parseInt(d.age) < 65).reduce((sum, d) => sum + (d.total || 0), 0);
+        const seniors = ageGenderData.filter(d => parseInt(d.age) >= 65).reduce((sum, d) => sum + (d.total || 0), 0);
+
+        document.getElementById('ageStats').innerHTML = `
+          <div style="display: grid; gap: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+              <span style="font-weight: 600;">👶 Kinder (0-17)</span>
+              <span style="color: var(--accent2); font-weight: 700;">${((children / totalPop) * 100).toFixed(1)}%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+              <span style="font-weight: 600;">💼 Erwerbsfähig (18-64)</span>
+              <span style="color: var(--success); font-weight: 700;">${((working / totalPop) * 100).toFixed(1)}%</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+              <span style="font-weight: 600;">👴 Senioren (65+)</span>
+              <span style="color: var(--warning); font-weight: 700;">${((seniors / totalPop) * 100).toFixed(1)}%</span>
+            </div>
+          </div>
+        `;
+      }
+    } catch (err) {
+      document.getElementById('ageStats').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Daten.</p>';
+    }
+  });
+</script>
+{% endblock %}

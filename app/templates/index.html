@@ -10,37 +10,91 @@
 </section>
 
 <section class="kpi-grid">
+  <!-- Row 1: Demographics & Services -->
   <div class="kpi-card">
-    <div class="kpi-icon">{{overview.kpis.trees.icon}}</div>
+    <div class="kpi-icon">{{kpis.population.icon}}</div>
     <div class="kpi-info">
-      <div class="kpi-value">{{overview.kpis.trees.value | format_number}}</div>
-      <div class="kpi-label">{{overview.kpis.trees.label}}</div>
+      <div class="kpi-value">{{kpis.population.value | format_number}}</div>
+      <div class="kpi-label">{{kpis.population.label}}</div>
     </div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-icon">{{overview.kpis.accidents.icon}}</div>
+    <div class="kpi-icon">{{kpis.schools.icon}}</div>
     <div class="kpi-info">
-      <div class="kpi-value">{{overview.kpis.accidents.value | format_number}}</div>
-      <div class="kpi-label">{{overview.kpis.accidents.label}}</div>
+      <div class="kpi-value">{{kpis.schools.value | format_number}}</div>
+      <div class="kpi-label">{{kpis.schools.label}}</div>
     </div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-icon">{{overview.kpis.transit_stops.icon}}</div>
+    <div class="kpi-icon">{{kpis.doctors.icon}}</div>
     <div class="kpi-info">
-      <div class="kpi-value">{{overview.kpis.transit_stops.value | format_number}}</div>
-      <div class="kpi-label">{{overview.kpis.transit_stops.label}}</div>
+      <div class="kpi-value">{{kpis.doctors.value | format_number}}+</div>
+      <div class="kpi-label">{{kpis.doctors.label}}</div>
+    </div>
+  </div>
+
+  <!-- Row 2: Economy & Education -->
+  <div class="kpi-card">
+    <div class="kpi-icon">{{kpis.employed.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{kpis.employed.value | format_number}}+</div>
+      <div class="kpi-label">{{kpis.employed.label}}</div>
     </div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-icon">{{overview.kpis.cafes.icon}}</div>
+    <div class="kpi-icon">{{kpis.tourists.icon}}</div>
     <div class="kpi-info">
-      <div class="kpi-value">{{overview.kpis.cafes.value | format_number}}</div>
-      <div class="kpi-label">{{overview.kpis.cafes.label}}</div>
+      <div class="kpi-value">{{kpis.tourists.value | format_number}}</div>
+      <div class="kpi-label">{{kpis.tourists.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{kpis.students.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{kpis.students.value | format_number}}+</div>
+      <div class="kpi-label">{{kpis.students.label}}</div>
+    </div>
+  </div>
+
+  <!-- Row 3: Infrastructure & Culture -->
+  <div class="kpi-card">
+    <div class="kpi-icon">{{kpis.library_visits.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{kpis.library_visits.value | format_number}}</div>
+      <div class="kpi-label">{{kpis.library_visits.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{kpis.transit.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{(kpis.transit.value / 1000000) | round(1)}}M</div>
+      <div class="kpi-label">{{kpis.transit.label}}</div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-icon">{{kpis.cafes.icon}}</div>
+    <div class="kpi-info">
+      <div class="kpi-value">{{kpis.cafes.value | format_number}}</div>
+      <div class="kpi-label">{{kpis.cafes.label}}</div>
     </div>
   </div>
 </section>
 
 <section class="category-grid">
+  <a href="/demographics" class="category-card">
+    <div class="category-header">
+      <div class="category-icon">👥</div>
+      <h2 class="category-title">Demografie & Bevölkerung</h2>
+    </div>
+    <p class="category-description">
+      Bevölkerungsstruktur, Altersverteilung und demografische Entwicklung. Wie verändert sich unsere Stadt?
+    </p>
+    <div class="category-metric">
+      <strong>240.000+</strong> Einwohner mit Hauptwohnsitz
+    </div>
+    <span class="category-link">Zur Demografie-Ansicht</span>
+  </a>
+
   <a href="/environment" class="category-card">
     <div class="category-header">
       <div class="category-icon">🌳</div>
@@ -113,7 +167,7 @@
 
   <a href="/chat" class="category-card">
     <div class="category-header">
-      <div class="category-icon">💬</div>
+      <div class="category-icon">✨</div>
       <h2 class="category-title">KI-Assistent</h2>
     </div>
     <p class="category-description">

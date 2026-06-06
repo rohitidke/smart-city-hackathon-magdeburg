@@ -19,7 +19,11 @@
   <!-- Rent Map Card -->
   <div class="viz-card">
     <h3>🗺️ Mietpreise nach Stadtteil</h3>
-    <div class="map-container" id="rentMap"></div>
+    <div class="map-container" id="rentMap">
+      <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-muted);">
+        <span id="mapLoading">Lade Karte...</span>
+      </div>
+    </div>
     <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
       Bewegen Sie die Maus über die Stadtteile für Details. Dunklere Farben = höhere Mieten.
     </p>
@@ -71,6 +75,17 @@
       </p>
     </div>
   </div>
+
+  <!-- Housing Construction (KISS-MD Construction & Housing) -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>🏗️ Baufertigstellungen</h3>
+    <div class="chart-container">
+      <canvas id="constructionChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Bautätigkeit & Wohnen:</strong> Entwicklung der fertiggestellten Gebäude in Magdeburg.
+    </div>
+  </div>
 </section>
 
 {% if facts %}
@@ -91,17 +106,34 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/static/js/charts.js"></script>
-<script src="/static/js/maps.js"></script>
+<script src="/static/js/charts.js?v=2"></script>
+<script src="/static/js/maps.js?v=2"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Living page loaded');
+
     // Rent district chart
     const rentData = {{ living.rent_by_district | tojson }};
     const rentCtx = document.getElementById('rentDistrictChart').getContext('2d');
+    console.log('Creating rent chart with', rentData.length, 'districts');
     ChartHelpers.createRentDistrictChart(rentCtx, rentData);
 
     // Rent choropleth map
+    console.log('Creating rent map, MapHelpers available:', typeof MapHelpers);
+    console.log('Leaflet available:', typeof L);
     MapHelpers.createRentMap('rentMap');
+
+    // Housing Construction (KISS-MD)
+    try {
+      const constructionRes = await fetch('/api/data/housing/construction-completions');
+      const constructionData = await constructionRes.json();
+      if (constructionData.length > 0) {
+        const constructionCtx = document.getElementById('constructionChart').getContext('2d');
+        ChartHelpers.createConstructionChart(constructionCtx, constructionData);
+      }
+    } catch (err) {
+      console.error('Failed to load construction data:', err);
+    }
   });
 </script>
 {% endblock %}

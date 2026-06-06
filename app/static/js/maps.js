@@ -8,7 +8,7 @@ const MAGDEBURG_CENTER = [52.1205, 11.6276];
 const DEFAULT_ZOOM = 12;
 
 /**
- * Create base map with dark theme
+ * Create base map with theme-aware tiles
  */
 function createBaseMap(containerId, options = {}) {
   const map = L.map(containerId, {
@@ -17,8 +17,13 @@ function createBaseMap(containerId, options = {}) {
     ...options,
   });
 
-  // Add dark tile layer (CartoDB Dark Matter)
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  // Choose tile layer based on current theme
+  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  const tileUrl = isDark
+    ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+    : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+
+  L.tileLayer(tileUrl, {
     attribution: '©OpenStreetMap, ©CartoDB',
     maxZoom: 19,
   }).addTo(map);
@@ -89,16 +94,28 @@ async function createAccidentMap(containerId) {
  * Create rent choropleth map
  */
 async function createRentMap(containerId) {
+  // Remove loading indicator
+  const container = document.getElementById(containerId);
+  const loadingEl = document.getElementById('mapLoading');
+  if (loadingEl) loadingEl.remove();
+
   const map = createBaseMap(containerId);
 
   try {
+    console.log('Fetching rent map data...');
     const [districtsResponse, rentResponse] = await Promise.all([
       fetch('/api/data/districts/geojson'),
-      fetch('/api/charts/rent-by-district'),
+      fetch('/api/data/rent/by-district'),
     ]);
+
+    if (!districtsResponse.ok || !rentResponse.ok) {
+      console.error('Failed to fetch data:', districtsResponse.status, rentResponse.status);
+      return map;
+    }
 
     const districts = await districtsResponse.json();
     const rentData = await rentResponse.json();
+    console.log('Loaded districts:', districts.features?.length, 'rent data:', rentData.length);
 
     // Create lookup map
     const rentLookup = {};
@@ -119,17 +136,19 @@ async function createRentMap(containerId) {
     function style(feature) {
       const districtName = feature.properties.name || feature.properties.NAME;
       const rent = rentLookup[districtName] || 0;
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
 
       return {
         fillColor: getColor(rent),
         weight: 2,
         opacity: 1,
-        color: '#2a2f45',
+        color: isDark ? '#2a2f45' : '#cbd5e0',
         fillOpacity: 0.7,
       };
     }
 
     // Add district layer
+    console.log('Creating district layer...');
     const districtLayer = L.geoJSON(districts, {
       style: style,
       onEachFeature: function(feature, layer) {
@@ -141,6 +160,8 @@ async function createRentMap(containerId) {
             <strong>${districtName}</strong><br>
             Durchschnittsmiete: <strong>€${rent}/m²</strong>
           `);
+        } else {
+          console.warn('No rent data for district:', districtName);
         }
 
         layer.on({
@@ -156,6 +177,7 @@ async function createRentMap(containerId) {
         });
       },
     }).addTo(map);
+    console.log('District layer added to map');
 
     // Add legend
     const legend = L.control({ position: 'bottomright' });
@@ -175,6 +197,15 @@ async function createRentMap(containerId) {
 
   } catch (error) {
     console.error('Error loading rent data:', error);
+    console.error('Error details:', error.message, error.stack);
+    // Add error message to map
+    const errorDiv = L.DomUtil.create('div', 'map-error');
+    errorDiv.innerHTML = `<p style="color: red; padding: 10px; background: white;">Error loading rent data: ${error.message}</p>`;
+    errorDiv.style.position = 'absolute';
+    errorDiv.style.top = '10px';
+    errorDiv.style.left = '50px';
+    errorDiv.style.zIndex = '1000';
+    map.getContainer().appendChild(errorDiv);
   }
 
   return map;
@@ -253,6 +284,24 @@ async function createCafesMap(containerId) {
 
 // Custom CSS for map legend
 const legendCSS = `
+[data-theme="dark"] .info.legend {
+  background: rgba(26, 29, 39, 0.95);
+  border: 1px solid #2a2f45;
+  border-radius: 8px;
+  padding: 10px;
+  color: #e2e8f0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="light"] .info.legend {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  color: #1a202c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
 .info.legend {
   background: rgba(26, 29, 39, 0.95);
   border: 1px solid #2a2f45;
@@ -266,6 +315,10 @@ const legendCSS = `
   margin: 0 0 8px 0;
   font-size: 14px;
   color: #48c7a7;
+}
+
+[data-theme="light"] .info.legend h4 {
+  color: #2d9d7f;
 }
 
 .info.legend i {

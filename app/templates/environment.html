@@ -46,6 +46,29 @@
       Daten von sensor.community Sensoren im Stadtgebiet
     </p>
   </div>
+
+  <!-- Energy Consumption Chart (Stabstelle Klima) -->
+  <div class="viz-card">
+    <h3>⚡ Energieverbrauch nach Sektoren</h3>
+    <div class="chart-container">
+      <canvas id="energyConsumptionChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>Stabstelle Klima:</strong> Entwicklung des Endenergieverbrauchs in Magdeburg nach BISKO-Bilanzierung.
+    </div>
+  </div>
+
+  <!-- Solar Energy Card (Stabstelle Klima) -->
+  <div class="viz-card">
+    <h3>☀️ Solarenergie in Magdeburg</h3>
+    <div id="solarEnergy" class="loading">Lade Solardaten...</div>
+  </div>
+
+  <!-- LED Street Lighting Card (Stabstelle Klima) -->
+  <div class="viz-card">
+    <h3>💡 LED-Umrüstung Straßenbeleuchtung</h3>
+    <div id="ledStreetlights" class="loading">Lade LED-Daten...</div>
+  </div>
 </section>
 
 {% if facts %}
@@ -111,6 +134,71 @@
     } catch (error) {
       document.getElementById('airQuality').innerHTML =
         '<p style="color: var(--danger);">Fehler beim Laden der Luftqualitätsdaten.</p>';
+    }
+
+    // Stabstelle Klima: Energy consumption chart
+    try {
+      const energyRes = await fetch('/api/data/climate/energy-emissions');
+      const energyData = await energyRes.json();
+      if (energyData.length > 0) {
+        // Show last 15 years
+        const recentData = energyData.slice(-15);
+        const energyCtx = document.getElementById('energyConsumptionChart').getContext('2d');
+        ChartHelpers.createEnergyConsumptionChart(energyCtx, recentData);
+      }
+    } catch (err) {
+      console.error('Failed to load energy data:', err);
+    }
+
+    // Stabstelle Klima: Solar energy
+    try {
+      const solarRes = await fetch('/api/data/climate/solar-energy');
+      const solar = await solarRes.json();
+      document.getElementById('solarEnergy').innerHTML = `
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; padding: 1rem 0;">
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--warning);">${solar.total_installations.toLocaleString('de-DE')}</div>
+            <div style="color: var(--text-muted); margin-top: 0.5rem;">PV-Anlagen</div>
+          </div>
+          <div style="text-align: center;">
+            <div style="font-size: 2.5rem; font-weight: 700; color: var(--warning);">${solar.installed_capacity_mw} MW</div>
+            <div style="color: var(--text-muted); margin-top: 0.5rem;">Installierte Leistung</div>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding: 1.25rem; background: var(--success-bg); border-radius: var(--radius-sm); text-align: center;">
+          <strong style="color: var(--success);">☀️ ${solar.annual_generation_gwh} GWh/Jahr</strong>
+          <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">Jährliche Stromerzeugung aus Solarenergie</p>
+        </div>
+      `;
+    } catch (err) {
+      document.getElementById('solarEnergy').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Solardaten.</p>';
+    }
+
+    // Stabstelle Klima: LED street lighting
+    try {
+      const ledRes = await fetch('/api/data/climate/led-streetlights');
+      const led = await ledRes.json();
+      document.getElementById('ledStreetlights').innerHTML = `
+        <div style="text-align: center; padding: 2rem 1rem;">
+          <div style="font-size: 3rem; font-weight: 700; color: var(--info);">${led.led_percentage}%</div>
+          <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.1rem;">Auf LED umgerüstet</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+          <div style="background: var(--surface-elevated); padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: 600; color: var(--success);">${led.led_converted.toLocaleString('de-DE')}</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">LED-Laternen</div>
+          </div>
+          <div style="background: var(--surface-elevated); padding: 1rem; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 1.5rem; font-weight: 600; color: var(--text-muted);">${led.conventional.toLocaleString('de-DE')}</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">Konventionell</div>
+          </div>
+        </div>
+        <p style="margin-top: 1.25rem; padding: 1rem; background: var(--surface-elevated); border-radius: var(--radius-sm); color: var(--text-muted); font-size: 0.9rem;">
+          <strong>Gesamt:</strong> ${led.total_streetlights.toLocaleString('de-DE')} Straßenlaternen im Stadtgebiet
+        </p>
+      `;
+    } catch (err) {
+      document.getElementById('ledStreetlights').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der LED-Daten.</p>';
     }
   });
 </script>

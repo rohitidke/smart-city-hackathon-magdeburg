@@ -7,7 +7,7 @@
 }
 
 :root {
-  /* Base colors */
+  /* Base colors - Dark Theme */
   --bg: #0f1117;
   --surface: #1a1d27;
   --surface-elevated: #22252f;
@@ -31,6 +31,29 @@
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
   --transition: 0.3s ease-in-out;
   --card-hover: 0 8px 16px rgba(108, 99, 255, 0.2);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-elevated: #f8f9fb;
+  --accent: #5b4dd6;
+  --accent2: #2d9d7f;
+  --text: #1a202c;
+  --text-muted: #4a5568;
+  --border: #e2e8f0;
+
+  /* Semantic colors */
+  --success: #2d9d7f;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #3b82f6;
+
+  /* Effects */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --card-hover: 0 6px 20px rgba(91, 77, 214, 0.15);
 }
 
 body {
@@ -108,6 +131,33 @@ body {
 .nav-link-accent:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.theme-toggle-icon {
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 /* Main Content */

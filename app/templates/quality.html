@@ -5,6 +5,7 @@
 {% block extra_head %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -34,6 +35,38 @@
     <div class="viz-insight">
       {{quality.insight}}
     </div>
+  </div>
+
+  <!-- Students & Education Card (KISS-MD) -->
+  <div class="viz-card">
+    <h3>🎓 Bildung & Studierende</h3>
+    <div style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 3.5rem; font-weight: 700; color: var(--info);">{{quality.students_total|format_number}}+</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">{{quality.students_note}}</div>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Magdeburg ist mit der Otto-von-Guericke-Universität und der Hochschule Magdeburg-Stendal ein bedeutender Bildungsstandort.
+    </div>
+  </div>
+
+  <!-- Culture & Libraries Card (KISS-MD) -->
+  <div class="viz-card">
+    <h3>📚 Bibliotheken & Kultur</h3>
+    <div style="text-align: center; padding: 2rem;">
+      <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent1);">{{quality.library_visits_annual|format_number}}+</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem;">Jährliche Bibliotheksbesuche</div>
+    </div>
+    <div style="margin-top: 1.5rem; padding: 1.25rem; background: var(--surface-elevated); border-radius: var(--radius-sm);">
+      <p style="line-height: 1.6; color: var(--text-muted);">
+        <strong>Kultureinrichtungen:</strong> {{quality.cultural_facilities}}
+      </p>
+    </div>
+  </div>
+
+  <!-- Schools & Education (KISS-MD Phase 2) -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>🏫 Schulen & Bildung</h3>
+    <div id="schoolsInfrastructure" class="loading">Lade Schuldaten...</div>
   </div>
 
   <!-- Cultural Highlights Card -->
@@ -95,6 +128,34 @@
       </div>
     </div>
   </div>
+
+  <!-- Health Infrastructure (KISS-MD Health & Social) -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>🏥 Gesundheitsversorgung</h3>
+    <div id="healthInfrastructure" class="loading">Lade Gesundheitsdaten...</div>
+  </div>
+
+  <!-- Tourism Metrics (KISS-MD Phase 2) -->
+  <div class="viz-card">
+    <h3>🏨 Tourismus & Gäste</h3>
+    <div class="chart-container">
+      <canvas id="tourismArrivalsChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Fremdenverkehr:</strong> Entwicklung der Gästeankünfte in Magdeburg (Inland & Ausland).
+    </div>
+  </div>
+
+  <!-- Overnight Stays (KISS-MD Phase 2) -->
+  <div class="viz-card">
+    <h3>🌙 Übernachtungen</h3>
+    <div class="chart-container">
+      <canvas id="overnightStaysChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Fremdenverkehr:</strong> Anzahl der Übernachtungen von Gästen in Magdeburg.
+    </div>
+  </div>
 </section>
 
 <!-- RAG Knowledge Section -->
@@ -143,10 +204,141 @@
 
 {% block scripts %}
 <script src="/static/js/maps.js"></script>
+<script src="/static/js/charts.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     // Cafes map
     MapHelpers.createCafesMap('cafesMap');
+
+    // Schools & Education (KISS-MD Phase 2)
+    try {
+      const schoolsRes = await fetch('/api/data/education/schools');
+      const schoolsData = await schoolsRes.json();
+
+      if (schoolsData && schoolsData.total_schools) {
+        // Create schools visualization
+        const topTypes = Object.entries(schoolsData.by_type)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 8); // Top 8 types
+
+        document.getElementById('schoolsInfrastructure').innerHTML = `
+          <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding: 1.5rem 0;">
+            <div>
+              <div style="text-align: center; margin-bottom: 2rem;">
+                <div style="font-size: 3rem; font-weight: 700; color: var(--info);">🏫</div>
+                <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent2); margin-top: 1rem;">${schoolsData.total_schools}</div>
+                <div style="color: var(--text-muted); margin-top: 0.5rem;">Schulen in Magdeburg (${schoolsData.latest_year})</div>
+              </div>
+              <div style="background: var(--surface-elevated); padding: 1.5rem; border-radius: var(--radius-sm);">
+                <h4 style="color: var(--accent2); margin-bottom: 1rem;">🎓 Top Schultypen</h4>
+                ${topTypes.map(([type, count]) => `
+                  <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                    <span style="color: var(--text-muted); font-size: 0.9rem;">${type}</span>
+                    <strong>${count}</strong>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="schoolsByTypeChart"></canvas>
+            </div>
+          </div>
+          <div class="viz-insight">
+            <strong>KISS-MD Bildung & Kultur:</strong> Magdeburg verfügt über ein vielfältiges Schulangebot mit Grundschulen, Gymnasien, Gemeinschaftsschulen und Förderschulen.
+          </div>
+        `;
+
+        // Create schools chart
+        const schoolsCtx = document.getElementById('schoolsByTypeChart').getContext('2d');
+        const schoolsByType = Object.fromEntries(topTypes);
+        ChartHelpers.createSchoolsByTypeChart(schoolsCtx, schoolsByType);
+      }
+    } catch (err) {
+      console.error('Failed to load schools data:', err);
+      document.getElementById('schoolsInfrastructure').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Schuldaten.</p>';
+    }
+
+    // Health Infrastructure (KISS-MD)
+    try {
+      const doctorsRes = await fetch('/api/data/health/doctors-pharmacies');
+      const doctorsData = await doctorsRes.json();
+
+      if (doctorsData.length > 0) {
+        const latest = doctorsData[doctorsData.length - 1];
+        const oldest = doctorsData[0];
+        const growth = latest.doctors - oldest.doctors;
+        const growthPercent = ((growth / oldest.doctors) * 100).toFixed(1);
+
+        document.getElementById('healthInfrastructure').innerHTML = `
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; padding: 1.5rem 0;">
+            <div style="text-align: center;">
+              <div style="font-size: 3rem; font-weight: 700; color: var(--success);">🏥</div>
+              <div style="font-size: 2rem; font-weight: 700; color: var(--accent2); margin-top: 1rem;">${latest.doctors.toLocaleString('de-DE')}</div>
+              <div style="color: var(--text-muted); margin-top: 0.5rem;">Ärzte & Praxen (${latest.year})</div>
+            </div>
+            <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm);">
+              <h4 style="color: var(--accent2); margin-bottom: 1rem;">📈 Entwicklung</h4>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">${oldest.year}:</span>
+                <strong>${oldest.doctors.toLocaleString('de-DE')}</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span style="color: var(--text-muted);">${latest.year}:</span>
+                <strong>${latest.doctors.toLocaleString('de-DE')}</strong>
+              </div>
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <span style="color: ${growth >= 0 ? 'var(--success)' : 'var(--danger)'}; font-weight: 600;">
+                  ${growth >= 0 ? '+' : ''}${growth.toLocaleString('de-DE')} (${growth >= 0 ? '+' : ''}${growthPercent}%)
+                </span>
+              </div>
+            </div>
+            <div style="background: var(--surface-elevated); padding: 2rem; border-radius: var(--radius-sm);">
+              <h4 style="color: var(--accent2); margin-bottom: 1rem;">🏥 Versorgung</h4>
+              <p style="color: var(--text-muted); line-height: 1.6;">
+                Magdeburg verfügt über eine umfassende Gesundheitsinfrastruktur mit Kliniken, Fachärzten und Apotheken für die medizinische Versorgung der Bevölkerung.
+              </p>
+            </div>
+          </div>
+          <div class="viz-insight">
+            <strong>KISS-MD Gesundheit & Soziales:</strong> Entwicklung der medizinischen Versorgungsstruktur in Magdeburg.
+          </div>
+        `;
+      }
+    } catch (err) {
+      document.getElementById('healthInfrastructure').innerHTML = '<p style="color: var(--danger);">Fehler beim Laden der Gesundheitsdaten.</p>';
+    }
+
+    // Tourism Arrivals (KISS-MD Phase 2)
+    try {
+      const arrivalsRes = await fetch('/api/data/tourism/arrivals');
+      const arrivalsData = await arrivalsRes.json();
+
+      // Filter out incomplete 2026 data
+      const completeData = arrivalsData.filter(d => d.year < 2026);
+
+      if (completeData.length > 0) {
+        const arrivalsCtx = document.getElementById('tourismArrivalsChart').getContext('2d');
+        ChartHelpers.createTourismArrivalsChart(arrivalsCtx, completeData);
+      }
+    } catch (err) {
+      console.error('Failed to load tourism arrivals data:', err);
+    }
+
+    // Overnight Stays (KISS-MD Phase 2)
+    try {
+      const overnightRes = await fetch('/api/data/tourism/overnight-stays');
+      const overnightData = await overnightRes.json();
+
+      // Filter out incomplete 2026 data
+      const completeData = overnightData.filter(d => d.year < 2026);
+
+      if (completeData.length > 0) {
+        const overnightCtx = document.getElementById('overnightStaysChart').getContext('2d');
+        ChartHelpers.createOvernightStaysChart(overnightCtx, completeData);
+      }
+    } catch (err) {
+      console.error('Failed to load overnight stays data:', err);
+    }
   });
 </script>
 {% endblock %}

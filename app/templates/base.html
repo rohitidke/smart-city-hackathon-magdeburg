@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% block title %}Smart City Dashboard Magdeburg{% endblock %}</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
   <link rel="stylesheet" href="/static/css/dashboard.css" />
+  <link rel="stylesheet" href="/static/css/chatbot-widget.css" />
   {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -14,17 +16,21 @@
       <div class="logo">
         <a href="/">
           <span class="logo-icon">🏛️</span>
-          <span class="logo-text">Magdeburg Dashboard</span>
+          <span class="logo-text">Magdeburg City</span>
         </a>
       </div>
       <nav class="main-nav">
         <a href="/" class="nav-link">Übersicht</a>
+        <a href="/demographics" class="nav-link">👥 Demografie</a>
         <a href="/environment" class="nav-link">🌳 Umwelt</a>
         <a href="/mobility" class="nav-link">🚦 Mobilität</a>
         <a href="/living" class="nav-link">🏠 Wohnen</a>
         <a href="/economy" class="nav-link">💰 Wirtschaft</a>
         <a href="/quality" class="nav-link">🎨 Lebensqualität</a>
-        <a href="/chat" class="nav-link nav-link-accent">💬 KI-Assistent</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-toggle-icon" id="theme-icon">☀️</span>
+          <span id="theme-label">Hell</span>
+        </button>
       </nav>
     </div>
   </header>
@@ -73,6 +79,46 @@
   </footer>
 
   {% block scripts %}{% endblock %}
+
+  <script>
+    // Chatbot config for widget
+    window.chatbotConfig = {
+      llmConfigured: {{ 'true' if llm_configured else 'false' }},
+      ragConfigured: {{ 'true' if rag_configured else 'false' }}
+    };
+  </script>
+  <script src="/static/js/chatbot-widget.js"></script>
+
+  <script>
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
+
+    // Get saved theme or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeButton(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeButton(newTheme);
+    });
+
+    function updateThemeButton(theme) {
+      if (theme === 'light') {
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Dunkel';
+      } else {
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Hell';
+      }
+    }
+  </script>
 
 </body>
 </html>

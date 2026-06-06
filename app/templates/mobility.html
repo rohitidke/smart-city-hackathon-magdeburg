@@ -63,6 +63,28 @@
       Ein gut ausgebautes ÖPNV-Netz trägt zur Verkehrssicherheit und Lebensqualität bei.
     </div>
   </div>
+
+  <!-- Public Transport Chart (KISS-MD) -->
+  <div class="viz-card">
+    <h3>🚃 ÖPNV-Fahrgäste (MVB)</h3>
+    <div class="chart-container">
+      <canvas id="transitPassengersChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Entwicklung der Fahrgastzahlen der Magdeburger Verkehrsbetriebe über die Jahre.
+    </div>
+  </div>
+
+  <!-- Vehicle Fleet (KISS-MD) -->
+  <div class="viz-card">
+    <h3>🚗 Kraftfahrzeugbestand</h3>
+    <div class="chart-container">
+      <canvas id="vehicleFleetChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Entwicklung des Kraftfahrzeugbestands in Magdeburg zeigt das Wachstum der motorisierten Mobilität.
+    </div>
+  </div>
 </section>
 
 {% if facts %}
@@ -86,7 +108,7 @@
 <script src="/static/js/charts.js"></script>
 <script src="/static/js/maps.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     // Accident trend chart
     const accidentsByYear = {{ mobility.accidents_by_year | tojson }};
     const trendCtx = document.getElementById('accidentTrendChart').getContext('2d');
@@ -99,6 +121,30 @@
 
     // Accident heatmap
     MapHelpers.createAccidentMap('accidentMap');
+
+    // KISS-MD: Transit passengers chart
+    try {
+      const passengersRes = await fetch('/api/data/kiss/transport/passengers');
+      const passengersData = await passengersRes.json();
+      if (passengersData.length > 0) {
+        const passengersCtx = document.getElementById('transitPassengersChart').getContext('2d');
+        ChartHelpers.createTransitPassengersChart(passengersCtx, passengersData);
+      }
+    } catch (err) {
+      console.error('Failed to load transit passengers data:', err);
+    }
+
+    // KISS-MD: Vehicle fleet chart
+    try {
+      const vehiclesRes = await fetch('/api/data/kiss/transport/vehicles');
+      const vehiclesData = await vehiclesRes.json();
+      if (vehiclesData.length > 0) {
+        const vehiclesCtx = document.getElementById('vehicleFleetChart').getContext('2d');
+        ChartHelpers.createVehicleFleetChart(vehiclesCtx, vehiclesData);
+      }
+    } catch (err) {
+      console.error('Failed to load vehicle fleet data:', err);
+    }
   });
 </script>
 {% endblock %}

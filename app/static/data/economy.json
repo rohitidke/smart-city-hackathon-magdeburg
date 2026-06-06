@@ -67,5 +67,10 @@
   ],
   "latest_year": 2025,
   "latest_revenue": 342.64,
-  "insight": "Steuereinnahmen sind seit 2010 um 111% gewachsen"
+  "insight": "Steuereinnahmen sind seit 2010 um 111% gewachsen",
+  "gdp_2022": 9593.475,
+  "gdp_unit": "Mio. EUR",
+  "employed_2022": 68576,
+  "apprentices_2023": 7291,
+  "apprentices_growth": "+5.7% seit 2021"
 }

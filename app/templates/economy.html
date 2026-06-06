@@ -39,6 +39,39 @@
     </div>
   </div>
 
+  <!-- GDP & Employment Card (KISS-MD) -->
+  <div class="viz-card">
+    <h3>💼 BIP & Beschäftigung (2022)</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent1);">€{{economy.gdp_2022|format_number}}M</div>
+        <div style="color: var(--text-muted); margin-top: 0.5rem;">Bruttoinlandsprodukt</div>
+      </div>
+      <div style="text-align: center;">
+        <div style="font-size: 2.5rem; font-weight: 700; color: var(--success);">{{economy.employed_2022|format_number}}</div>
+        <div style="color: var(--text-muted); margin-top: 0.5rem;">Erwerbstätige</div>
+      </div>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Das BIP Magdeburgs betrug 2022 ca. 9,6 Milliarden Euro bei über 68.500 Erwerbstätigen.
+    </div>
+  </div>
+
+  <!-- Apprentices Card (KISS-MD) -->
+  <div class="viz-card">
+    <h3>🎓 Auszubildende am Arbeitsort (2023)</h3>
+    <div style="text-align: center; padding: 3rem 2rem;">
+      <div style="font-size: 3.5rem; font-weight: 700; color: var(--info);">{{economy.apprentices_2023|format_number}}</div>
+      <div style="color: var(--text-muted); margin-top: 0.5rem; font-size: 1.2rem;">Auszubildende in Magdeburg</div>
+      <div style="margin-top: 1rem; padding: 0.75rem; background: var(--success-bg); color: var(--success); border-radius: var(--radius-sm); font-weight: 600;">
+        {{economy.apprentices_growth}}
+      </div>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Daten:</strong> Die Zahl der Auszubildenden am Arbeitsort Magdeburg ist kontinuierlich gestiegen.
+    </div>
+  </div>
+
   <!-- Economic Context Card -->
   <div class="viz-card">
     <h3>🏢 Wirtschaftsstandort Magdeburg</h3>
@@ -77,6 +110,17 @@
       </div>
     </div>
   </div>
+
+  <!-- Employment Trend Chart (KISS-MD Labor Market) -->
+  <div class="viz-card" style="grid-column: 1 / -1;">
+    <h3>👔 Sozialversicherungspflichtig Beschäftigte</h3>
+    <div class="chart-container">
+      <canvas id="employmentChart"></canvas>
+    </div>
+    <div class="viz-insight">
+      <strong>KISS-MD Arbeitsmarkt:</strong> Entwicklung der sozialversicherungspflichtig Beschäftigten am Arbeitsort Magdeburg.
+    </div>
+  </div>
 </section>
 
 {% if facts %}
@@ -99,11 +143,23 @@
 {% block scripts %}
 <script src="/static/js/charts.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     // Tax revenue trend chart
     const revenueTrend = {{ economy.revenue_trend | tojson }};
     const revenueCtx = document.getElementById('taxRevenueChart').getContext('2d');
     ChartHelpers.createTaxRevenueChart(revenueCtx, revenueTrend);
+
+    // Employment trend chart (KISS-MD Labor Market)
+    try {
+      const employmentRes = await fetch('/api/data/labor/employment');
+      const employmentData = await employmentRes.json();
+      if (employmentData.length > 0) {
+        const employmentCtx = document.getElementById('employmentChart').getContext('2d');
+        ChartHelpers.createEmploymentChart(employmentCtx, employmentData);
+      }
+    } catch (err) {
+      console.error('Failed to load employment data:', err);
+    }
   });
 </script>
 {% endblock %}
