@@ -33,17 +33,17 @@ async def lifespan(app: FastAPI):
     import app.tools.rent  # noqa: F401
     import app.tools.climate  # noqa: F401
     import app.tools.economy  # noqa: F401
-    import app.tools.events  # noqa: F401
     import app.tools.health  # noqa: F401
     import app.tools.mobility  # noqa: F401
     import app.tools.tax  # noqa: F401
     import app.tools.population  # noqa: F401
     import app.tools.transit  # noqa: F401
+    import app.tools.web_search  # noqa: F401
     import app.tools.rag_tool  # noqa: F401
     yield
 
 
-app = FastAPI(title="Smart City Dashboard Magdeburg", lifespan=lifespan)
+app = FastAPI(title="Smart City Magdeburg", lifespan=lifespan)
 
 # Mount static files
 app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static"), name="static")
@@ -356,7 +356,7 @@ async def chat_page(request: Request):
 
     context = {
         "request": request,
-        "title": "KI-Assistent - Smart City Dashboard Magdeburg",
+        "title": "City AI Agent - Smart City Magdeburg",
         "llm_configured": llm_is_configured(),
         "rag_configured": rag_is_configured(),
         "tools": get_available_tool_names(),

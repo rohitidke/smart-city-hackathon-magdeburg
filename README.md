@@ -1,153 +1,216 @@
-# MD-Hackathon Dashboard
+# Smart City Magdeburg
 
-Small FastAPI dashboard app with a Jinja2 template frontend.
+A FastAPI-based smart city dashboard and AI assistant for exploring Magdeburg through open data, live city information, and optional retrieval-augmented generation (RAG).
+
+The project combines:
+
+- interactive dashboard pages for key city topics
+- a Magdeburg-only AI assistant with tool calling
+- local datasets for housing, mobility, environment, health, economy, and demographics
+- optional document search over curated city sources
+
+If someone opens this repository on GitHub, they should quickly understand one thing: this app helps people explore and ask questions about **Magdeburg** using both structured data and AI.
+
+## What This Project Does
+
+This application is designed as a city intelligence interface for Magdeburg. It gives users two ways to explore the city:
+
+1. Browse dashboard pages with curated KPIs and topic summaries.
+2. Ask natural-language questions in German or English.
+
+The assistant is intentionally scoped to Magdeburg. It can answer questions about topics such as:
+
+- weather and air quality
+- rent and housing
+- public transport and mobility
+- economy and tax trends
+- healthcare coverage
+- trees, climate, and environmental indicators
+- demographics and quality of life
+- Magdeburg-specific documents via RAG
+
+## Main Features
+
+| Feature | Description |
+| --- | --- |
+| Dashboard UI | Multi-page FastAPI + Jinja interface for city categories such as environment, mobility, living, economy, and quality of life |
+| AI Chat Assistant | Tool-using city assistant that answers only Magdeburg-related questions |
+| Bilingual Support | Responds in German or English based on the user's message |
+| Local Data Processing | Loads GeoJSON, CSV, and JSON datasets from the repository |
+| Live Data Tools | Can fetch current weather, water level, air quality, and Magdeburg-specific web results |
+| Optional RAG | Searches curated Magdeburg documents stored in Qdrant with external embeddings |
+
+## Pages
+
+After starting the app, these routes are available:
+
+- `/` - landing page with overview KPIs
+- `/chat` - AI assistant
+- `/environment` - environment and climate
+- `/mobility` - mobility and safety
+- `/living` - housing and living
+- `/economy` - economy and finance
+- `/quality` - quality of life
+- `/demographics` - population and demographic view
+
+## Tech Stack
+
+- Python 3.12
+- FastAPI
+- Jinja2 templates
+- Uvicorn
+- `uv` for dependency management
+- OpenAI-compatible LLM integration
+- Optional Qdrant-based RAG pipeline
 
 ## Project Structure
 
-- `app/main.py` - FastAPI app entrypoint
-- `app/templates/dashboard.html` - HTML template
-- `pyproject.toml` - Python dependencies
-- `Dockerfile` - Docker image definition
+```text
+app/
+  main.py              FastAPI entrypoint and routes
+  agent.py             Magdeburg-scoped tool-calling assistant
+  llm_provider.py      OpenAI / remote LLM provider abstraction
+  rag_query.py         RAG search + answer flow
+  tools/               Domain tools for weather, rent, mobility, tax, etc.
+  templates/           Jinja templates for the frontend
+  static/              CSS, JS, icons, and prepared chart data
 
-## Run Locally With uv
+data/
+  kiss-md/             City datasets
+  rag/                 Curated RAG sources and pipeline assets
+  sensor-data/         Climate and sensor exports
+  steuereinnahmen/     Tax revenue datasets
+  ...                  Additional city-specific data sources
+```
 
-Install dependencies:
+## Quick Start
+
+### 1. Prerequisites
+
+Make sure you have:
+
+- Python 3.12+
+- `uv` installed: <https://docs.astral.sh/uv/>
+
+### 2. Install dependencies
 
 ```bash
 uv sync
 ```
 
-Create a local env file for secrets:
+### 3. Create a `.env` file
 
-```bash
-OPENAI_API_KEY=your_key_here
-OPENAI_BASE_URL=https://eu.api.openai.com/v1
+The app automatically loads environment variables from a `.env` file in the repository root.
+
+Minimal OpenAI-based setup:
+
+```env
+OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-Start the development server:
+Optional OpenAI-compatible base URL:
+
+```env
+OPENAI_BASE_URL=https://eu.api.openai.com/v1
+```
+
+Alternative remote LLM backend setup:
+
+```env
+SERVER_URL=https://your-server.example.com
+SERVER_TOKEN=your_token
+```
+
+Optional RAG setup:
+
+```env
+EMBEDDING_URL=http://localhost:11434
+QDRANT_URL=http://localhost:6333
+QDRANT_COLLECTION=magdeburg
+```
+
+### 4. Run the app
 
 ```bash
 uv run uvicorn app.main:app --reload
 ```
 
-Open in browser:
+### 5. Open it in the browser
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## Docker
+## Configuration Notes
 
-Build the image:
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `OPENAI_API_KEY` | Yes, unless using `SERVER_URL` + `SERVER_TOKEN` | Enables the OpenAI provider |
+| `OPENAI_MODEL` | No | Defaults to `gpt-4o-mini` |
+| `OPENAI_BASE_URL` | No | Use this when targeting a compatible endpoint |
+| `SERVER_URL` | Alternative | Remote chat backend URL |
+| `SERVER_TOKEN` | Alternative | Auth token for the remote chat backend |
+| `EMBEDDING_URL` | Only for RAG | Embedding service endpoint |
+| `QDRANT_URL` | Only for RAG | Qdrant instance URL |
+| `QDRANT_COLLECTION` | Only for RAG | Collection name, defaults to `magdeburg` |
 
-```bash
-docker build -t md-dashboard .
-```
+Notes:
 
-Run the container:
+- The dashboard pages can still load from local data even if no LLM is configured.
+- Chat and RAG features need an LLM backend.
+- RAG also needs an embedding service and a running Qdrant instance.
 
-```bash
-docker run --rm -p 8080:8080 md-dashboard
-```
+## Example Questions
 
-Open in browser:
-
-```text
-http://127.0.0.1:8080/
-```
-
-## GitHub Actions
-
-The workflow can be triggered manually from GitHub Actions:
-
-- Workflow file: `.github/workflows/build.yaml`
-- Trigger type: `workflow_dispatch`
-
-## Quick Start
-
-Local development:
-
-```bash
-uv sync
-uv run uvicorn app.main:app --reload
-```
-
-Docker:
-
-```bash
-docker build -t md-dashboard .
-docker run --rm -p 8080:8080 md-dashboard
-```
-
-## Smart Agent Example Queries
+You can ask the assistant things like:
 
 - `What's the weather in Magdeburg today?`
-  Deutsch: `Wie ist das Wetter heute in Magdeburg?`
-  Tool: `wetter_aktuell`
-- `What is the current air quality in Magdeburg?`
-  Deutsch: `Wie ist die aktuelle Luftqualität in Magdeburg?`
-  Tool: `luftqualitaet`
-- `How many cafes are there in Magdeburg?`
-  Deutsch: `Wie viele Cafés gibt es in Magdeburg?`
-  Tool: `cafes`
-- `Show rent prices by district in Magdeburg for 2024.`
-  Deutsch: `Zeige Mietpreise nach Stadtteil in Magdeburg für 2024.`
-  Tool: `miete_preise`
 - `How many people live in Magdeburg?`
-  Deutsch: `Wie viele Menschen leben in Magdeburg?`
-  Tool: `bevoelkerung`
-- `What are the latest tax revenues in Magdeburg?`
-  Deutsch: `Wie hoch sind die aktuellen Steuereinnahmen in Magdeburg?`
-  Tool: `steuer_einnahmen`
-- `How has employment in Magdeburg changed over time?`
-  Deutsch: `Wie hat sich die Beschäftigung in Magdeburg entwickelt?`
-  Tool: `wirtschaft_trends`
-- `How many doctors and pharmacies are there in Magdeburg?`
-  Deutsch: `Wie viele Ärzte und Apotheken gibt es in Magdeburg?`
-  Tool: `gesundheitsversorgung`
-- `What events can I attend in Magdeburg today?`
-  Deutsch: `Welche Veranstaltungen kann ich heute in Magdeburg besuchen?`
-  Tool: `veranstaltungen`
+- `Show rent prices by district in Magdeburg for 2024.`
 - `How has public transport usage changed in Magdeburg?`
-  Deutsch: `Wie hat sich die ÖPNV-Nutzung in Magdeburg entwickelt?`
-  Tool: `mobilitaet_trends`
 - `Which public transport stops are near Alter Markt in Magdeburg?`
-  Deutsch: `Welche ÖPNV-Haltestellen liegen nahe dem Alten Markt in Magdeburg?`
-  Tool: `nahverkehr`
-- `What is the current Elbe water level in Magdeburg?`
-  Deutsch: `Wie ist der aktuelle Elbe-Wasserstand in Magdeburg?`
-  Tool: `elbe_pegel`
-- `Show climate data for Magdeburg in 2024.`
-  Deutsch: `Zeige Klimadaten für Magdeburg im Jahr 2024.`
-  Tool: `klima_daten`
-- `How has solar energy and LED streetlight conversion developed in Magdeburg?`
-  Deutsch: `Wie haben sich Solarenergie und die LED-Umrüstung der Straßenbeleuchtung in Magdeburg entwickelt?`
-  Tool: `energie_klima_trends`
-- `Give me tree statistics for Magdeburg.`
-  Deutsch: `Gib mir Baumstatistiken für Magdeburg.`
-  Tool: `baum_statistik`
-- `Analyze traffic accidents in Magdeburg in 2023.`
-  Deutsch: `Analysiere Verkehrsunfälle in Magdeburg im Jahr 2023.`
-  Tool: `unfall_analyse`
-- `Which smart city projects are being funded in Magdeburg?`
-  Deutsch: `Welche Smart-City-Projekte werden in Magdeburg gefördert?`
-  Tool: `rag_suche`
-
-## RAG Example Queries
-
-- `What do the documents say about mobility and public transport in Magdeburg?`
-  Deutsch: `Welche Aussagen gibt es in den Dokumenten zu Mobilität und ÖPNV in Magdeburg?`
 - `Which smart city projects are being funded in Magdeburg according to the documents?`
-  Deutsch: `Welche Smart-City-Projekte werden laut den Dokumenten in Magdeburg gefördert?`
-- `Summarize what the indexed sources say about housing in Magdeburg.`
-  Deutsch: `Fasse zusammen, was die indexierten Quellen über Wohnen in Magdeburg sagen.`
 
-## Out of scope
+More demo prompts are available in [DEMO_README.md](./DEMO_README.md).
 
-- `What is the capital of France?`
-  Deutsch: `Was ist die Hauptstadt von Frankreich?`
-- `Who will win the football world cup 2026?`
-  Deutsch: `Wer wird die Fußball-WM 2026 gewinnen?`
-- `Show me rent prices in Berlin.`
-  Deutsch: `Zeige mir Mietpreise in Berlin.`
+## Data Sources
+
+This repository mixes several kinds of sources:
+
+- local open-data exports stored in `data/`
+- prepared JSON summaries used by the frontend
+- live external sources for selected tools such as weather and current web results
+- curated RAG documents for Magdeburg strategy, tourism, culture, history, and city information
+
+## RAG Mode
+
+RAG is optional, but supported.
+
+When configured, the app can search a curated Magdeburg knowledge base and answer questions grounded in those sources. The retrieval layer uses:
+
+- embeddings from an external embedding service
+- Qdrant for vector search
+- curated documents in [`data/rag/`](./data/rag/)
+
+If you only want to run the dashboard and the basic tool-enabled assistant, you do not need to configure RAG.
+
+## Scope and Limitations
+
+- The assistant is intentionally restricted to Magdeburg-related questions.
+- If the user asks about another city, the assistant should refuse.
+- Some answers depend on live sources and may vary over time.
+- RAG answers are only available when the retrieval stack is configured.
+
+## Docker
+
+A `Dockerfile` is included in the repository, but the simplest and most reliable way to run the full project locally is the `uv` workflow shown above.
+
+## Why This Repo Is Useful
+
+This project is a good starting point if you want to build:
+
+- a city dashboard
+- a domain-specific AI assistant
+- a local-government or civic-tech demo
+- a hybrid app that combines structured data, live APIs, and RAG

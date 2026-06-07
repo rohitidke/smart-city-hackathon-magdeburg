@@ -17,7 +17,8 @@ Regeln:
 7. Nenne Quellen, wenn verfügbar.
 8. Sei präzise und hilfreich.
 9. Wenn du mehrere Orte, Cafés, Ereignisse oder Punkte aufzählst, formatiere sie als echte Liste mit Zeilenumbrüchen.
-10. Schreibe Listen nicht als Fließtext in einem einzigen Absatz."""
+10. Schreibe Listen nicht als Fließtext in einem einzigen Absatz.
+11. Wenn keine der spezialisierten Datenquellen passt, nutze die Magdeburg-Websuche als Fallback für Magdeburg-spezifische Fragen."""
 
 MAX_ITERATIONS = 5
 
@@ -25,6 +26,7 @@ LOCAL_TOPIC_KEYWORDS = {
     "air quality", "luftqualität", "weather", "wetter", "temperature", "temperatur",
     "rain", "regen", "wind", "climate", "klima", "tree", "trees", "baum", "bäume",
     "cafe", "cafes", "café", "cafés", "rent", "miete", "mietpreis", "wohnung",
+    "housing", "wohnen", "living", "affordable", "cheapest", "günstig", "guenstig",
     "transit", "bus", "tram", "train", "traffic", "verkehr", "haltestelle",
     "water level", "wasserstand", "elbe", "population", "bevölkerung", "school",
     "schools", "schule", "schulen", "doctor", "doctors", "arzt", "ärzte",
@@ -60,6 +62,12 @@ DIRECT_TOOL_KEYWORDS = {
     "steuer_einnahmen": {
         "tax revenue", "tax revenues", "steuereinnahmen", "tax income", "steuer",
     },
+    "miete_preise": {
+        "rent", "rents", "rental", "miete", "mietpreis", "mietpreise", "wohnung",
+        "wohnen", "housing", "live", "living", "affordable", "cheapest",
+        "cheap", "günstig", "guenstig", "billig", "district to live",
+        "place to live",
+    },
     "energie_klima_trends": {
         "solar", "pv", "photovoltaic", "led", "streetlight", "streetlights",
         "solar energy", "energie", "energy consumption", "emissions", "co2",
@@ -81,11 +89,6 @@ DIRECT_TOOL_KEYWORDS = {
         "public transport usage", "oepnv entwicklung", "öpnv entwicklung",
         "fahrgast", "fahrgäste", "passengers transported", "vehicle fleet",
         "kraftfahrzeugbestand", "vehicle ownership", "kfz-bestand", "car fleet",
-    },
-    "veranstaltungen": {
-        "event", "events", "veranstaltung", "veranstaltungen", "concert",
-        "konzert", "festival", "show", "market", "flohmarkt", "exhibition",
-        "ausstellung", "what's on", "what is on",
     },
 }
 
@@ -154,6 +157,10 @@ def should_route_to_rag(user_message: str) -> bool:
     return any(keyword in lower_message for keyword in RAG_QUERY_KEYWORDS)
 
 
+def is_magdeburg_scoped_query(user_message: str) -> bool:
+    return "magdeburg" in user_message.lower() or should_assume_magdeburg(user_message)
+
+
 def is_healthcare_proximity_query(user_message: str) -> bool:
     lower_message = user_message.lower()
     health_terms = {
@@ -186,6 +193,76 @@ def build_healthcare_proximity_unavailable_message(language: str) -> str:
     )
 
 
+def looks_like_no_answer_response(text: str) -> bool:
+    lower_text = (text or "").lower()
+    patterns = (
+        "i only answer questions related to magdeburg",
+        "i can only provide information related to magdeburg",
+        "i don't have any specific information",
+        "not currently within my knowledge",
+        "unfortunately, current",
+        "i'm sorry, but",
+        "ich beantworte nur fragen über magdeburg",
+        "ich kann nur informationen zu magdeburg",
+        "ich habe keine spezifischen informationen",
+        "derzeit nicht verfügbar",
+        "leider",
+        "entschuldigung",
+    )
+    return not lower_text.strip() or any(pattern in lower_text for pattern in patterns)
+
+
+def summarize_web_results(user_message: str, web_results: str, history: list[dict] | None = None) -> str:
+    provider = get_provider()
+    history_lines = []
+    if history:
+        for message in history[-4:]:
+            if message.get("role") in {"user", "assistant"} and message.get("content"):
+                history_lines.append(f"{message['role']}: {message['content']}")
+
+    prompt = (
+        "Du bist der Magdeburg Stadtassistent. Nutze AUSSCHLIESSLICH die folgenden "
+        "Magdeburg-Websuchergebnisse. Antworte in derselben Sprache wie die Nutzerfrage. "
+        "Wenn die Ergebnisse die Frage nicht ausreichend beantworten, sage das ehrlich. "
+        "Bleibe strikt bei Magdeburg und nenne am Ende die wichtigsten Quellen.\n\n"
+        f"Vorherige Unterhaltung:\n{chr(10).join(history_lines) or 'Keine'}\n\n"
+        f"Nutzerfrage:\n{user_message}\n\n"
+        f"Websuchergebnisse:\n{web_results}\n\n"
+        "Antwort:"
+    )
+    result = provider.chat_with_tools(
+        [
+            {"role": "system", "content": "Beantworte nur mit einer direkten Antwort aus den bereitgestellten Magdeburg-Websuchergebnissen."},
+            {"role": "user", "content": prompt},
+        ],
+        tools=None,
+    )
+    return result["content"] if result["type"] == "text" else web_results
+
+
+def answer_with_web_fallback(
+    user_message: str,
+    language: str,
+    history: list[dict] | None = None,
+) -> str:
+    web_results = execute_tool(
+        "web_suche_magdeburg",
+        {
+            "frage": user_message,
+            "sprache": language,
+            "limit": 5,
+        },
+    )
+    if web_results.startswith("Fehler") or "could not be loaded" in web_results.lower() or "konnte gerade nicht geladen" in web_results.lower():
+        return web_results
+    if any(keyword in user_message.lower() for keyword in (
+        "event", "events", "veranstaltung", "veranstaltungen", "concert", "konzert",
+        "festival", "show", "market", "flohmarkt", "exhibition", "ausstellung",
+    )):
+        return web_results
+    return summarize_web_results(user_message, web_results, history=history)
+
+
 def pick_direct_tool(user_message: str) -> tuple[str, dict] | None:
     lower_message = user_message.lower()
     for tool_name, keywords in DIRECT_TOOL_KEYWORDS.items():
@@ -206,6 +283,17 @@ def pick_direct_tool(user_message: str) -> tuple[str, dict] | None:
                 if "apprentice" in lower_message or "apprentices" in lower_message or "auszubildende" in lower_message or "ausbildung" in lower_message or "trainee" in lower_message:
                     return tool_name, {"thema": "ausbildung", "sprache": infer_language(user_message)}
                 return tool_name, {"thema": "uebersicht", "sprache": infer_language(user_message)}
+            if tool_name == "miete_preise":
+                if (
+                    "cheapest" in lower_message
+                    or "affordable" in lower_message
+                    or "cheap" in lower_message
+                    or "günstig" in lower_message
+                    or "guenstig" in lower_message
+                    or "billig" in lower_message
+                ):
+                    return tool_name, {"frage_typ": "guenstigste", "sprache": infer_language(user_message)}
+                return tool_name, {"frage_typ": "uebersicht", "sprache": infer_language(user_message)}
             if tool_name == "gesundheitsversorgung":
                 has_pharmacy = "pharmacy" in lower_message or "pharmacies" in lower_message or "apotheke" in lower_message or "apotheken" in lower_message
                 has_rescue = "rescue" in lower_message or "ambulance" in lower_message or "rettungsdienst" in lower_message or "emergency service" in lower_message or "notfall" in lower_message
@@ -225,42 +313,6 @@ def pick_direct_tool(user_message: str) -> tuple[str, dict] | None:
                 if "ridership" in lower_message or "passenger numbers" in lower_message or "public transport usage" in lower_message or "oepnv entwicklung" in lower_message or "öpnv entwicklung" in lower_message or "fahrgast" in lower_message or "fahrgäste" in lower_message or "passengers transported" in lower_message:
                     return tool_name, {"thema": "oepnv", "sprache": infer_language(user_message)}
                 return tool_name, {"thema": "uebersicht", "sprache": infer_language(user_message)}
-            if tool_name == "veranstaltungen":
-                zeitraum = "heute"
-                if "tomorrow" in lower_message or "morgen" in lower_message:
-                    zeitraum = "morgen"
-                elif "weekend" in lower_message or "wochenende" in lower_message:
-                    zeitraum = "wochenende"
-                elif "upcoming" in lower_message or "demnächst" in lower_message or "kommende" in lower_message:
-                    zeitraum = "bald"
-
-                suchbegriff = ""
-                topic_map = {
-                    "music": "music",
-                    "concert": "music",
-                    "konzert": "musik",
-                    "musik": "musik",
-                    "family": "family",
-                    "kids": "kinder",
-                    "children": "kinder",
-                    "kinder": "kinder",
-                    "market": "markt",
-                    "flohmarkt": "flohmarkt",
-                    "museum": "museum",
-                    "exhibition": "ausstellung",
-                    "ausstellung": "ausstellung",
-                    "sport": "sport",
-                }
-                for keyword, mapped in topic_map.items():
-                    if keyword in lower_message:
-                        suchbegriff = mapped
-                        break
-
-                return tool_name, {
-                    "zeitraum": zeitraum,
-                    "suchbegriff": suchbegriff,
-                    "sprache": infer_language(user_message),
-                }
             return tool_name, {}
     return None
 
@@ -296,6 +348,8 @@ def run_agent(user_message: str, history: list[dict] | None = None) -> str:
         result = provider.chat_with_tools(messages, tools)
 
         if result["type"] == "text":
+            if is_magdeburg_scoped_query(user_message) and looks_like_no_answer_response(result["content"]):
+                return answer_with_web_fallback(user_message, language, history=history)
             return result["content"]
 
         for tc in result["tool_calls"]:
@@ -320,4 +374,7 @@ def run_agent(user_message: str, history: list[dict] | None = None) -> str:
             })
 
     last_text = provider.chat_with_tools(messages, tools=None)
-    return last_text.get("content", "Entschuldigung, ich konnte keine Antwort finden.")
+    response = last_text.get("content", "Entschuldigung, ich konnte keine Antwort finden.")
+    if is_magdeburg_scoped_query(user_message) and looks_like_no_answer_response(response):
+        return answer_with_web_fallback(user_message, language, history=history)
+    return response
